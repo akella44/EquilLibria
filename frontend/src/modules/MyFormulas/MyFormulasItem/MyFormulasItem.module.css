@@ -1,0 +1,56 @@
+.formulaItem {
+  padding: 10px;
+  background-color: var(--color-light-grey-purple);
+  border: 1px solid var(--color-grey-purple);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: 0.3s ease background-color;
+
+  &:hover {
+    background-color: var(--color-formula-item-hover);
+  }
+}
+
+.title {
+  display: inline-block;
+  font-size: var(--font-size-p-s);
+  color: var(--color-primary-purple);
+  font-weight: var(--font-weight-700);
+}
+
+.formula {
+  font-size: var(--font-size-h-s);
+  overflow: hidden;
+  height: 65px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.export {
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.3s ease color, 0.3s ease background-color, 0.3s ease opacity;
+  border-radius: 5px;
+  padding: 3px 5px;
+  font-weight: var(--font-weight-500);
+  opacity: 0;
+
+  &:hover {
+    color: #fff;
+    background-color: #6B6673;
+  }
+}
+
+.formulaItem:hover .export {
+  opacity: 1;
+}

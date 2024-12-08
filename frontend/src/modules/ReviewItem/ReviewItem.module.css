@@ -1,0 +1,25 @@
+.reviewItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-radius: 24px;
+  width: 100%;
+  background-color: var(--color-form-background);
+  outline: 1px solid var(--color-form-outline);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fileName {
+  font-size: var(--font-size-h-s);
+}
+
+.date {
+  font-size: var(--font-size-p-l);
+  color: var(--color-text-grey);
+}

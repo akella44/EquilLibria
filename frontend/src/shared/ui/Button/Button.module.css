@@ -1,0 +1,63 @@
+@import '@styles/variables/main.css';
+@import '@styles/variables/button-colors.css';
+
+.button {
+  border-radius: 10px;
+  padding: 12px;
+  font-size: var(--font-size-h-s);
+  transition: 0.3s ease color, 0.3s ease background-color, 0.3s ease outline;
+  font-weight: 300;
+  outline: 1px solid var(--color-button-outline);
+  letter-spacing: -1px;
+  width: 100%;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.purple {
+  background-color: var(--color-primary-purple);
+  color: var(--color-text-white);
+
+  &:hover {
+    background-color: var(--color-bg-button-purple-hover);
+  }
+}
+
+
+.grey {
+  background-color: var(--color-bg-button-grey);
+
+  color: var(--color-text-white);
+
+  &:hover {
+    background-color: var(--color-bg-button-grey-hover);
+    outline: 1px solid var(--color-outline-button-hover);
+  }
+}
+
+.button-m {
+  max-width: 175px;
+  width: 100%;
+}
+
+.button-l {
+  max-width: 240px;
+}
+
+.button-xl {
+  max-width: 350px;
+}
+
+.button-full {
+  width: 100%;
+}
+
+.font-s {
+  font-size: var(--font-size-h-s);
+}
+
+.font-m {
+  font-size: var(--font-size-h-m);
+}

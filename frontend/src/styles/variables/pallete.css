@@ -1,0 +1,15 @@
+:root {
+  --color-primary-purple: #842DFD;
+  --color-primary-orange: #EF7622;
+  --color-secondary-purple: #E6E0FF;
+  --color-text-black: #000;
+  --color-text-grey: #949494;
+  --color-text-grey-dark: #575757;
+  --color-text-white: #FFFFFF;
+  --color-page-background: #E6E0FF;
+  --color-element-background: #FEFDFF;
+  --color-light-grey-purple: rgba(185, 181, 203, 0.3);
+  --color-grey-purple: #B9B5CB;
+  --color-icon-hover: #E8E5F0;
+  --color-formula-item-hover: rgba(117, 111, 126, 0.42)
+}

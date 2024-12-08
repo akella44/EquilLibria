@@ -1,0 +1,10 @@
+:root {
+  --color-bg-button-purple-hover: #AC71FF;
+  --color-bg-button-light-purple-hover: #928BAB;
+  --color-bg-button-light-hover: #CEC8E5;
+  --color-bg-button-orange-active: #c9641c;
+  --color-bg-button-grey: #949494;
+  --color-bg-button-grey-hover: rgb(136, 136, 136);
+  --color-bg-button-nav: rgba(230, 224, 255, 0.6);
+  --color-bg-button-nav-hover: rgba(202, 198, 218, 0.4)
+}

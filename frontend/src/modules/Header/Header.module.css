@@ -1,0 +1,69 @@
+@import '@styles/variables/pallete.css';
+
+.header {
+  background-color: var(--color-header-background);
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoWrapper {
+  cursor: pointer;
+}
+
+.headerContainer {
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 60px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.userInfoWrapepr {
+  height: 100%;
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.userName {
+  margin-bottom: auto;
+  font-size: var(--font-size-h-xs);
+}
+
+.userPosition {
+  font-size: var(--font-size-p-m);
+  color: var(--color-text-grey);
+}
+
+.userAvatar {
+  height: 52px;
+  aspect-ratio: 1 / 1;
+}
+
+@media (max-width: 900px) {
+  .headerContainer {
+    justify-content: center;
+  }
+
+  .userInfo {
+    display: none;
+  }
+}
+
+
+/* @media (max-width: 1440px) {
+  .header {
+    height: 60px;
+  }
+} */

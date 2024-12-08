@@ -1,0 +1,19 @@
+@import '@styles/variables/pallete.css';
+
+body {
+  font-family: "Libre Franklin", sans-serif;
+  background-color: var(--color-page-background);
+  color: var(--color-text-black);
+  letter-spacing: -0.06em;
+}
+
+.mjx-char,
+.MJXp-mi,
+.MJXp-mn {
+  font-family: "Libre Franklin", sans-serif !important;
+  font-style: normal !important;
+}
+
+/* .mjx-char {
+  font-size: var(--font-size-h-s) !important;
+} */

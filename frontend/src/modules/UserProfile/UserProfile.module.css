@@ -1,0 +1,16 @@
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 50px;
+  aspect-ratio: 1 / 1;
+}
+
+.userName {
+  font-size: var(--font-size-h-s);
+  font-weight: var(--font-weight-600);
+  color: black;
+}

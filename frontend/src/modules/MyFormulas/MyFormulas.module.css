@@ -1,0 +1,15 @@
+.header {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: var(--font-size-large-32);
+  color: var(--color-primary-purple);
+}
+
+.myFormulas {
+  border-radius: 10px;
+  background-color: var(--color-element-background);
+  padding: 20px;
+}
+

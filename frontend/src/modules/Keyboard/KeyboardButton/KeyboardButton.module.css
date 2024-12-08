@@ -1,0 +1,38 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+  transition: 0.3s ease background-color;
+  line-height: 100%;
+}
+
+.light {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid var(--color-primary-purple);
+
+  &:hover {
+    background-color: var(--color-bg-button-light-hover);
+  }
+}
+
+.purple {
+  background-color: var(--color-primary-purple);
+  color: #fff;
+
+  &:hover {
+    background-color: var(--color-bg-button-purple-hover);
+  }
+}
+
+.light-purple {
+  background-color: var(--color-secondary-purple);
+
+  &:hover {
+    background-color: var(--color-bg-button-light-purple-hover);
+  }
+}

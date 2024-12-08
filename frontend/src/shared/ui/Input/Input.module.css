@@ -1,0 +1,40 @@
+.input {
+  height: 70px;
+  border-radius: 5px;
+
+  padding: 20px;
+  border: 1px solid var(--color-light-grey-purple);
+  transition: outline 0.3s ease;
+
+  &:focus {
+    outline: 1px solid #000;
+  }
+
+  &::placeholder {
+    color: var(--color-text-grey);
+  }
+}
+
+.input-m {
+  max-width: 175px;
+  width: 100%;
+}
+
+.input-l {
+  max-width: 240px;
+}
+
+.input-xl {
+  max-width: 350px;
+}
+
+.input-full {
+  width: 100%;
+}
+
+.label {
+  display: inline-block;
+  color: var(--color-primary-purple);
+  font-size: var(--font-size-h-xs);
+  margin-bottom: 10px;
+}

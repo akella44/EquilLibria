@@ -1,0 +1,70 @@
+.signInPage {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.wrapper {
+  padding: 40px 190px;
+  background-color: var(--color-element-background);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.greetings {
+  font-size: 40px;
+  color: var(--color-primary-purple);
+  margin-bottom: 30px;
+}
+
+.logoWrapper {
+  margin-bottom: 30px;
+}
+
+.title {
+  font-weight: var(--font-weight-400);
+  margin-block: 40px 30px;
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  color: var(--color-text-black);
+  letter-spacing: -2px;
+}
+
+.logoWrapper {
+  width: 970px;
+}
+
+.formWrapper {
+  margin-bottom: 24px;
+}
+
+.login {
+  display: inline-block;
+  margin-left: 10px;
+  color: var(--color-primary-purple);
+  cursor: pointer;
+  transition: 0.3s ease color;
+  font-size: var(--font-size-h-xs);
+
+  &:hover {
+    color: var(--color-bg-button-purple-hover);
+  }
+}
+
+.forgetPassword {
+  font-size: var(--font-size-h-xs);
+}
+
+
+@media (max-width: 1440px) {
+  .signInPage {
+    justify-content: center;
+    height: 100%;
+  }
+
+  .formWrapper {
+    max-width: 500px;
+    width: 100%;
+  }
+}

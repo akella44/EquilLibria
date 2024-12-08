@@ -1,0 +1,11 @@
+.error {
+  font-size: var(--font-size-h-l);
+  color: var(--color-text-grey);
+  font-weight: var(--font-weigth-400);
+}
+
+@media (max-width: 1440px) {
+  .error {
+    font-size: var(--font-size-h-m);
+  }
+}

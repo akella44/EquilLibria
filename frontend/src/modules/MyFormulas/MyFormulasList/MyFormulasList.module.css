@@ -1,0 +1,23 @@
+.formulasList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  overflow-y: auto;
+  padding-right: 10px;
+
+  max-height: 390px;
+
+  &::-webkit-scrollbar {
+    width: 15px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-grey-purple);
+    border-radius: 5px;
+  }
+}
+
+.formulasList_item {
+  overflow: hidden;
+}

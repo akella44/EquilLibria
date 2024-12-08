@@ -1,0 +1,38 @@
+:root {
+  /* widths */
+  --container-width: 1216px;
+  --container-width-lg: 960px;
+  --container-width-tablet: 708px;
+  --container-width-sm: 540px;
+  --container-width-mobile: 100%;
+  --grid-template-columns: 332px 244px 244px;
+
+  /* paddings */
+  --container-padding: 0;
+
+  /* transitions */
+  --drawer-transition-speed: 0.3s;
+
+  /* dimensions */
+  --font-size-none: 0;
+  --font-size-p-xxxs: 6px;
+  --font-size-p-xxs: 8px;
+  --font-size-p-xss: 10px;
+  --font-size-p-xs: 12px;
+  --font-size-p-s: 14px;
+  --font-size-p-m: 16px;
+  --font-size-p-l: 18px;
+  --font-size-h-xs: 20px;
+  --font-size-h-s: 24px;
+  --font-size-large-32: 32px;
+  --font-size-h-m: 36px;
+  --font-size-h-l: 48px;
+  --font-size-h-xxl: 64px;
+  --font-weight-100: 100;
+  --font-weight-200: 200;
+  --font-weight-300: 300;
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+}

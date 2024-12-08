@@ -1,0 +1,37 @@
+.homePage {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.myFormulasWrapper,
+.mathInputWrapper,
+.keyboardWrapper,
+.formulaPreviewWrapper {
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.2);
+}
+
+.mathInputWrapper {
+  margin-bottom: 10px;
+}
+
+.keyboardWrapper {
+  max-height: 0;
+  transition: max-height 0.3s ease;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.keyboardWrapper.visible {
+  margin-bottom: 10px;
+  max-height: 500px;
+}
+
+.myFormulasWrapper {
+  margin-top: 10px;
+}
+
+@media (max-width: 1440px) {}

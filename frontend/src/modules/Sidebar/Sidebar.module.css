@@ -1,0 +1,41 @@
+.sidebar {
+  display: flex;
+  align-items: start;
+  height: 100%;
+  flex-direction: column;
+  background-color: var(--color-element-background);
+  overflow: hidden;
+  padding: 20px;
+}
+
+.userProfileWrapper {
+  margin-block: 20px;
+}
+
+.sidebarItem {
+  width: 100%;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  height: 50px;
+  cursor: pointer;
+  font-size: var(--font-size-h-s);
+  padding: 10px;
+  color: #000;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: var(--color-bg-button-nav-hover);
+  }
+}
+
+.active {
+  background-color: var(--color-bg-button-nav);
+
+  &:hover {
+    background-color: var(--color-bg-button-nav);
+  }
+}
+
+.navItem:not(.active) {
+  background-color: transparent;
+}
