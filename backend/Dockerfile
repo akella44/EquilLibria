@@ -10,7 +10,7 @@ COPY . /app/
 
 ENV PYTHONUNBUFFERED=1
 
-RUN alembic upgrade head
+RUN touch /app/app.log && alembic upgrade head
 
 EXPOSE 8000
 
