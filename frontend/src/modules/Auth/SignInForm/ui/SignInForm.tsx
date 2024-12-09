@@ -41,6 +41,7 @@ export const SignInForm: FC = () => {
       >
         <Input register={register("username")} fullWidth={true} label="Логин" />
         <Input
+          type="password"
           register={register("password")}
           fullWidth={true}
           label="Пароль"

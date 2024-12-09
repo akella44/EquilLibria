@@ -72,6 +72,7 @@ export const SignUpForm: FC<SignUpFormProps> = () => {
       </div>
       <div className={s.inputWrapper}>
         <Input
+          type="password"
           register={register("password", {
             required: "Пароль обязателен",
             minLength: {
@@ -91,6 +92,7 @@ export const SignUpForm: FC<SignUpFormProps> = () => {
       </div>
       <div className={s.inputWrapper}>
         <Input
+          type="password"
           register={register("confirmPassword", {
             required: "Подтверждение пароля обязательно",
             validate: (value) => value === password || "Пароли не совпадают",
