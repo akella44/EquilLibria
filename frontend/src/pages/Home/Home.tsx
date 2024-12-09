@@ -10,6 +10,7 @@ import { FormulaPreview } from "@modules/FormulaPreview/FormulaPreview";
 import { Keyboard } from "@modules/Keyboard/Keyboard";
 import { keyboardStore } from "@/store/keyboard";
 import { MyFormulas } from "@/modules/MyFormulas";
+import { Button } from "@/shared/ui/Button";
 
 export const Home: FC = observer(() => {
   const { getIsKeyboardVisible } = keyboardStore;
@@ -32,6 +33,7 @@ export const Home: FC = observer(() => {
         <div className={s.formulaPreviewWrapper}>
           <FormulaPreview value={inputValue} />
         </div>
+        <Button variant="purple" fullWidth={true} text="Экспортировать" />
         <div className={s.myFormulasWrapper}>
           <MyFormulas />
         </div>

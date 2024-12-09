@@ -21,6 +21,10 @@
   &::-webkit-scrollbar {
     display: none;
   }
+
+  &::placeholder {
+    color: var(--color-grey-purple);
+  }
 }
 
 .keyboardButton {

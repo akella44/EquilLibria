@@ -16,7 +16,7 @@
 .greetings {
   font-size: 40px;
   color: var(--color-primary-purple);
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .logoWrapper {
@@ -54,17 +54,4 @@
 
 .forgetPassword {
   font-size: var(--font-size-h-xs);
-}
-
-
-@media (max-width: 1440px) {
-  .signInPage {
-    justify-content: center;
-    height: 100%;
-  }
-
-  .formWrapper {
-    max-width: 500px;
-    width: 100%;
-  }
 }

@@ -1,13 +1,14 @@
 .input {
   height: 70px;
   border-radius: 5px;
+  font-size: var(--font-size-h-s);
 
   padding: 20px;
-  border: 1px solid var(--color-light-grey-purple);
-  transition: outline 0.3s ease;
+  transition: border 0.3s ease;
+  border: 1px solid var(--color-grey-purple);
 
   &:focus {
-    outline: 1px solid #000;
+    border: 1px solid #000;
   }
 
   &::placeholder {

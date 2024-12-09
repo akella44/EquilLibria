@@ -21,7 +21,8 @@
     "react-hook-form": "^7.53.2",
     "react-mathjax2": "^0.0.2",
     "react-responsive": "^10.0.0",
-    "react-router-dom": "^6.28.0"
+    "react-router-dom": "^6.28.0",
+    "react-toastify": "^10.0.6"
   },
   "devDependencies": {
     "@types/node": "^22.10.1",

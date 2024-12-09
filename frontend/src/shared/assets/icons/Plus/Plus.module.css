@@ -1,0 +1,13 @@
+.plus {
+  transition: 0.3s ease background-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  aspect-ratio: 1 / 1;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: var(--color-icon-hover)
+  }
+}

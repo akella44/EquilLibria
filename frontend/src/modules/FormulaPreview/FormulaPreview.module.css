@@ -1,9 +1,12 @@
 .formulaField {
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 100%;
   padding: 30px 20px;
   font-size: var(--font-size-large-32);
   resize: none;
+  overflow-x: scroll;
 
   &::-webkit-scrollbar {
     display: none;
@@ -15,7 +18,6 @@
   display: flex;
   align-items: center;
   border-radius: 10px;
-  overflow: hidden;
   background-color: var(--color-element-background);
 }
 
@@ -40,4 +42,9 @@
   &:hover {
     background-color: var(--color-secondary-purple);
   }
+}
+
+.iconWrapper {
+  margin-inline: 20px;
+  cursor: pointer;
 }

@@ -1,6 +1,6 @@
 import { InternalAxiosRequestConfig } from "axios";
 
-const addTokenToheader = async (
+const addTokenToHeader = async (
   config: InternalAxiosRequestConfig
 ) => {
   const token = localStorage.getItem("token");
@@ -19,4 +19,4 @@ const addTokenToheader = async (
   return config;
 };
 
-export { addTokenToheader };
+export { addTokenToHeader };
