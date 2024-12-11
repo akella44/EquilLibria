@@ -12,7 +12,7 @@ export const sidebarItems: NavItem[] = [
     link: "/analyze",
   },
   {
-    id: "/my",
+    id: "/myformulas",
     title: "Мои формулы",
     link: "/myformulas",
   },

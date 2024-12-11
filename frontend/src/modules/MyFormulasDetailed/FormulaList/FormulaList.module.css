@@ -1,0 +1,22 @@
+.formulaItem {
+  /* margin-block: 20px; */
+}
+
+.formulaList {
+  overflow-y: scroll;
+  padding-right: 20px;
+
+  &::-webkit-scrollbar {
+    width: 15px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-grey-purple);
+    border-radius: 5px;
+  }
+}
+
+.separator {
+  margin-block: 20px;
+}
