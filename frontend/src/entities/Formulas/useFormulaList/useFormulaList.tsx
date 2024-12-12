@@ -1,5 +1,4 @@
 import { getFormulas } from "@/shared/api/formulasService/formulasController";
-import { refreshToken } from "@/shared/api/TokenService/tokenControllerApi";
 import { useQuery } from "@tanstack/react-query";
 
 export const useFormulaList = () => {

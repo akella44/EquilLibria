@@ -4,9 +4,9 @@ import { IRegisterUser } from "@api/authService/types";
 import { toast } from "react-toastify";
 
 export const useRegisterUser = () => {
-  const { mutate, isError, isPending, isSuccess, error } = useMutation({
+  const { mutate, isError, isPending, isSuccess } = useMutation({
     mutationFn: ({ data }: { data: IRegisterUser }) => register(data),
-    onError: (err) => toast.error(err.message),
+    onError: (err) => toast.error(err?.response?.data.detail),
   });
   const registerUser = (data: IRegisterUser) => mutate({ data });
 
@@ -15,6 +15,5 @@ export const useRegisterUser = () => {
     isError,
     isPending,
     isSuccess,
-    error: error?.response?.data,
   };
 };

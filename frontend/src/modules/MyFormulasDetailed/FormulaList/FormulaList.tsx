@@ -10,6 +10,7 @@ export const FormulaList: FC<DetailedFormulaList> = ({ formulaList }) => {
       {formulaList?.map((item, index) => (
         <div key={item.id} className={s.formulaItem}>
           <FormulaItem
+            id={item.id}
             name={item.name}
             description={item.description}
             content={item.content}

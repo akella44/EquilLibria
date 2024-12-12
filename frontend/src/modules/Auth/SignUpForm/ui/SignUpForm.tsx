@@ -18,8 +18,7 @@ interface SignUpForm {
 export const SignUpForm: FC = () => {
   const router = useNavigate();
 
-  const { registerUser, isError, isPending, isSuccess, error } =
-    useRegisterUser();
+  const { registerUser, isError, isPending, isSuccess } = useRegisterUser();
 
   const {
     handleSubmit,
@@ -61,7 +60,6 @@ export const SignUpForm: FC = () => {
           })}
           label="Логин"
         />
-        {error && <FormError text={error} />}
         {errors.username?.message && (
           <FormError text={errors.username.message} />
         )}
