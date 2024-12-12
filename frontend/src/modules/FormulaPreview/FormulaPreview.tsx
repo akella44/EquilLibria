@@ -26,7 +26,7 @@ export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
 
   const handleChange = (e) => {
     setFormualName(e.target.value);
-    console.log(Ivalue);
+    inputValueStore.setFormulaName(e.target.value);
   };
 
   return (
@@ -39,7 +39,7 @@ export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
               visibility: "hidden",
               whiteSpace: "pre",
               position: "absolute",
-              fontSize: "18px",
+              fontSize: "16px",
               fontWeight: "700",
             }}
           >
@@ -54,9 +54,7 @@ export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
         </div>
         <div className={s.formulaField}>
           <MathJax.Context input="ascii">
-            <div>
-              <MathJax.Node>{value}</MathJax.Node>
-            </div>
+            <MathJax.Node>{value}</MathJax.Node>
           </MathJax.Context>
         </div>
       </div>
@@ -69,7 +67,7 @@ export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
           onClick={() =>
             addFormula({
               content: inputValueStore.getValue(),
-              name: "asd",
+              name: inputValueStore.getFormulaName(),
               legends: ["asd"],
               description: "asd",
             })

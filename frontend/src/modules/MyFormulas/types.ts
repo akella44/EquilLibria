@@ -1,4 +1,4 @@
 export interface IFomulaItem {
-  title: string;
-  formula: string
+  name: string;
+  content: string;
 }

@@ -12,7 +12,7 @@ interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button: FC<IButton> = ({
-  size = "M",
+  size = "",
   variant = "purple",
   fullWidth = false,
   text = "",
@@ -26,7 +26,8 @@ export const Button: FC<IButton> = ({
         className && className,
         s.button,
         variant && s[variant],
-        fullWidth ? s["button-full"] : s[`button-${size.toLowerCase()}`],
+        fullWidth && s["button-full"],
+        size && s[`button-${size.toLowerCase()}`]
       )}
       style={{ fontSize: fontSize }}
       {...props}

@@ -12,10 +12,10 @@ export const SignIn: FC = () => {
     <PageLayoutWithoutHeader>
       <div className={s.signInPage}>
         <div className={s.wrapper}>
-          <h2 className={s.greetings}>Добро пожаловать!</h2>
           <div className={s.logoWrapper}>
             <BigLogo />
           </div>
+          <h2 className={s.greetings}>Добро пожаловать!</h2>
           <div className={s.formWrapper}>
             <SignInForm />
           </div>

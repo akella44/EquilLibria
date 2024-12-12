@@ -1,6 +1,7 @@
 import { FC } from "react";
 import s from "./MyFormulas.module.css";
 import { MyFormulasList } from "./MyFormulasList";
+import { useFormulaList } from "@/entities/Formulas/useFormulaList";
 
 const list = [
   {
@@ -51,12 +52,13 @@ const list = [
 ];
 
 export const MyFormulas: FC = () => {
+  const { data } = useFormulaList();
   return (
     <div className={s.myFormulas}>
       <div className={s.header}>
         <h2 className={s.title}>Мои формулы</h2>
       </div>
-      <MyFormulasList formulaList={list} />
+      <MyFormulasList formulaList={data} />
     </div>
   );
 };

@@ -22,6 +22,7 @@ export const KeyboardButtonList: FC = ({ keyboardButonList }) => {
     <ul className={s.keyboardButonList}>
       {keyboardButonList.map((button) => (
         <li
+          key={button.value}
           className={s.keyboardButon}
           onClick={() => handleClick(button.value)}
         >

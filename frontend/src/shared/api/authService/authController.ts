@@ -2,6 +2,7 @@ import axios from "axios";
 import { apiKey } from "../config";
 import { ILoginUser, IRegisterUser } from "./types";
 import { addTokenToHeader } from "../commonFeatures";
+import { toast } from "react-toastify";
 
 const authController = axios.create({
   baseURL: apiKey,
@@ -10,7 +11,12 @@ const authController = axios.create({
 authController.interceptors.request.use((config) => addTokenToHeader(config));
 
 export const register = async (data: IRegisterUser) => {
-  return authController.post("/jwt/register", data);
+  try {
+    const response = await authController.post("/jwt/register", data);
+    return response;
+  } catch (err) {
+    throw err;
+  }
 };
 
 export const login = async (data: ILoginUser) => {
@@ -22,5 +28,6 @@ export const login = async (data: ILoginUser) => {
     };
   } catch (err) {
     console.log(err);
+    toast.error(err.message);
   }
 };

@@ -1,10 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 import { login } from "@api/authService/authController";
 import { ILoginUser } from "@api/authService/types";
+import { toast } from "react-toastify";
 
 export const useLoginUser = () => {
   const { mutateAsync, isError, isPending, isSuccess } = useMutation({
     mutationFn: async ({ data }: { data: ILoginUser }) => login(data),
+    onError: (error) => toast.error(error.message),
   });
 
   const loginUser = (data: ILoginUser) => mutateAsync({ data });

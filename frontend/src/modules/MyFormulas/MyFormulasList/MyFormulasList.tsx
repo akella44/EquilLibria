@@ -12,7 +12,7 @@ export const MyFormulasList: FC<IMyFormulasList> = ({ formulaList = [] }) => {
     <ul className={s.formulasList}>
       {formulaList.map((formula, index) => (
         <li className={s.formulasList_item} key={index}>
-          <MyFormulasItem title={formula.title} formula={formula.formula} />
+          <MyFormulasItem name={formula.name} content={formula.content} />
         </li>
       ))}
     </ul>

@@ -6,7 +6,6 @@ import { Input } from "@/shared/ui/Input";
 import { useLoginUser } from "../model/useLoginUser";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { userStore } from "@/store/user";
 import { ILoginUser } from "@/shared/api/authService/types";
 
 interface SignInForm {
@@ -22,16 +21,11 @@ export const SignInForm: FC = () => {
   const router = useNavigate();
 
   const onSubmit = async (data: ILoginUser) => {
-    try {
-      const tokens = await loginUser(data);
-      if (tokens) {
-        localStorage.setItem("accessToken", tokens.access_token);
-        localStorage.setItem("refreshToken", tokens.refresh_token);
-        userStore.setUsername(data.username);
-        router("/");
-      }
-    } catch {
-      toast.error("Неверные данные");
+    const tokens = await loginUser(data);
+    if (tokens) {
+      localStorage.setItem("accessToken", tokens.access_token);
+      localStorage.setItem("refreshToken", tokens.refresh_token);
+      router("/");
     }
   };
 
@@ -49,7 +43,7 @@ export const SignInForm: FC = () => {
           fullWidth={true}
           label="Пароль"
         />
-        <Button text="Войти" size="M" fontSize="M" />
+        <Button text="Войти" size="M" fontSize={24} />
       </form>
     </>
   );

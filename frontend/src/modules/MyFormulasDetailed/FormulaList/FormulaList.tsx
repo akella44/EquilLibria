@@ -7,12 +7,13 @@ import s from "./FormulaList.module.css";
 export const FormulaList: FC<DetailedFormulaList> = ({ formulaList }) => {
   return (
     <div className={s.formulaList}>
-      {formulaList.map((item, index) => (
-        <div className={s.formulaItem}>
+      {formulaList?.map((item, index) => (
+        <div key={item.id} className={s.formulaItem}>
           <FormulaItem
-            title={item.name}
+            name={item.name}
             description={item.description}
-            formula={item.content}
+            content={item.content}
+            legends={item.legends}
           />
           {index < formulaList.length - 1 && (
             <div className={s.separator}>

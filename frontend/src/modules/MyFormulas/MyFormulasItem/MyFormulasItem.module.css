@@ -22,11 +22,6 @@
   font-size: var(--font-size-h-s);
   overflow: hidden;
   height: 65px;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 .header {
@@ -53,4 +48,12 @@
 
 .formulaItem:hover .export {
   opacity: 1;
+}
+
+.formula {
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

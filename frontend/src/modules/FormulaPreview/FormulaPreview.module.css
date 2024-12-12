@@ -33,9 +33,9 @@
 }
 
 .formulaName input {
-  min-width: 50px;
   max-width: 150px;
   flex-grow: 1;
+  padding: 5px;
   color: inherit;
   font-size: var(--font-size-p-m);
   font-weight: var(--font-weight-700);

@@ -14,9 +14,9 @@ export const Plus: FC = () => {
         <path
           d="M1 11H11M11 11H21M11 11V1M11 11V21"
           stroke="#B9B5CB"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </div>

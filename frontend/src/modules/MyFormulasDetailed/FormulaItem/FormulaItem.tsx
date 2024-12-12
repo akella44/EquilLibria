@@ -8,23 +8,26 @@ export const FormulaItem: FC<DetailedFormulaItem> = ({
   name,
   content,
   description,
-  legends
+  legends,
 }) => {
   return (
     <div className={s.formulaItem}>
       <div className={s.header}>
-        <h2 className={s.title}>{title}</h2>
+        <h2 className={s.title}>{name}</h2>
         <Button variant="purple" text="Экспорт" fontSize={20} />
       </div>
       <div className={s.formula}>
         <MathJax.Context input="ascii">
-          <MathJax.Node>{formula}</MathJax.Node>
+          <MathJax.Node>{content}</MathJax.Node>
         </MathJax.Context>
       </div>
       <div className={s.description}>
-        {legends.map((string) => (
-          <p className={s.desctiptionItem}>{string}</p>
+        {legends?.map((string, index) => (
+          <p key={index} className={s.desctiptionItem}>
+            {string}
+          </p>
         ))}
+        {description}
       </div>
     </div>
   );

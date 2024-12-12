@@ -15,11 +15,7 @@ interface SignUpForm {
   confirmPassword: string;
 }
 
-interface SignUpFormProps {
-  onSubmit: (data: SignUpForm) => void;
-}
-
-export const SignUpForm: FC<SignUpFormProps> = () => {
+export const SignUpForm: FC = () => {
   const router = useNavigate();
 
   const { registerUser, isError, isPending, isSuccess, error } =

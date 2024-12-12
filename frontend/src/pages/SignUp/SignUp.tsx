@@ -12,10 +12,10 @@ export const SignUp: FC = () => {
     <PageLayoutWithoutHeader>
       <div className={s.signUpPage}>
         <div className={s.wrapper}>
-          <h2 className={s.greetings}>Добро пожаловать!</h2>
           <div className={s.logoWrapper}>
             <BigLogo />
           </div>
+          <h2 className={s.greetings}>Добро пожаловать!</h2>
           <div className={s.formWrapper}>
             <SignUpForm />
           </div>

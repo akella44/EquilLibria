@@ -1,5 +1,6 @@
 .signInPage {
   height: 100%;
+  padding-inline: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,10 +8,11 @@
 }
 
 .wrapper {
-  padding: 40px 190px;
+  padding: 40px 65px;
   background-color: var(--color-element-background);
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.2);
 }
 
 .greetings {
@@ -36,7 +38,7 @@
 }
 
 .formWrapper {
-  margin-bottom: 24px;
+  margin-bottom: 40px;
 }
 
 .login {
