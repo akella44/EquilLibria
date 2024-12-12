@@ -3,7 +3,7 @@
 }
 
 .title {
-  font-size: var(--font-size-large-32);
+  font-size: var(--font-size-h-s);
   color: var(--color-primary-purple);
 }
 
@@ -13,3 +13,6 @@
   padding: 20px;
 }
 
+.text {
+  font-size: var(--font-size-h-xs);
+}

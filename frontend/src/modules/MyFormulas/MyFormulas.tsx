@@ -58,7 +58,11 @@ export const MyFormulas: FC = () => {
       <div className={s.header}>
         <h2 className={s.title}>Мои формулы</h2>
       </div>
-      <MyFormulasList formulaList={data} />
+      {data?.length ? (
+        <MyFormulasList formulaList={data} />
+      ) : (
+        <p className={s.text}>Вы пока не сохранили ни одной формулы</p>
+      )}
     </div>
   );
 };

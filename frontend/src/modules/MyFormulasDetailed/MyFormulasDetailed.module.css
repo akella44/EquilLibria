@@ -18,3 +18,7 @@
 .header {
   padding-right: 35px;
 }
+
+.text {
+  font-size: var(--font-size-h-s);
+}

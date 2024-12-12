@@ -58,25 +58,31 @@ export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
           </MathJax.Context>
         </div>
       </div>
-      <div className={s.separator}>
-        <Separator />
-      </div>
-      <div className={s.iconsWrapper}>
-        <div
-          className={s.iconWrapper}
-          onClick={() =>
-            addFormula({
-              content: inputValueStore.getValue(),
-              name: inputValueStore.getFormulaName(),
-              legends: ["asd"],
-              description: "asd",
-            })
-          }
-        >
-          <Plus />
+      <div
+        className={`${s.functions} ${
+          inputValueStore.getValue() ? s.visible : ""
+        }`}
+      >
+        <div className={s.separator}>
+          <Separator />
         </div>
-        <div className={s.iconWrapper}>
-          <Export />
+        <div className={s.iconsWrapper}>
+          <div
+            className={s.iconWrapper}
+            onClick={() =>
+              addFormula({
+                content: inputValueStore.getValue(),
+                name: inputValueStore.getFormulaName(),
+                legends: ["asd"],
+                description: "asd",
+              })
+            }
+          >
+            <Plus />
+          </div>
+          <div className={s.iconWrapper}>
+            <Export />
+          </div>
         </div>
       </div>
     </div>

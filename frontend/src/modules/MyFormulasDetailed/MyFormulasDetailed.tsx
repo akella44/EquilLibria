@@ -8,11 +8,20 @@ export const MyFormulasDetailed: FC = () => {
   const { data } = useFormulaList();
   return (
     <div className={s.myFormulasDetailed}>
-      <div className={s.header}>
-        <h1 className={s.title}>Мои формулы</h1>
-        <SearchBar />
-      </div>
-      <FormulaList formulaList={data} />
+      {data?.length ? (
+        <>
+          <div className={s.header}>
+            <h1 className={s.title}>Мои формулы</h1>
+            <SearchBar />
+          </div>
+          <FormulaList formulaList={data} />
+        </>
+      ) : (
+        <div className={s.header}>
+          <h1 className={s.title}>Мои формулы</h1>
+          <p className={s.text}>Вы пока не сохранили ни одной формулы</p>
+        </div>
+      )}
     </div>
   );
 };
