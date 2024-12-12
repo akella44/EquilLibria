@@ -27,8 +27,12 @@ router = APIRouter(
 
 
 if DEV:
+
     @router.post(
-        "/login-swagger/", response_model=TokenInfo, summary="User login", deprecated=True
+        "/login-swagger/",
+        response_model=TokenInfo,
+        summary="User login",
+        deprecated=True,
     )
     async def login_swagger(
         user: UserSchema = Depends(validate_auth_user_form),
@@ -67,6 +71,7 @@ async def register(response: LinkTelegramBot | User = Depends(register_user)):
             created_at=response.created_at,
             admin=response.admin,
             active=response.active,
+            photo_id=response.photo_id,
         )
     return response
 

@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  app:
+  backend:
     build: .
     container_name: fastapi-app
     ports:
