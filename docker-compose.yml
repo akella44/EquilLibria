@@ -56,5 +56,9 @@ services:
     networks:
       - dev
 
+networks:
+  dev:
+    driver: bridge
+
 volumes:
   postgres-data:
