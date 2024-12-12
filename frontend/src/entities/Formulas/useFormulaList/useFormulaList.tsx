@@ -6,8 +6,9 @@ export const useFormulaList = () => {
     queryKey: ["fomulaList"],
     queryFn: () => getFormulas(),
   });
+
   return {
-    data,
+    data: data?.data.formulas,
     isLoading,
     isError,
     isSuccess,

@@ -12,10 +12,14 @@ formulasController.interceptors.request.use((config) =>
 );
 
 export const getFormulas = async () => {
+  axios.defaults.headers.common["Authorization"] =
+    localStorage.getItem("accessToken");
   return formulasController.get("/me");
 };
 
 export const createFormula = async (data: IAddFormula) => {
+  axios.defaults.headers.common["Authorization"] =
+    localStorage.getItem("accessToken");
   return formulasController.post("/", data);
 };
 

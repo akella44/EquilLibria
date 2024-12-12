@@ -14,9 +14,13 @@ export const register = async (data: IRegisterUser) => {
 };
 
 export const login = async (data: ILoginUser) => {
-  const response = await authController.post("/jwt/login", data);
-  return {
-    access_token: response.data.access_token,
-    refresh_token: response.data.refresh_token,
-  };
+  try {
+    const response = await authController.post("/jwt/login", data);
+    return {
+      access_token: response.data.access_token,
+      refresh_token: response.data.refresh_token,
+    };
+  } catch (err) {
+    console.log(err);
+  }
 };

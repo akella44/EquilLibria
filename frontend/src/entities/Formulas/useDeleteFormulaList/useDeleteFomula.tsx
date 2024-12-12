@@ -1,7 +1,7 @@
 import { deleteFormulaById } from "@/shared/api/formulasService/formulasController";
 import { useMutation } from "@tanstack/react-query";
 
-export const useFormulaList = () => {
+export const useDeleteFormulaList = () => {
   const { mutate, isPending, isError, isSuccess } = useMutation({
     mutationFn: ({ id }: { id: number }) => deleteFormulaById(id),
   });
