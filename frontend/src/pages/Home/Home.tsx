@@ -33,7 +33,6 @@ export const Home: FC = observer(() => {
         <div className={s.formulaPreviewWrapper}>
           <FormulaPreview value={inputValue} />
         </div>
-        <Button variant="purple" fullWidth={true} text="Экспортировать" />
         <div className={s.myFormulasWrapper}>
           <MyFormulas />
         </div>
