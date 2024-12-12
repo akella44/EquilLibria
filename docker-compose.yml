@@ -22,8 +22,6 @@ services:
     depends_on:
       - db
       - redis
-    volumes:
-      - ./app.log:/app/app.log
     networks:
       - app-network
 
