@@ -4,7 +4,7 @@ body {
   font-family: "Libre Franklin", sans-serif;
   background-color: var(--color-page-background);
   color: var(--color-text-black);
-  letter-spacing: -0.06em;
+  letter-spacing: -0.05em;
 }
 
 .mjx-char,

@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  color: var(--color-primary-purple);
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: var(--color-secondary-purple);
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.formulaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formula {
+  font-size: 24px;
+}

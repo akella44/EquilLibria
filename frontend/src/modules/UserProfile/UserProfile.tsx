@@ -1,6 +1,8 @@
 import { FC } from "react";
 import s from "./UserProfile.module.css";
 import { Profile } from "@assets/icons/Profile";
+import { userStore } from "@/store/user";
+import { LeaveButton } from "@/shared/components/LeaveButton";
 
 export const UserProfile: FC = () => {
   return (
@@ -8,7 +10,10 @@ export const UserProfile: FC = () => {
       <div className={s.avatar}>
         <Profile />
       </div>
-      <span className={s.userName}>Имя пользователя</span>
+      <div className={s.wrapper}>
+        <span className={s.userName}>{userStore.username}</span>
+        <LeaveButton />
+      </div>
     </div>
   );
 };

@@ -16,9 +16,8 @@
   width: 100%;
   margin-bottom: 5px;
   border-radius: 5px;
-  height: 50px;
   cursor: pointer;
-  font-size: var(--font-size-h-s);
+  font-size: var(--font-size-h-xs);
   padding: 10px;
   color: #000;
   transition: background-color 0.3s;

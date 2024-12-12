@@ -1,1 +1,1 @@
-export const apiKey = 'http://localhost:8000/api'
+export const apiKey = "https://equillibria.ru/api";

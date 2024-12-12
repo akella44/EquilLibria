@@ -1,15 +1,18 @@
 import { ChangeEvent, FC, useEffect, useRef, useState } from "react";
 import s from "./FormulaPreview.module.css";
 import MathJax from "react-mathjax2";
+import { inputValueStore } from "@/store/inputValue";
+import { Plus } from "@/shared/assets/icons/Plus";
 
 interface IFormulaPreview {
   value: string;
 }
 
 export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
-  const [formualName, setValue] = useState("Формула");
+  const [formualName, setFormualName] = useState("Формула");
   const spanRef = useRef(null);
   const inputRef = useRef(null);
+
   useEffect(() => {
     if (spanRef.current && inputRef.current) {
       inputRef.current.style.width = `${spanRef.current.offsetWidth + 20}px`;
@@ -17,7 +20,7 @@ export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
   }, [formualName]);
 
   const handleChange = (e) => {
-    setValue(e.target.value);
+    setFormualName(e.target.value);
     console.log(Ivalue);
   };
 
@@ -49,6 +52,9 @@ export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
             <MathJax.Node>{value}</MathJax.Node>
           </div>
         </MathJax.Context>
+      </div>
+      <div className={s.iconWrapper}>
+        <Plus />
       </div>
     </div>
   );

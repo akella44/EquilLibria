@@ -6,11 +6,17 @@
 
 .avatar {
   width: 50px;
-  aspect-ratio: 1 / 1;
+  height: 50px;
 }
 
 .userName {
   font-size: var(--font-size-h-s);
   font-weight: var(--font-weight-600);
   color: black;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }

@@ -6,7 +6,7 @@
   padding: 12px;
   font-size: var(--font-size-h-s);
   transition: 0.3s ease color, 0.3s ease background-color, 0.3s ease outline;
-  font-weight: 300;
+  font-weight: var(--font-weight-400);
   outline: 1px solid var(--color-button-outline);
   letter-spacing: -1px;
   width: 100%;
@@ -47,7 +47,7 @@
 }
 
 .button-xl {
-  max-width: 350px;
+  max-width: 415px;
 }
 
 .button-full {

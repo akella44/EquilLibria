@@ -1,28 +1,12 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { SignInForm } from "@modules/Auth/SignInForm";
 import { PageLayoutWithoutHeader } from "@app/layouts/PageLayoutWithoutHeader";
 import s from "./SignIn.module.css";
-import bg from "@assets/bg.svg";
-import { useAuthToken } from "@/shared/hooks/useAuthToken";
-import { useLoginUser } from "@/modules/Auth/SignInForm/model/useLoginUser";
 import { useNavigate } from "react-router-dom";
 import { BigLogo } from "@/shared/ui/BigLogo";
 
 export const SignIn: FC = () => {
-  const { loginUser, isError, isPending } = useLoginUser();
-  const { addAccessToken, getAccessToken } = useAuthToken();
   const router = useNavigate();
-
-  // useEffect(() => {
-  //   if (!isPending && !isError && getAccessToken()) {
-  //     router("/");
-  //   }
-  // }, [isPending, isError, getAccessToken, router]);
-
-  const onSubmit = async (data) => {
-    const token = await loginUser(data);
-    addAccessToken(token);
-  };
 
   return (
     <PageLayoutWithoutHeader>
@@ -33,7 +17,7 @@ export const SignIn: FC = () => {
             <BigLogo />
           </div>
           <div className={s.formWrapper}>
-            <SignInForm onSubmit={onSubmit} />
+            <SignInForm />
           </div>
           <span className={s.forgetPassword}>Еще нет аккаунта?</span>
           <span className={s.login} onClick={() => router("/signup")}>

@@ -3,7 +3,7 @@
   gap: 10px;
   max-width: 1440px;
   margin-inline: auto;
-  padding-inline: 40px;
+  padding-inline: 40px 20px;
   overflow: hidden;
 }
 
@@ -12,27 +12,21 @@
 }
 
 .sidebarWrapper {
-  width: 340px;
+  width: 300px;
   position: fixed;
   height: 100vh;
 }
 
 .content {
   flex: 1;
-  margin-block: 10px;
-  margin-left: 350px;
+  padding-block: 10px;
+  padding-left: 310px;
+  padding-right: 20px;
+  overflow: hidden;
 }
 
 @media (max-width: 1280px) {
   .container {
-    max-width: 972px;
-    padding-inline: 40px;
-  }
-}
-
-@media (max-width: 900px) {
-  .container {
-    max-width: 860px;
-    padding-inline: 20px;
+    padding-inline: 20px 0px;
   }
 }
