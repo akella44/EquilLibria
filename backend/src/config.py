@@ -15,6 +15,7 @@ REFRESH_TOKEN_TYPE = "refresh"
 origins = [
     "http://equillibria.ru",
     "https://equillibria.ru",
+    "http://176.108.252.129:5173"
 ]
 if DEV:
     origins.extend(

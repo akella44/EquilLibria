@@ -2,7 +2,7 @@
 
 # Ждем, пока база данных станет доступной
 echo "Ждем, пока база данных будет доступна..."
-while ! nc -z db 5432; do
+while ! nc -z localhost 5432; do
   sleep 1
   echo "..."
 done
