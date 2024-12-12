@@ -53,6 +53,8 @@ services:
     depends_on:
       - backend
       - frontend
+    networks:
+      - app-network
 
 volumes:
   postgres-data:
