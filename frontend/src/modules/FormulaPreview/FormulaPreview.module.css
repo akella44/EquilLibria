@@ -33,6 +33,7 @@
 }
 
 .formulaName input {
+  min-width: 90px;
   max-width: 150px;
   flex-grow: 1;
   padding: 5px;
@@ -44,6 +45,15 @@
 
   &:hover {
     background-color: var(--color-secondary-purple);
+  }
+
+  &:hover::placeholder {
+    color: transparent;
+  }
+
+  &::placeholder {
+    color: var(--color-secondary-purple);
+    transition: color 0.3s ease;
   }
 }
 

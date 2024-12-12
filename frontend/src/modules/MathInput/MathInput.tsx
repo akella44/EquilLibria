@@ -21,6 +21,7 @@ export const MathInput: FC<MathInputProps> = ({ onChange, value }) => {
   return (
     <div className={s.textareaWrapper}>
       <input
+        autoFocus
         placeholder="x^2 + y^2 = r^2"
         className={s.textarea}
         value={value}

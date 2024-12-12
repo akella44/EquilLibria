@@ -46,6 +46,7 @@ export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
             {formualName || " "}
           </span>
           <input
+            placeholder="Название"
             ref={inputRef}
             type="text"
             value={formualName}
@@ -60,7 +61,9 @@ export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
       </div>
       <div
         className={`${s.functions} ${
-          inputValueStore.getValue() ? s.visible : ""
+          inputValueStore.getValue() && inputValueStore.getFormulaName()
+            ? s.visible
+            : ""
         }`}
       >
         <div className={s.separator}>
