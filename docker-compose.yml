@@ -19,7 +19,7 @@ services:
       - redis
     network_mode: "host"
 
-  db: 
+  db:
     image: postgres:14
     container_name: postgres-db
     environment:
@@ -34,7 +34,7 @@ services:
     image: redis:6
     container_name: redis
     network_mode: "host"
-  
+
   nginx:
     image: nginx:1.26
     container_name: nginx
@@ -43,6 +43,14 @@ services:
     depends_on:
       - backend
       - frontend
+
+  img2latex:
+    build:
+      context: ./img2latex
+      dockerfile: Dockerfile
+    container_name: img2latex
+    restart: unless-stopped
+    network_mode: "host"
 
 volumes:
   postgres-data:
