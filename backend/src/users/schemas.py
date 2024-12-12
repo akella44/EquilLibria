@@ -77,6 +77,7 @@ class User(UserBase):
     id: int
     username: str
     tg_username: str | None
+    photo_id: int
     created_at: datetime
     admin: bool
     active: bool

@@ -1,13 +1,20 @@
 .myFormulasDetailed {
   background-color: var(--color-element-background);
   border-radius: 10px;
-  padding: 30px 20px;
+  padding: 30px 10px 20px 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height: calc(100vh - 20px);
+  overflow: hidden;
 }
 
 .title {
   font-size: var(--font-size-large-32);
   color: var(--color-primary-purple);
+  margin-bottom: 20px;
+}
+
+.header {
+  padding-right: 35px;
 }

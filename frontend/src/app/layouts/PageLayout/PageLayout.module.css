@@ -12,7 +12,7 @@
 }
 
 .sidebarWrapper {
-  width: 340px;
+  width: 300px;
   position: fixed;
   height: 100vh;
 }
@@ -20,7 +20,7 @@
 .content {
   flex: 1;
   padding-block: 10px;
-  padding-left: 350px;
+  padding-left: 310px;
   padding-right: 20px;
   overflow: hidden;
 }

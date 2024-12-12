@@ -6,6 +6,7 @@ import asyncio
 
 from .auth.router import router as auth_router
 from .users.router import router as users_router
+from .formulas.router import router as formulas_router
 
 from .database import Base, db_manager
 from .config import DEV, setup_logging, origins
@@ -49,6 +50,7 @@ app.add_middleware(
 
 main_router.include_router(auth_router)
 main_router.include_router(users_router)
+main_router.include_router(formulas_router)
 
 app.include_router(main_router)
 
