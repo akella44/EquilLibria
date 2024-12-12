@@ -10,9 +10,9 @@ export const FormulaList: FC<DetailedFormulaList> = ({ formulaList }) => {
       {formulaList.map((item, index) => (
         <div className={s.formulaItem}>
           <FormulaItem
-            title={item.title}
+            title={item.name}
             description={item.description}
-            formula={item.formula}
+            formula={item.content}
           />
           {index < formulaList.length - 1 && (
             <div className={s.separator}>

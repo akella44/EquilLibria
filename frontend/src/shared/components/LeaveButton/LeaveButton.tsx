@@ -8,6 +8,7 @@ export const LeaveButton: FC = () => {
     <div
       onClick={() => {
         localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
         router("/signin");
       }}
     >

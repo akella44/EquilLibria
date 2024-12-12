@@ -5,9 +5,10 @@ import s from "./FormulaItem.module.css";
 import { Button } from "@/shared/ui/Button";
 
 export const FormulaItem: FC<DetailedFormulaItem> = ({
-  title,
-  formula,
+  name,
+  content,
   description,
+  legends
 }) => {
   return (
     <div className={s.formulaItem}>
@@ -21,7 +22,7 @@ export const FormulaItem: FC<DetailedFormulaItem> = ({
         </MathJax.Context>
       </div>
       <div className={s.description}>
-        {description.map((string) => (
+        {legends.map((string) => (
           <p className={s.desctiptionItem}>{string}</p>
         ))}
       </div>

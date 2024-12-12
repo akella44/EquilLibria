@@ -1,5 +1,6 @@
 export interface DetailedFormulaItem {
-  title: string;
-  formula: string;
-  description: string[];
+  name: string;
+  content: string;
+  description: string;
+  legends: string[]
 }
