@@ -1,7 +1,7 @@
 services:
   frontend:
     build:
-      context: ../frontend
+      context: ./frontend
       dockerfile: Dockerfile
     container_name: frontend
     ports:
@@ -11,7 +11,7 @@ services:
 
   backend:
     build:
-      context: ../backend
+      context: ./backend
       dockerfile: Dockerfile
     container_name: backend
     restart: unless-stopped
