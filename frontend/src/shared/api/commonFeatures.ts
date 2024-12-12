@@ -1,7 +1,7 @@
 import { InternalAxiosRequestConfig } from "axios";
 
 const addTokenToHeader = async (config: InternalAxiosRequestConfig) => {
-  const accessToken = localStorage.getItem("access_token");
+  const accessToken = localStorage.getItem("accessToken");
   try {
     if (accessToken) {
       const newConfig = Object.assign({}, config, {

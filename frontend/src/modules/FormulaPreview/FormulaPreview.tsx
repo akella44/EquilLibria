@@ -5,7 +5,7 @@ import { inputValueStore } from "@/store/inputValue";
 import { Plus } from "@/shared/assets/icons/Plus";
 import { Separator } from "@/shared/ui/Separator/Separator";
 import { Export } from "@/shared/assets/icons/Export/Export";
-import { useAddFomula } from "@/entities/Formulas/useAddFormula";
+import { useAddFomula } from "@/entities/Formulas/useAddFormula/useAddFormula";
 
 interface IFormulaPreview {
   value: string;
@@ -64,7 +64,17 @@ export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
         <Separator />
       </div>
       <div className={s.iconsWrapper}>
-        <div className={s.iconWrapper} onClick={() => addFormula()}>
+        <div
+          className={s.iconWrapper}
+          onClick={() =>
+            addFormula({
+              content: inputValueStore.getValue(),
+              name: "asd",
+              legends: ["asd"],
+              description: "asd",
+            })
+          }
+        >
           <Plus />
         </div>
         <div className={s.iconWrapper}>
