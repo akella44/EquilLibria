@@ -20,6 +20,6 @@ body {
   margin: 0 !important;
 }
 
-/* .mjx-char {
-  font-size: var(--font-size-h-s) !important;
-} */
+.katex-display>.katex {
+  text-align: left !important;
+}
