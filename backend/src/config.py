@@ -6,24 +6,9 @@ from logging.config import dictConfig
 
 BASE_DIR = Path(__file__).parent.parent
 
-DEV = True  # TODO: изменить
-
 TOKEN_TYPE_FIELD = "type"
 ACCESS_TOKEN_TYPE = "access"
 REFRESH_TOKEN_TYPE = "refresh"
-
-origins = [
-    "http://equillibria.ru",
-    "https://equillibria.ru",
-    "http://176.108.252.129:5173"
-]
-if DEV:
-    origins.extend(
-        [
-            "http://localhost:5173",
-            "https://localhost:5173",
-        ]
-    )
 
 
 class Settings(BaseSettings):
@@ -37,6 +22,8 @@ class Settings(BaseSettings):
     bot_url: str
     redis_host: str
     redis_port: int
+    dev: bool
+    host_address: str
 
     model_config = SettingsConfigDict(env_file=".env")
 
@@ -54,6 +41,19 @@ class AuthSettings(BaseModel):
 
 settings = Settings()
 auth_settings = AuthSettings()
+
+DEV = settings.dev
+
+origins = [
+    f"http://{settings.host_address}:5173"
+]
+if DEV:
+    origins.extend(
+        [
+            "http://localhost:5173",
+        ]
+    )
+
 
 LOGGING_CONFIG = {
     "version": 1,

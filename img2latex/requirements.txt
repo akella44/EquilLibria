@@ -30,7 +30,7 @@ networkx==3.4.2
 numba==0.60.0
 numpy==2.0.2
 nvidia-cublas-cu12==12.4.5.8
-nvidia-cuda-cupti-cu12==12.6.80
+nvidia-cuda-cupti-cu12==12.4.127
 nvidia-cuda-nvrtc-cu12==12.4.127
 nvidia-cuda-runtime-cu12==12.4.127
 nvidia-cudnn-cu12==9.1.0.70
