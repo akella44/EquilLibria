@@ -1,8 +1,9 @@
 import { FC } from "react";
 import { DetailedFormulaItem } from "./types";
-import MathJax from "react-mathjax2";
 import s from "./FormulaItem.module.css";
-import { Button } from "@/shared/ui/Button";
+import { Button } from "@shared/ui/Button";
+import { Bin } from "@shared/assets/icons/Bin";
+import { BlockMath } from "react-katex";
 
 export const FormulaItem: FC<DetailedFormulaItem> = ({
   name,
@@ -14,12 +15,15 @@ export const FormulaItem: FC<DetailedFormulaItem> = ({
     <div className={s.formulaItem}>
       <div className={s.header}>
         <h2 className={s.title}>{name}</h2>
-        <Button variant="purple" text="Экспорт" fontSize={20} />
+        <div className={s.headerRight}>
+          <Button variant="purple" text="Экспорт" fontSize={20} />
+          <div onClick={}>
+            <Bin />
+          </div>
+        </div>
       </div>
       <div className={s.formula}>
-        <MathJax.Context input="ascii">
-          <MathJax.Node>{content}</MathJax.Node>
-        </MathJax.Context>
+        <BlockMath>{content}</BlockMath>
       </div>
       <div className={s.description}>
         {legends?.map((string, index) => (

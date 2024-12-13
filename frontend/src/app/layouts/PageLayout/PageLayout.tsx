@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Layout } from "../Layout";
 import { PageLayoutProps } from "./types";
-import { Header } from "@/modules/Header";
 import s from "./PageLayout.module.css";
 import { Sidebar } from "@/modules/Sidebar";
 

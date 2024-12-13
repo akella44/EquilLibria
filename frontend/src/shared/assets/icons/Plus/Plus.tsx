@@ -1,9 +1,9 @@
 import { FC } from "react";
-import s from "./Plus.module.css";
+import { IconWrapper } from "../IconWrapper";
 
 export const Plus: FC = () => {
   return (
-    <div className={s.plus}>
+    <IconWrapper>
       <svg
         width="22"
         height="22"
@@ -19,6 +19,6 @@ export const Plus: FC = () => {
           strokeLinejoin="round"
         />
       </svg>
-    </div>
+    </IconWrapper>
   );
 };

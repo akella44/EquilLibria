@@ -11,6 +11,7 @@
   border-radius: 10px;
   background-color: var(--color-element-background);
   padding: 20px;
+  overflow: hidden;
 }
 
 .text {

@@ -4,7 +4,8 @@ body {
   font-family: "Libre Franklin", sans-serif;
   background-color: var(--color-page-background);
   color: var(--color-text-black);
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
+  overflow: hidden
 }
 
 .mjx-char,
@@ -12,6 +13,10 @@ body {
 .MJXp-mn {
   font-family: "Libre Franklin", sans-serif !important;
   font-style: normal !important;
+}
+
+.katex-display {
+  margin: 0 !important;
 }
 
 /* .mjx-char {

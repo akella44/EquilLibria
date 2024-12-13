@@ -59,7 +59,7 @@
 
 .iconsWrapper {
   display: flex;
-  gap: 20px;
+  gap: 12px;
   align-items: center;
   justify-content: flex-end;
   margin-left: auto;
