@@ -1,0 +1,58 @@
+.importButton {
+  padding: 10px 20px;
+  background-color: var(--color-element-background);
+}
+
+.title {
+  color: var(--color-primary-purple);
+  font-size: 24px;
+}
+
+.arrow svg {
+  transition: transform 0.6s ease;
+}
+
+.activeArrow svg {
+  transform: rotate(180deg);
+}
+
+.list {
+  opacity: 0;
+  margin-top: 0;
+  max-height: 0;
+  transition: max-height 0.3s ease, margin-top 0.3s ease, opacity 0.3s ease;
+  overflow: hidden;
+}
+
+.listActive {
+  opacity: 1;
+  max-height: 100px;
+  margin-top: 8px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listItem {
+  padding: 5px 0;
+  font-size: 20px;
+}
+
+.listItemText {
+  display: block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: 0.3s ease background-color;
+}
+
+.listItem:last-child {
+  padding-bottom: 0px;
+}
+
+.listItemText:hover {
+  background-color: var(--color-secondary-purple);
+  cursor: pointer;
+}

@@ -10,10 +10,16 @@ body {
 
 .mjx-char,
 .MJXp-mi,
-.MJXp-mn {
+.MJXp-mn,
+.mjx-charbox {
   font-family: "Libre Franklin", sans-serif !important;
   font-style: normal !important;
 }
+
+.MJX_Assistive_MathML {
+  position: inherit !important;
+}
+
 
 .katex-display {
   margin: 0 !important;

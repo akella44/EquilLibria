@@ -7,7 +7,6 @@ import { Separator } from "@/shared/ui/Separator/Separator";
 import { Export } from "@/shared/assets/icons/Export/Export";
 import { useAddFomula } from "@/entities/Formulas/useAddFormula/useAddFormula";
 import { BlockMath } from "react-katex";
-import "katex/dist/katex.min.css";
 import asciimathToLatex from "asciimath-to-latex";
 import { clearLatex } from "@/shared/lib/clearLatex";
 import { latexOrAscii } from "@/shared/lib/latexOrAscii";

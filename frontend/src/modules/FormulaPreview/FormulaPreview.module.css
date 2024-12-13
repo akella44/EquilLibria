@@ -8,6 +8,7 @@
   resize: none;
   overflow-y: hidden;
   overflow-x: scroll;
+  font-size: 100px !important;
 
   &::-webkit-scrollbar {
     display: none;
@@ -77,11 +78,13 @@
 }
 
 .functions {
+  opacity: 0;
   max-height: 0;
   overflow: hidden;
-  transition: 0.3s ease max-height;
+  transition: 0.3s ease max-height, 0.3s ease opacity;
 }
 
 .visible {
-  max-height: 100px;
+  opacity: 1;
+  max-height: 90px;
 }

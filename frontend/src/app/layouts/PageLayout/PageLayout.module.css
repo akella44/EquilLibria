@@ -19,9 +19,7 @@
 
 .content {
   flex: 1;
-  padding-block: 10px;
-  padding-left: 310px;
-  padding-right: 20px;
+  padding: 10px 20px 20px 310px;
   overflow: hidden;
 }
 
