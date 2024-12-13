@@ -53,6 +53,10 @@ export const SignUpForm: FC = () => {
               value: 6,
               message: "Логин должен содержать не менее 6 символов",
             },
+            maxLength: {
+              value: 12,
+              message: "Логин должен содержать не более 12 символов",
+            },
             pattern: {
               value: /^[a-z0-9]+$/,
               message: "Логин должен содержать только латинские символы",
@@ -72,6 +76,10 @@ export const SignUpForm: FC = () => {
             minLength: {
               value: 8,
               message: "Пароль должен содержать не менее 8 символов",
+            },
+            maxLength: {
+              value: 16,
+              message: "Пароль должен содержать не более 16 символов",
             },
             pattern: {
               value: /^[a-z0-9]+$/,

@@ -2,7 +2,6 @@ import axios from "axios";
 import { apiKey } from "../config";
 import { ILoginUser, IRegisterUser } from "./types";
 import { addTokenToHeader } from "../commonFeatures";
-import { toast } from "react-toastify";
 
 const authController = axios.create({
   baseURL: apiKey,
@@ -27,7 +26,6 @@ export const login = async (data: ILoginUser) => {
       refresh_token: response.data.refresh_token,
     };
   } catch (err) {
-    console.log(err);
-    toast.error(err.message);
+    throw err;
   }
 };
