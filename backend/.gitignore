@@ -19,6 +19,6 @@ venv/
 ENV/
 .idea/
 upload/
-certs/
+*.pem
 token.txt
 app.log
