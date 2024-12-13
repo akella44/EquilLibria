@@ -2,7 +2,6 @@ import { FC } from "react";
 import { IFomulaItem } from "../types";
 import s from "./MyFormulasItem.module.css";
 import { BlockMath } from "react-katex";
-import "katex/dist/katex.min.css";
 
 export const MyFormulasItem: FC<IFomulaItem> = ({ name, content }) => {
   console.log(typeof content);

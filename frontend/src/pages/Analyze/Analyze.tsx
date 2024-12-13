@@ -11,6 +11,8 @@ import { Keyboard } from "@modules/Keyboard/Keyboard";
 import { keyboardStore } from "@/store/keyboard";
 // import { MyFormulas } from "@/modules/MyFormulas";
 import { AnalyzeButton } from "@/modules/AnalyzeButton";
+import { ImportButton } from "@/modules/ImportButton/ImportButton";
+import { AnalyzeResults } from "@/modules/AnalyzeResults/AnalyzeResults";
 
 export const Analyze: FC = observer(() => {
   const { getIsKeyboardVisible } = keyboardStore;
@@ -20,6 +22,9 @@ export const Analyze: FC = observer(() => {
   return (
     <PageLayout>
       <div className={s.analyzePage}>
+        <div className={s.importWrapper}>
+          <ImportButton />
+        </div>
         <div className={s.mathInputWrapper}>
           <MathInput onChange={setValue} value={inputValue} />
         </div>
@@ -34,9 +39,9 @@ export const Analyze: FC = observer(() => {
           <FormulaPreview value={inputValue} />
         </div>
         <AnalyzeButton />
-        {/* <div className={s.myFormulasWrapper}>
-          <MyFormulas />
-        </div> */}
+        <div className={s.analyzeResultsWrapper}>
+          <AnalyzeResults />
+        </div>
       </div>
     </PageLayout>
   );

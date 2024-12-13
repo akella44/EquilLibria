@@ -8,13 +8,18 @@
 .myFormulasWrapper,
 .mathInputWrapper,
 .keyboardWrapper,
-.formulaPreviewWrapper {
+.formulaPreviewWrapper,
+.importWrapper,
+.analyzeResultsWrapper {
   border-radius: 10px;
   width: 100%;
   box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
-.mathInputWrapper {
+.importWrapper,
+.mathInputWrapper,
+.formulaPreviewWrapper {
   margin-bottom: 10px;
 }
 
@@ -30,12 +35,8 @@
   max-height: 500px;
 }
 
-.myFormulasWrapper {
+.analyzeResultsWrapper {
   margin-top: 10px;
-}
-
-.formulaPreviewWrapper {
-  margin-bottom: 10px;
 }
 
 @media (max-width: 1440px) {}

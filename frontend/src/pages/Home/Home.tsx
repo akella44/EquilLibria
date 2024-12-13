@@ -11,6 +11,7 @@ import { Keyboard } from "@modules/Keyboard/Keyboard";
 import { keyboardStore } from "@/store/keyboard";
 import { MyFormulas } from "@/modules/MyFormulas";
 import { Button } from "@/shared/ui/Button";
+import { ImportButton } from "@/modules/ImportButton/ImportButton";
 
 export const Home: FC = observer(() => {
   const { getIsKeyboardVisible } = keyboardStore;
@@ -20,6 +21,9 @@ export const Home: FC = observer(() => {
   return (
     <PageLayout>
       <div className={s.homePage}>
+        <div className={s.importWrapper}>
+          <ImportButton />
+        </div>
         <div className={s.mathInputWrapper}>
           <MathInput onChange={setValue} value={inputValue} />
         </div>
