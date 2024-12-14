@@ -26,7 +26,7 @@
 .keyboardWrapper {
   max-height: 0;
   transition: max-height 0.3s ease;
-  z-index: 1000;
+  overflow: hidden;
 }
 
 .keyboardWrapper.visible {
