@@ -85,6 +85,6 @@ async def delete_formula(
     return formula
 
 
-async def analyze_formula(formula_id: int,
-    session: AsyncSession) -> List[...]:
-    formula = await session.get(Formula, formula_id)
+# async def analyze_formula(formula_id: int,
+#     session: AsyncSession) -> List[...]:
+#     formula = await session.get(Formula, formula_id)
