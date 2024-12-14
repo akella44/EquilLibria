@@ -5,6 +5,7 @@ from logging.config import dictConfig
 
 
 BASE_DIR = Path(__file__).parent.parent
+STATIC_DIR = BASE_DIR / "static"
 
 TOKEN_TYPE_FIELD = "type"
 ACCESS_TOKEN_TYPE = "access"
@@ -24,6 +25,8 @@ class Settings(BaseSettings):
     redis_port: int
     dev: bool
     host_address: str
+    ai_recognize_url: str
+    ai_convert_url: str
 
     model_config = SettingsConfigDict(env_file=".env")
 
@@ -32,8 +35,8 @@ class AuthSettings(BaseModel):
     algorithm: str = "RS256"
     private_key_path: Path = BASE_DIR / "certs" / "jwt-private.pem"
     public_key_path: Path = BASE_DIR / "certs" / "jwt-public.pem"
-    access_token_expire_minutes: int = 1  # TODO: изменить
-    refresh_token_expire_days: int = 1
+    access_token_expire_minutes: int = 30
+    refresh_token_expire_days: int = 7
     tg_bot_code_expire_seconds: int = 120
     tg_bot_code_max_attempts: int = 3
     tg_confirm_expire_seconds: int = 60 * 5
@@ -44,9 +47,7 @@ auth_settings = AuthSettings()
 
 DEV = settings.dev
 
-origins = [
-    f"http://{settings.host_address}:5173"
-]
+origins = [f"http://{settings.host_address}:5173"]
 if DEV:
     origins.extend(
         [
