@@ -110,8 +110,6 @@ async def create_rects(
     """
     Create rectangles of formulas in pictures for ai service.
 
-    - **access_token**: Header bearer access token (required)
-
     - **image_uuid**: Image string uuid (path, required)
 
     - **rects**: List of rectangles (x1, y1, x2, y2) (required)
