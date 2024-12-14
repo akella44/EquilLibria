@@ -13,7 +13,6 @@ RUN apt-get update && \
     libxrender-dev \
     build-essential \
     python3-dev \
-    apt-get install poppler-utils\
     && rm -rf /var/lib/apt/lists/*
 
 # Обновляем pip, setuptools и wheel до последних версий

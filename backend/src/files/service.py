@@ -80,7 +80,6 @@ async def convert_and_save(file: UploadFile) -> Tuple[List[Path], List[str]]:
         uuids.append(uuid_str)
 
     elif file_extension == ".pdf":
-        # Конвертация PDF в JPG для каждой страницы с использованием PyMuPDF
         try:
             images = convert_pdf_to_images(content)
         except Exception as e:
@@ -169,7 +168,7 @@ async def send_single_file(
             )
             data.add_field("id", uuid_str)
             async with session.post(
-                AI_RECOGNIZE_URL, data=data, timeout=60
+                AI_RECOGNIZE_URL.format(uuid_str), data=data, timeout=10
             ) as response:
                 if response.status != 200:
                     text = await response.text()
