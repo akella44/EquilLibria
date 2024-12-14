@@ -317,7 +317,7 @@ async def convert_image_to_jpg_bytes(image: Image.Image) -> bytes:
 async def send_image_to_ai_service(image_bytes: bytes) -> str:
     ai_url = settings.ai_convert_url
 
-    timeout = aiohttp.ClientTimeout(total=30)
+    timeout = aiohttp.ClientTimeout(total=3)
     async with aiohttp.ClientSession(timeout=timeout) as session_client:
         data = aiohttp.FormData()
         data.add_field(
@@ -334,8 +334,16 @@ async def send_image_to_ai_service(image_bytes: bytes) -> str:
                         status_code=status.HTTP_502_BAD_GATEWAY,
                         detail=f"AI сервис вернул статус {response.status}: {resp_text}",
                     )
-                result_text = await response.text()
-                return result_text
+
+                response_json = await response.json()
+                result = response_json.get("result")
+                if result is None:
+                    raise HTTPException(
+                        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                        detail="AI сервис вернул ответ без поля 'result'."
+                    )
+
+                return result
         except asyncio.TimeoutError:
             raise HTTPException(
                 status_code=status.HTTP_504_GATEWAY_TIMEOUT,
