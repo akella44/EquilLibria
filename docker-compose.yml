@@ -22,6 +22,8 @@ services:
       - dev
     ports:
       - "8000:8000"
+    volumes:
+      - ./static:/app/static
 
   db:
     image: postgres:14

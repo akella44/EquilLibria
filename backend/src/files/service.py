@@ -15,7 +15,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from src.files.schemas import ImagesList, Image as ImageSchema, RectCreate
+from src.files.schemas import ImagesList, Image as ImageSchema, RectCreate, Latex
 from src.users import User
 from src.files import models
 from src.config import settings, STATIC_DIR
@@ -356,7 +356,7 @@ async def send_image_to_ai_service(image_bytes: bytes) -> str:
             )
 
 
-async def get_latex_by_rect_id(session: AsyncSession, rect_id: int) -> str:
+async def get_latex_by_rect_id(session: AsyncSession, rect_id: int) -> Latex:
     rect, image = await fetch_rect_and_image(session, rect_id)
 
     cropped_img = await crop_image(image.path, rect.x1, rect.y1, rect.x2, rect.y2)
@@ -365,4 +365,4 @@ async def get_latex_by_rect_id(session: AsyncSession, rect_id: int) -> str:
 
     latex = await send_image_to_ai_service(image_bytes)
 
-    return latex
+    return Latex(latex=latex)
