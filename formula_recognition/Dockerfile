@@ -5,6 +5,7 @@ WORKDIR /app
 
 # Устанавливаем необходимые системные зависимости
 RUN apt-get update && \
+    apt-get install poppler-utils &&\
     apt-get install -y --no-install-recommends \
     libgl1 \
     libglib2.0-0 \
@@ -13,7 +14,6 @@ RUN apt-get update && \
     libxrender-dev \
     build-essential \
     python3-dev \
-    apt-get install poppler-utils\
     && rm -rf /var/lib/apt/lists/*
 
 # Обновляем pip, setuptools и wheel до последних версий
