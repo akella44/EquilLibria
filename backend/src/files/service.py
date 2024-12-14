@@ -343,7 +343,7 @@ async def send_image_to_ai_service(image_bytes: bytes) -> str:
                         detail="AI сервис вернул ответ без поля 'result'."
                     )
 
-                return result
+                return result.replace("\\\\", "\\")
         except asyncio.TimeoutError:
             raise HTTPException(
                 status_code=status.HTTP_504_GATEWAY_TIMEOUT,
