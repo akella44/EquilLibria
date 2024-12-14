@@ -1,10 +1,39 @@
 @import '@styles/variables/pallete.css';
 
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../shared/font/Ubuntu-Regular.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../shared/font/Ubuntu-Light.ttf');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../shared/font/Ubuntu-Medium.ttf');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../shared/font/Ubuntu-Bold.ttf');
+  font-weight: 800;
+  font-style: normal;
+}
+
 body {
-  font-family: "Libre Franklin", sans-serif;
+  font-family: "Ubuntu", sans-serif;
   background-color: var(--color-page-background);
   color: var(--color-text-black);
   letter-spacing: -0.04em;
+  font-weight: 400;
   overflow: hidden
 }
 

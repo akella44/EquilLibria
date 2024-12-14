@@ -3,7 +3,7 @@
   align-items: start;
   height: 100%;
   flex-direction: column;
-  background-color: var(--color-element-background);
+  background-color: #FBF9FE;
   overflow: hidden;
   padding: 20px;
 }
@@ -25,6 +25,10 @@
   &:hover {
     background-color: var(--color-bg-button-nav-hover);
   }
+}
+
+.sidebarItem:last-child {
+  font-weight: 600;
 }
 
 .active {

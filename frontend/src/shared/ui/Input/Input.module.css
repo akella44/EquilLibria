@@ -2,6 +2,7 @@
   height: 70px;
   border-radius: 5px;
   font-size: var(--font-size-h-s);
+  font-weight: 200;
 
   padding: 20px;
   transition: border 0.3s ease;

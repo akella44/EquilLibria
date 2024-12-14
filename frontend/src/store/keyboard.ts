@@ -15,6 +15,10 @@ class Keyboard {
   setIsKeyboardVisible = (value: boolean) => {
     this.isKeyboardVisible = value;
   };
+
+  clear = () => {
+    this.isKeyboardVisible = true;
+  }
 }
 
 export const keyboardStore = new Keyboard();

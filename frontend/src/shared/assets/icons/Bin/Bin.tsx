@@ -3,7 +3,7 @@ import { IconWrapper } from "../IconWrapper";
 
 export const Bin: FC = () => {
   return (
-    <IconWrapper>
+    <IconWrapper padding="3px">
       <svg
         width="40"
         height="40"

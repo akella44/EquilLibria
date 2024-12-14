@@ -5,11 +5,13 @@
 
 .title {
   color: var(--color-primary-purple);
+  font-weight: 800;
 }
 
 .description {
   display: flex;
   flex-direction: column;
+  font-weight: 200;
   gap: 10px;
   padding: 10px;
   background-color: var(--color-secondary-purple);
@@ -36,5 +38,10 @@
 .headerRight {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
+}
+
+.iconWrapper {
+  flex: 0;
+  height: 48px;
 }

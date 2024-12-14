@@ -5,6 +5,7 @@
 .title {
   font-size: var(--font-size-h-s);
   color: var(--color-primary-purple);
+  font-weight: 800;
 }
 
 .myFormulas {
@@ -16,4 +17,5 @@
 
 .text {
   font-size: var(--font-size-h-xs);
+  font-weight: 200;
 }

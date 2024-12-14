@@ -15,6 +15,8 @@
 }
 
 .wrapper {
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
   background-color: var(--color-element-background);
   padding: 20px;
@@ -79,11 +81,18 @@
 .functions {
   opacity: 0;
   max-height: 0;
-  overflow: hidden;
   transition: 0.3s ease max-height, 0.3s ease opacity;
+  position: relative;
 }
 
 .visible {
   opacity: 1;
   max-height: 90px;
+}
+
+.exportModalWrapper {
+  position: absolute;
+  bottom: 50px;
+  right: 0px;
+  z-index: 1000;
 }

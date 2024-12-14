@@ -15,7 +15,7 @@
   display: inline-block;
   font-size: var(--font-size-p-s);
   color: var(--color-primary-purple);
-  font-weight: var(--font-weight-700);
+  font-weight: 800;
 }
 
 .formula {

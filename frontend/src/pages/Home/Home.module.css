@@ -9,23 +9,24 @@
 .mathInputWrapper,
 .keyboardWrapper,
 .formulaPreviewWrapper,
-.importWrapper {
+.importWrapper,
+.descriptionWrapper {
   border-radius: 10px;
   width: 100%;
   box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
 }
 
 .mathInputWrapper,
 .importWrapper,
-.formulaPreviewWrapper {
+.formulaPreviewWrapper,
+.descriptionWrapper {
   margin-bottom: 10px;
 }
 
 .keyboardWrapper {
   max-height: 0;
   transition: max-height 0.3s ease;
-  z-index: 1000;
+  overflow: hidden;
 }
 
 .keyboardWrapper.visible {

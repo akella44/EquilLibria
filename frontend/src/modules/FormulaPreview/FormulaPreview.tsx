@@ -11,15 +11,24 @@ import { BlockMath } from "react-katex";
 import asciimathToLatex from "asciimath-to-latex";
 import { clearLatex } from "@/shared/lib/clearLatex";
 import { latexOrAscii } from "@/shared/lib/latexOrAscii";
+import { editFormulaStore } from "@/store/editFormula";
+import { Save } from "@/shared/assets/icons/Save/Save";
+import { useUpdateFomula } from "@/entities/Formulas/useUpdateFormula";
+import { useNavigate } from "react-router-dom";
+import { exportModalStore } from "@/store/exportModal";
+import { ExportModal } from "../ExportModal";
+import { observer } from "mobx-react-lite";
 
 interface IFormulaPreview {
   value: string;
 }
 
-export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
+export const FormulaPreview: FC<IFormulaPreview> = observer(({ value }) => {
   const [formualName, setFormualName] = useState("Формула");
   const spanRef = useRef(null);
   const inputRef = useRef(null);
+
+  const { updateFormula } = useUpdateFomula();
 
   const { addFormula } = useAddFomula();
 
@@ -33,6 +42,9 @@ export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
     setFormualName(e.target.value);
     inputValueStore.setFormulaName(e.target.value);
   };
+
+  const router = useNavigate();
+
   return (
     <div className={s.wrapper}>
       <div className={s.textareaWrapper}>
@@ -47,13 +59,13 @@ export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
               fontWeight: "700",
             }}
           >
-            {formualName || " "}
+            {inputValueStore.getFormulaName() || " "}
           </span>
           <input
             placeholder="Название"
             ref={inputRef}
             type="text"
-            value={formualName}
+            value={inputValueStore.getFormulaName()}
             onChange={handleChange}
           />
         </div>
@@ -69,7 +81,11 @@ export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
       </div>
       <div
         className={`${s.functions} ${
-          inputValueStore.getValue() && inputValueStore.getFormulaName()
+          ((latexOrAscii(inputValueStore.getValue()) === "latex" &&
+            clearLatex(inputValueStore.getValue())) ||
+            (inputValueStore.getValue() &&
+              latexOrAscii(inputValueStore.getValue()) === "ascii")) &&
+          inputValueStore.getFormulaName()
             ? s.visible
             : ""
         }`}
@@ -78,27 +94,65 @@ export const FormulaPreview: FC<IFormulaPreview> = ({ value }) => {
           <Separator />
         </div>
         <div className={s.iconsWrapper}>
+          <div className={s.iconWrapper}>
+            {editFormulaStore.getIsEdit() ? (
+              <div
+                onClick={() => {
+                  updateFormula(editFormulaStore.getFormulaId(), {
+                    content:
+                      latexOrAscii(inputValueStore.getValue()) === "latex"
+                        ? clearLatex(inputValueStore.getValue())
+                        : asciimathToLatex(inputValueStore.getValue()),
+                    name: inputValueStore.getFormulaName(),
+                    legends: inputValueStore
+                      .getLegends()
+                      .filter((item) => item != ""),
+                    description: "asd",
+                  });
+                  inputValueStore.clear();
+                  editFormulaStore.clear();
+                  router("/myformulas");
+                }}
+              >
+                <Save />
+              </div>
+            ) : (
+              <div
+                onClick={() => {
+                  addFormula({
+                    content:
+                      latexOrAscii(inputValueStore.getValue()) === "latex"
+                        ? clearLatex(inputValueStore.getValue())
+                        : asciimathToLatex(inputValueStore.getValue()),
+                    name: inputValueStore.getFormulaName(),
+                    legends: inputValueStore
+                      .getLegends()
+                      .filter((item) => item != ""),
+                    description: "asd",
+                  });
+                }}
+              >
+                <Plus />
+              </div>
+            )}
+          </div>
           <div
             className={s.iconWrapper}
             onClick={() =>
-              addFormula({
-                content:
-                  latexOrAscii(inputValueStore.getValue()) === "latex"
-                    ? clearLatex(inputValueStore.getValue())
-                    : asciimathToLatex(inputValueStore.getValue()),
-                name: inputValueStore.getFormulaName(),
-                legends: ["asd"],
-                description: "asd",
-              })
+              exportModalStore.setIsModalVisible(
+                !exportModalStore.getIsModalVisible()
+              )
             }
           >
-            <Plus />
-          </div>
-          <div className={s.iconWrapper}>
             <Export />
+            {exportModalStore.getIsModalVisible() && (
+              <div className={s.exportModalWrapper}>
+                <ExportModal />
+              </div>
+            )}
           </div>
         </div>
       </div>
     </div>
   );
-};
+});
