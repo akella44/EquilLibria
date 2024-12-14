@@ -1,5 +1,5 @@
 import { PageLayout } from "@app/layouts/PageLayout";
-import { FC } from "react";
+import { FC, useRef, useState } from "react";
 import s from "./Home.module.css";
 import { inputValueStore } from "@/store/inputValue";
 import { observer } from "mobx-react-lite";
@@ -12,6 +12,8 @@ import { keyboardStore } from "@/store/keyboard";
 import { MyFormulas } from "@/modules/MyFormulas";
 import { Button } from "@/shared/ui/Button";
 import { ImportButton } from "@/modules/ImportButton/ImportButton";
+import { Description } from "@/modules/Description";
+import { editFormulaStore } from "@/store/editFormula";
 
 export const Home: FC = observer(() => {
   const { getIsKeyboardVisible } = keyboardStore;
@@ -21,9 +23,11 @@ export const Home: FC = observer(() => {
   return (
     <PageLayout>
       <div className={s.homePage}>
-        <div className={s.importWrapper}>
-          <ImportButton />
-        </div>
+        {!editFormulaStore.getIsEdit() && (
+          <div className={s.importWrapper}>
+            <ImportButton />
+          </div>
+        )}
         <div className={s.mathInputWrapper}>
           <MathInput onChange={setValue} value={inputValue} />
         </div>
@@ -37,9 +41,14 @@ export const Home: FC = observer(() => {
         <div className={s.formulaPreviewWrapper}>
           <FormulaPreview value={inputValue} />
         </div>
-        <div className={s.myFormulasWrapper}>
-          <MyFormulas />
+        <div className={s.descriptionWrapper}>
+          <Description />
         </div>
+        {!editFormulaStore.getIsEdit() && (
+          <div className={s.myFormulasWrapper}>
+            <MyFormulas />
+          </div>
+        )}
       </div>
     </PageLayout>
   );

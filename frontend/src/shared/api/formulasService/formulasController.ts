@@ -42,8 +42,8 @@ export const createFormula = async (data: IAddFormula) => {
   return response;
 };
 
-export const updateFormulaById = async (formulaId: number) => {
-  return formulasController.patch(`/${formulaId}`);
+export const updateFormulaById = async (formulaId: number, data: IAddFormula) => {
+  return formulasController.patch(`/${formulaId}`, data);
 };
 
 export const deleteFormulaById = async (formulaId: number) => {

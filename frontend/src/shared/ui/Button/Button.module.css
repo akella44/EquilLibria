@@ -6,9 +6,11 @@
   padding: 12px 25px;
   font-size: var(--font-size-h-s);
   transition: 0.3s ease color, 0.3s ease background-color, 0.3s ease outline;
-  font-weight: var(--font-weight-400);
+  font-weight: medium;
   outline: 1px solid var(--color-button-outline);
-  letter-spacing: -1px;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+  font-family: 'Ubuntu', sans-serif;
 
   &:disabled {
     cursor: not-allowed;

@@ -26,7 +26,7 @@
 }
 
 .title {
-  font-weight: var(--font-weight-400);
+  font-weight: 800;
   margin-block: 40px 30px;
   font-size: clamp(2.25rem, 5vw, 4rem);
   color: var(--color-text-black);
@@ -48,6 +48,7 @@
   cursor: pointer;
   transition: 0.3s ease color;
   font-size: var(--font-size-h-xs);
+  font-weight: 200;
 
   &:hover {
     color: var(--color-bg-button-purple-hover);
@@ -56,4 +57,5 @@
 
 .forgetPassword {
   font-size: var(--font-size-h-xs);
+  font-weight: 200;
 }

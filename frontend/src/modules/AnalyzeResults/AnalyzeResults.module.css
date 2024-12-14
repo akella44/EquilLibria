@@ -6,6 +6,7 @@
 .title {
   font-size: 24px;
   color: var(--color-primary-purple);
+  font-weight: 800;
 }
 
 .h3 {

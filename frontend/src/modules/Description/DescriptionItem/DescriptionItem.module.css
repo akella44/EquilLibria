@@ -1,0 +1,23 @@
+.descriptionItem {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  align-items: center;
+}
+
+/* .wrapper:not(:last-child) {
+  margin-bottom: 10px;
+} */
+
+.text {
+  padding: 10px 0;
+  font-size: 20px;
+  flex: 1;
+  padding-right: 10px;
+  font-weight: 200;
+}
+
+.iconWrapper {
+  width: 32px;
+  height: 32px;
+}

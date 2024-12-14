@@ -5,11 +5,13 @@ class InputValue {
   inputValue: string;
   valueType: "ascii" | "latex";
   fomulaName: string;
+  legends: string[];
 
   constructor() {
     this.inputValue = "";
     this.valueType = "ascii";
     this.fomulaName = "Формула";
+    this.legends = [];
     makeAutoObservable(this);
   }
 
@@ -37,6 +39,21 @@ class InputValue {
 
   getFormulaName = () => {
     return this.fomulaName;
+  };
+
+  setLegends = (legends: string[]) => {
+    this.legends = legends;
+  };
+
+  getLegends = () => {
+    return this.legends;
+  };
+
+  clear = () => {
+    this.inputValue = "";
+    this.valueType = "ascii";
+    this.fomulaName = "Формула";
+    this.legends = [];
   };
 }
 

@@ -11,6 +11,7 @@
 
 .title {
   font-size: var(--font-size-large-32);
+  font-weight: 800;
   color: var(--color-primary-purple);
   margin-bottom: 20px;
 }
@@ -21,4 +22,5 @@
 
 .text {
   font-size: var(--font-size-h-s);
+  font-weight: 200;
 }

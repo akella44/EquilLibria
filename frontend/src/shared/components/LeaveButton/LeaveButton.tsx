@@ -1,6 +1,9 @@
 import { FC } from "react";
 import s from "./LeaveButton.module.css";
 import { useNavigate } from "react-router-dom";
+import { inputValueStore } from "@/store/inputValue";
+import { keyboardStore } from "@/store/keyboard";
+import { editFormulaStore } from "@/store/editFormula";
 
 export const LeaveButton: FC = () => {
   const router = useNavigate();
@@ -9,6 +12,9 @@ export const LeaveButton: FC = () => {
       onClick={() => {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
+        inputValueStore.clear();
+        keyboardStore.clear();
+        editFormulaStore.clear();
         router("/signin");
       }}
     >
