@@ -138,3 +138,16 @@ async def delete_formula(
     """
     formula = await service.get_formula_by_id(session=session, formula_id=formula_id)
     return await service.delete_formula(session=session, formula=formula, user=user)
+
+#
+# @router.get(
+#     path="/{formula_id}/analyze/",
+#     response_model=,
+#     summary="Get similar formulas by formula id",
+# )
+# async def analyze_formula(
+#     formula_id: int,
+#     session: AsyncSession = Depends(db_manager.session_dependency),
+#     _: User = Depends(get_current_active_auth_user),
+# ):
+#     return await service.analyze_formula(session=session, formula_id=formula_id)

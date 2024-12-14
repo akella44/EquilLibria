@@ -1,4 +1,5 @@
 from math import ceil
+from typing import List
 
 from fastapi import HTTPException
 from sqlalchemy import select, Result
@@ -82,3 +83,8 @@ async def delete_formula(
     await session.delete(formula)
     await session.commit()
     return formula
+
+
+async def analyze_formula(formula_id: int,
+    session: AsyncSession) -> List[...]:
+    formula = await session.get(Formula, formula_id)
