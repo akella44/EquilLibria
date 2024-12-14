@@ -10,12 +10,11 @@ from server import OcrLatexService
 
 
 
-app = FastAPI(prefix="/api")
+app = FastAPI()
 
 service = OcrLatexService(inference_mode='cpu', num_beam=1, mix_mode=False)
 
-
-@app.post("/")
+@app.post("/api/")
 async def predict(file: UploadFile = File(...)) -> JSONResponse:
     
     contents = await file.read()
