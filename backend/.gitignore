@@ -12,13 +12,12 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
-.env
 .venv
 env/
 venv/
 ENV/
 .idea/
 upload/
-*.pem
 token.txt
 app.log
+static/

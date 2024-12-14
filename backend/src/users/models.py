@@ -25,3 +25,4 @@ class User(Base):
     )
 
     formulas: Mapped[list["Formula"]] = relationship(back_populates="user")
+    images: Mapped[list["Image"]] = relationship(back_populates="user")
