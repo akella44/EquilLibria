@@ -8,7 +8,6 @@
   resize: none;
   overflow-y: hidden;
   overflow-x: scroll;
-  font-size: 100px !important;
 
   &::-webkit-scrollbar {
     display: none;
