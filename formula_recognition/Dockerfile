@@ -5,7 +5,6 @@ WORKDIR /app
 
 # Устанавливаем необходимые системные зависимости
 RUN apt-get update && \
-    apt-get install poppler-utils &&\
     apt-get install -y --no-install-recommends \
     libgl1 \
     libglib2.0-0 \
