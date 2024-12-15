@@ -7,6 +7,7 @@ from ..database import Base
 
 class Formula(Base):
     __tablename__ = "formulas"
+    __table_args__ = {'extend_existing': True}
 
     content: Mapped[str] = mapped_column(nullable=False)
     name: Mapped[str] = mapped_column(nullable=False)
@@ -26,7 +27,8 @@ class Formula(Base):
 
 class Subexpression(Base):
     __tablename__ = "subexpressions"
-
+    __table_args__ = {'extend_existing': True}
+    
     latex: Mapped[str] = mapped_column(nullable=False, index=True)
 
     formula_id: Mapped[int] = mapped_column(ForeignKey("formulas.id"))
