@@ -8,8 +8,14 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from ..database import db_manager
 from . import service
 from ..auth.dependencies import get_current_active_auth_user
-from .schemas import Formula, FormulaCreate, FormulaUpdatePartial, FormulasList, FormulaStaticAnalysed, \
-    FormulaSemanticAnalysed
+from .schemas import (
+    Formula,
+    FormulaCreate,
+    FormulaUpdatePartial,
+    FormulasList,
+    FormulaStaticAnalysed,
+    FormulaSemanticAnalysed,
+)
 from ..users import User
 
 http_bearer = HTTPBearer(auto_error=False)
@@ -152,6 +158,13 @@ async def static_analyze_formula(
     latex: str = Body(...),
     _: User = Depends(get_current_active_auth_user),
 ):
+    """
+    Finds formulas by static analysis.
+
+    - **access_token**: Header bearer access token (required)
+
+    - **latex** - Formula latex content (body, required)
+    """
     return await service.static_analyze_formula(latex=latex)
 
 
@@ -164,4 +177,11 @@ async def semantic_analyze_formula(
     latex: str = Body(...),
     _: User = Depends(get_current_active_auth_user),
 ):
+    """
+    Finds formulas by semantic analysis.
+
+    - **access_token**: Header bearer access token (required)
+
+    - **latex** - Formula latex content (body, required)
+    """
     return await service.semantic_analyze_formula(latex=latex)

@@ -146,17 +146,14 @@ export const SignUpForm: FC = () => {
       ) : (
         <div>
           <div className={s.textWrapper}>
-            <p className={s.text}>
-              Сканируйте QR-код или перейдите по следующей ссылке:
-            </p>
-            <a
-              className={s.link}
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {url}
-            </a>
+            <div className={s.linkWrapper}>
+              <p className={s.text}>
+                Сканируйте QR-код или перейдите по следующей ссылке:
+              </p>
+              <a className={s.link} href={`https://${url}`}>
+                {"@EquillibriaBot"}
+              </a>
+            </div>
           </div>
           <p className={s.text}>
             После настройки 2FA, вы можете войти в систему.

@@ -8,7 +8,6 @@ class FormulaSemanticAnalysed(BaseModel):
     found_latex: str
     percentage: int
 
-
 class FormulaStaticAnalysed(BaseModel):
     legends: List[str]
     description: str

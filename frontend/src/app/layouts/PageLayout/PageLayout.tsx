@@ -9,7 +9,6 @@ import { observer } from "mobx-react-lite";
 
 export const PageLayout: FC<PageLayoutProps> = observer(
   ({ children, ...props }) => {
-    console.log(importModalStore.getIsModalVisible());
     return (
       <Layout {...props}>
         {importModalStore.getIsModalVisible() && <ImportModal />}

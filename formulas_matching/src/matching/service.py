@@ -29,8 +29,11 @@ async def get_all_static_matches(
         matching_query = (
             select(Subexpression)
             .where(Subexpression.latex == sub)
+            .where(Subexpression.latex == sub)
             .options(selectinload(Subexpression.formula))
         )
+        result: Result = await session.execute(matching_query)
+        subexpressions_models: List[Subexpression] = list(result.scalars().all())
         result: Result = await session.execute(matching_query)
         subexpressions_models: List[Subexpression] = list(result.scalars().all())
 

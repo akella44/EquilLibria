@@ -1,0 +1,95 @@
+.resultItem {
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.formulaField {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  max-width: calc(100% - 40px);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.header:hover .wrapper {
+  background-color: #E8E5F0;
+}
+
+.wrapper {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+.title {
+  color: var(--color-primary-purple);
+  font-weight: 800;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.text {
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.content {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.3s ease max-height, 0.3s ease padding-bottom;
+  padding-bottom: 0;
+}
+
+.visible {
+  max-height: 300px;
+  padding-bottom: 12px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-grey-purple);
+    border-radius: 5px;
+  }
+}
+
+.separator {
+  padding-bottom: 12px;
+}
+
+.source {
+  margin-bottom: 12px;
+}
+
+.highlighted {
+  background-color: #FF9696;
+  border-radius: 5px;
+}

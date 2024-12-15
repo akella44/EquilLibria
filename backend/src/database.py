@@ -45,4 +45,6 @@ class DatabaseManager:
 
 
 db_manager = DatabaseManager()
-redis_client = Redis(host=settings.redis_host, port=settings.redis_port, db=0, decode_responses=True)
+redis_client = Redis(
+    host=settings.redis_host, port=settings.redis_port, db=0, decode_responses=True
+)
