@@ -45,3 +45,8 @@
   gap: 5px;
   margin-bottom: 15px;
 }
+
+.linkWrapper {
+  display: flex;
+  gap: 10px;
+}
