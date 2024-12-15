@@ -2,3 +2,4 @@ postgres-data
 app.log
 .idea
 static/
+equillibria-bert-model

@@ -1,9 +1,6 @@
-import logging
 from fastapi import HTTPException
 from starlette import status
-from sqlalchemy import select, Result, or_, func, delete, insert
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import selectinload
 from .models import Formula, Subexpression
 from ..core.latex_to_ast_converter import get_latex_subexpressions
 from sympy.parsing.latex.errors import LaTeXParsingError

@@ -1,9 +1,13 @@
 from ..database import db_manager
-from .schemas import Matches
+from .schemas import FormulaSemanticAnalysed, FormulaStaticAnalysed
+from .service import get_all_static_matches, get_all_semantic_matches
 
-from fastapi import APIRouter, HTTPException, BackgroundTasks, Body
+from fastapi import APIRouter, Body, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi.params import Depends
+from typing import List
+
+from ..core.equil_libria_bert import EquilLibriaBert
 
 router = APIRouter(
     tags=["Expressions"],
@@ -13,38 +17,25 @@ router = APIRouter(
 
 @router.post(
     path="/semantic/",
-    response_model=Matches,
+    response_model=List[FormulaSemanticAnalysed],
     summary="Find semantic matching for math expression",
 )
-async def find_matches(
-    background_tasks: BackgroundTasks,
+async def find_semantic_matches(
+    request: Request,
     session: AsyncSession = Depends(db_manager.session_dependency),
     latex: str = Body(...),
 ):
-    pass
+    model: EquilLibriaBert = request.app.state.model_instance
+    return await get_all_semantic_matches(session=session, latex=latex, model=model)
 
 
 @router.post(
     path="/static/",
-    response_model=Matches,
+    response_model=List[FormulaStaticAnalysed],
     summary="Find static matching for math expression",
 )
-async def find_matches(
-    background_tasks: BackgroundTasks,
+async def find_static_matches(
     session: AsyncSession = Depends(db_manager.session_dependency),
     latex: str = Body(...),
 ):
-    pass
-
-
-@router.post(
-    path="/",
-    response_model=Matches,
-    summary="Find matching for math expression with all availabe methods",
-)
-async def find_matches(
-    background_tasks: BackgroundTasks,
-    session: AsyncSession = Depends(db_manager.session_dependency),
-    latex: str = Body(...),
-):
-    pass
+    return await get_all_static_matches(session=session, latex=latex)

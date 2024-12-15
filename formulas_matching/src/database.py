@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import (
     AsyncSession,
 )
 
-from src.config import settings
+from .config import settings
 from sqlalchemy.orm import (
     DeclarativeBase,
     Mapped,
