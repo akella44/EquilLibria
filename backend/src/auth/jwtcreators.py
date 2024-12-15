@@ -2,7 +2,12 @@ from datetime import datetime, timedelta
 
 from .utils import encode_jwt
 from ..users.schemas import User
-from ..config import auth_settings, TOKEN_TYPE_FIELD, ACCESS_TOKEN_TYPE, REFRESH_TOKEN_TYPE
+from ..config import (
+    auth_settings,
+    TOKEN_TYPE_FIELD,
+    ACCESS_TOKEN_TYPE,
+    REFRESH_TOKEN_TYPE,
+)
 
 
 async def create_jwt(
