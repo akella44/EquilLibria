@@ -3,8 +3,6 @@ import { FC } from "react";
 import s from "./Analyze.module.css";
 import { inputValueStore } from "@/store/inputValue";
 import { observer } from "mobx-react-lite";
-import { Error } from "@ui/Error";
-import { Loader } from "@/shared/ui/Loader";
 import { MathInput } from "@modules/MathInput";
 import { FormulaPreview } from "@modules/FormulaPreview/FormulaPreview";
 import { Keyboard } from "@modules/Keyboard/Keyboard";

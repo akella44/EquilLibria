@@ -1,7 +1,6 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { PageLayoutWithoutHeader } from "@app/layouts/PageLayoutWithoutHeader";
 import s from "./SignUp.module.css";
-import { useAuthToken } from "@/shared/hooks/useAuthToken";
 import { useNavigate } from "react-router-dom";
 import { BigLogo } from "@/shared/ui/BigLogo";
 import { SignUpForm } from "@/modules/Auth/SignUpForm";

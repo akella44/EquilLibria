@@ -105,7 +105,7 @@ export const SignUpForm: FC = () => {
           <FormError text={errors.confirmPassword.message} />
         )}
       </div>
-      <Button text="Зарегистрироваться" size="XL" fontSize="M" />
+      <Button text="Зарегистрироваться" size="XL" fontSize={24} disabled={isPending} />
     </form>
   );
 };
