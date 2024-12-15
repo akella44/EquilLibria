@@ -1,4 +1,5 @@
 import asyncio
+import logging
 from math import ceil
 from typing import List
 
@@ -12,6 +13,9 @@ from .models import Formula
 from .schemas import FormulaCreate, FormulaUpdatePartial, FormulasList
 from ..config import settings
 from ..users import User
+
+
+logger = logging.getLogger("app")
 
 
 async def get_formula_by_id(session: AsyncSession, formula_id: int) -> Formula:
@@ -57,7 +61,18 @@ async def create_formula(
     session.add(formula)
     await session.commit()
     await session.refresh(formula)
+    asyncio.create_task(send_to_tree_decomposition(formula.id))
     return formula
+
+
+async def send_to_tree_decomposition(formula_id: int):
+    url = f"{settings.ai_analyze_url}/decomposition/?id={formula_id}"
+    async with aiohttp.ClientSession() as session:
+        async with session.post(url) as response:
+            if response.status != 200:
+                logger.error(
+                    f"Формула '{formula_id}' не отправлена на разложение по деревьям: {await response.text()}"
+                )
 
 
 async def update_formula(
@@ -88,12 +103,19 @@ async def delete_formula(
     return formula
 
 
-async def analyze_formula(formula_id: int): # -> что-то
+async def static_analyze_formula(latex: str) -> List[Formula]:  # TODO: -> что-то
+    response_json = await analyze_formula(latex=latex, url=settings.ai_analyze_url)
+
+
+async def semantic_analyze_formula(latex: str):  # TODO: -> что-то
+    response_json = await analyze_formula(latex=latex, url=settings.ai_analyze_url)
+
+
+async def analyze_formula(latex: str, url: str):  # TODO: -> что-то
     async with aiohttp.ClientSession(timeout=20) as session_client:
         try:
-            ai_analyze_url = settings.ai_analyze_url
-            data = {"id": formula_id}
-            async with session_client.post(ai_analyze_url, data=data) as response:
+            data = {"latex": latex}
+            async with session_client.post(url, data=data) as response:
                 if response.status != 200:
                     resp_text = await response.text()
                     raise HTTPException(
@@ -102,14 +124,8 @@ async def analyze_formula(formula_id: int): # -> что-то
                     )
 
                 response_json = await response.json()
-                result = response_json.get("result")
-                if result is None:
-                    raise HTTPException(
-                        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                        detail="AI сервис вернул ответ без поля 'result'."
-                    )
+                return response_json
 
-                return result
         except asyncio.TimeoutError:
             raise HTTPException(
                 status_code=status.HTTP_504_GATEWAY_TIMEOUT,
