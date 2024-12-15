@@ -7,7 +7,6 @@ import { avatars } from "@/shared/assets/avatars/avatars";
 
 export const UserProfile: FC = () => {
   const { data } = useCurrentUser();
-  console.log(data)
 
   return (
     <div className={s.userProfile}>

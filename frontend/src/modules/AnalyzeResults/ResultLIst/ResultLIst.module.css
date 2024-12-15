@@ -1,5 +1,5 @@
 .resultList {
-  max-height: 200px;
+  max-height: 450px;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {

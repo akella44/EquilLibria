@@ -37,7 +37,6 @@ export const ImagesList: FC<ImageListProps> = ({ ids }) => {
   const fetchImageWithRetry = async (id, delay = 3000) => {
     while (true && importModalStore.getIsRequest()) {
       const image = await getImageById(id);
-      console.log(image);
       if (image.data && image.data.rects && image.data.rects.length > 0) {
         setRects((prevRects) => [
           ...prevRects,
