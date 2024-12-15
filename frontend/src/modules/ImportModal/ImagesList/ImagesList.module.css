@@ -1,0 +1,27 @@
+.imagesList {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 125px);
+  overflow-y: scroll;
+  background-color: #D1D1D1;
+  border-radius: 10px;
+  position: relative;
+
+  &::-webkit-scrollbar {
+    width: 15px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #828282;
+    border-radius: 5px;
+  }
+}
+
+.item {
+  padding: 15px 10px 15px 25px;
+}
+
+.cursor {
+  min-height: 10px;
+}

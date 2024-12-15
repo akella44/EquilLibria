@@ -21,7 +21,7 @@ export const ExportModal: FC = () => {
                   ? clearLatex(inputValueStore.getValue())
                   : asciimathToLatex(inputValueStore.getValue())
               );
-              toast.success('Скопировано в буфер обмена')
+              toast.success('Скопировано в формате LaTeX')
             }}
           >
             Экспортировать .LaTeX

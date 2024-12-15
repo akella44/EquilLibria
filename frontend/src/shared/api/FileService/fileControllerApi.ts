@@ -40,3 +40,8 @@ export const getImageById = async (id: number) => {
   const response = await fileController.get(`/images/${id}`);
   return response;
 };
+
+export const getLatexByRectId = async (id: number) => {
+  const response = await fileController.get(`/rects/${id}`);
+  return response;
+};

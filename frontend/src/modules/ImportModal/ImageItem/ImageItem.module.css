@@ -1,0 +1,44 @@
+.container {
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.image {
+  display: block;
+  max-width: 100%;
+}
+
+.rect {
+  position: absolute;
+  border: 2px solid var(--color-primary-purple);
+  border-radius: 10px;
+  pointer-events: auto;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.rect:hover {
+  background-color: rgba(68, 68, 68, 0.4);
+}
+
+.skeleton {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.1) 100%);
+  background-size: 200% 100%;
+  position: absolute;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}

@@ -1,32 +1,22 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import s from "./ImportButton.module.css";
 import { Arrow } from "@/shared/assets/icons/Arrow";
 import { Separator } from "@/shared/ui/Separator/Separator";
-import { useUploadFile } from "@/entities/Files/useUploadFile";
-import { getImageById } from "@/shared/api/FileService/fileControllerApi";
+import { importModalStore } from "@/store/importModal";
+import { observer } from "mobx-react-lite";
 
-export const ImportButton: FC = () => {
+export const ImportButton: FC = observer(() => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [file, setFile] = useState<File | null>(null);
-  const [images, setImages] = useState([]);
 
-  const { uploadFile, isPending } = useUploadFile();
+  const pdfInputRef = useRef<HTMLInputElement | null>(null);
+  const imageInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     if (file) {
-      uploadFile(file).then((data) => {
-        data.image_ids.map((id) =>
-          getImageById(id).then(({data}) => {
-            console.log(data);
-            setImages([...images, data]);
-          })
-        );
-      });
-      setFile(null);
+      importModalStore.setFile(file);
     }
   }, [file]);
-
-  if (isPending) return <h2>Загрузка</h2>;
 
   return (
     <div className={s.importButton}>
@@ -43,13 +33,20 @@ export const ImportButton: FC = () => {
         <Separator />
         <div className={s.listItem}>
           <span className={s.listItemText}>
-            Имопрт из pdf
+            Импорт из pdf
             <input
+              ref={pdfInputRef}
               className={s.input}
               type="file"
               accept=".pdf"
               onChange={(e) => {
+                importModalStore.setIsModalVisible(true);
+                importModalStore.setType("pdf")
                 e.target.files && setFile(e.target.files[0]);
+                if (pdfInputRef.current) {
+                  pdfInputRef.current.value = "";
+                }
+                importModalStore.setIsRequest(true)
               }}
             />
           </span>
@@ -59,11 +56,18 @@ export const ImportButton: FC = () => {
           <span className={s.listItemText}>
             Импорт по изображению
             <input
+              ref={imageInputRef}
               className={s.input}
               type="file"
               accept=".jpg, .jpeg, .png"
               onChange={(e) => {
+                importModalStore.setIsModalVisible(true);
+                importModalStore.setType("img")
                 e.target.files && setFile(e.target.files[0]);
+                if (imageInputRef.current) {
+                  imageInputRef.current.value = "";
+                }
+                importModalStore.setIsRequest(true)
               }}
             />
           </span>
@@ -71,4 +75,4 @@ export const ImportButton: FC = () => {
       </div>
     </div>
   );
-};
+});
