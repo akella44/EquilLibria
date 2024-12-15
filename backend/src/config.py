@@ -48,11 +48,11 @@ auth_settings = AuthSettings()
 
 DEV = settings.dev
 
-origins = [f"http://{settings.host_address}:4173"]
+origins = [f"http://{settings.host_address}:5173"]
 if DEV:
     origins.extend(
         [
-            "http://localhost:4173",
+            "http://localhost:5173",
         ]
     )
 
