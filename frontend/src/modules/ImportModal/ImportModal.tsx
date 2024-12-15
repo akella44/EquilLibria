@@ -13,8 +13,6 @@ export const ImportModal: FC = observer(() => {
   const file = importModalStore.getFile();
   const [ids, setIds] = useState([]);
 
-  const type = importModalStore.getType()
-
   useEffect(() => {
     if (file) {
       uploadFile(file).then((data) => {
@@ -25,45 +23,35 @@ export const ImportModal: FC = observer(() => {
     importModalStore.setFile(null);
   }, [file]);
 
+  const type = importModalStore.getType();
+
   return (
     <div className={s.wrapper}>
       <div className={s.modal}>
         <Modal>
-          {type === "pdf" ? (
-            <div className={s.content}>
-              <div className={s.header}>
-                <h1 className={s.title}>Импорт из pdf</h1>
-                <div
-                  className={s.iconWrapper}
-                  onClick={() => {
-                    importModalStore.setIsModalVisible(false);
-                    importModalStore.setIsRequest(false);
-                  }}
-                >
-                  <Cross />
-                </div>
+          <div className={s.content}>
+            <div className={s.header}>
+              <h1 className={s.title}>
+                {type === "pdf" ? "Импорт из pdf" : "Импорт по изображению"}
+              </h1>
+              <div
+                className={s.iconWrapper}
+                onClick={() => {
+                  importModalStore.setIsModalVisible(false);
+                  importModalStore.setIsRequest(false);
+                }}
+              >
+                <Cross />
               </div>
-              {isPending && <Loader />}
-              {isSuccess && ids.length > 0 && <ImagesList ids={ids} />}
             </div>
-          ) : (
-            <div className={s.contentImg}>
-              <div className={s.header}>
-                <h1 className={s.title}>Импорт по изображению</h1>
-                <div
-                  className={s.iconWrapper}
-                  onClick={() => {
-                    importModalStore.setIsModalVisible(false);
-                    importModalStore.setIsRequest(false);
-                  }}
-                >
-                  <Cross />
-                </div>
+            {isPending && (
+              <div className={s.loader}>
+                <Loader />
+                <p className={s.text}>Пожалуйста, подождите, ваши формулы обрабатываются</p>
               </div>
-              {isPending && <Loader />}
-              {isSuccess && ids.length > 0 && <ImagesList ids={ids} />}
-            </div>
-          )}
+            )}
+            {isSuccess && ids.length > 0 && <ImagesList ids={ids} />}
+          </div>
         </Modal>
       </div>
     </div>

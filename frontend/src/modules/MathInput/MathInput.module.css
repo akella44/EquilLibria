@@ -17,6 +17,7 @@
   padding: 30px 20px;
   font-size: var(--font-size-large-32);
   resize: none;
+  font-weight: 200;
 
   &::-webkit-scrollbar {
     display: none;
@@ -24,6 +25,7 @@
 
   &::placeholder {
     color: var(--color-grey-purple);
+    font-weight: 200;
   }
 }
 

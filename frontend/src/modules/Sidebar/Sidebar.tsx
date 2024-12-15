@@ -5,6 +5,7 @@ import { Logo } from "@/shared/ui/Logo";
 import s from "./Sidebar.module.css";
 import { UserProfile } from "../UserProfile";
 import { sidebarItems } from "./constants";
+import { Separator } from "@/shared/ui/Separator/Separator";
 
 export const Sidebar = () => {
   const location = useLocation();
@@ -38,6 +39,9 @@ export const Sidebar = () => {
           {item.title}
         </div>
       ))}
+      <div className={s.separator}>
+        <Separator />
+      </div>
     </div>
   );
 };

@@ -1,16 +1,13 @@
 import { PageLayout } from "@app/layouts/PageLayout";
-import { FC, useRef, useState } from "react";
+import { FC } from "react";
 import s from "./Home.module.css";
 import { inputValueStore } from "@/store/inputValue";
 import { observer } from "mobx-react-lite";
-import { Error } from "@ui/Error";
-import { Loader } from "@/shared/ui/Loader";
 import { MathInput } from "@modules/MathInput";
 import { FormulaPreview } from "@modules/FormulaPreview/FormulaPreview";
 import { Keyboard } from "@modules/Keyboard/Keyboard";
 import { keyboardStore } from "@/store/keyboard";
 import { MyFormulas } from "@/modules/MyFormulas";
-import { Button } from "@/shared/ui/Button";
 import { ImportButton } from "@/modules/ImportButton/ImportButton";
 import { Description } from "@/modules/Description";
 import { editFormulaStore } from "@/store/editFormula";

@@ -9,7 +9,7 @@ export const MyFormulasDetailed: FC = () => {
 
   const [query, setQuery] = useState<string>("");
   const filteredData = data?.filter((item) =>
-    item.name.toLowerCase().startsWith(query)
+    item.name.toLowerCase().startsWith(query.toLowerCase())
   );
 
   return (

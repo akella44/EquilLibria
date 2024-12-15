@@ -3,6 +3,7 @@
   height: 50px;
   border-radius: 5px;
   font-size: var(--font-size-h-s);
+  font-weight: 200;
 
   padding: 20px;
   transition: border 0.3s ease;
@@ -13,7 +14,8 @@
   }
 
   &::placeholder {
-    color: var(--color-text-grey);
+    color: var(--color-grey-purple);
+    font-weight: 200;
   }
 }
 

@@ -5,10 +5,13 @@
   border-radius: 5px;
   overflow: hidden;
   transition: 0.3s ease background-color;
+  cursor: pointer;
 
   &:hover {
     background-color: var(--color-formula-item-hover);
   }
+
+  position: relative;
 }
 
 .title {
@@ -33,7 +36,6 @@
 
 .export {
   font-size: 13px;
-  cursor: pointer;
   transition: 0.3s ease color, 0.3s ease background-color, 0.3s ease opacity;
   border-radius: 5px;
   padding: 3px 5px;
@@ -56,4 +58,19 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+.modal {
+  position: absolute;
+  top: 10px;
+  /* width: 200px; */
+  z-index: 300;
+}
+
+.modal span {
+  font-size: 14px;
+}
+
+.formulaInline {
+  display: inline-block;
 }

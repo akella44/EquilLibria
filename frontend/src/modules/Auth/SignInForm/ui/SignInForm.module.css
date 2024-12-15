@@ -3,3 +3,56 @@
   flex-direction: column;
   gap: 24px;
 }
+
+.timer {
+  margin-top: ;
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.twoFactorContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.text {
+  font-size: 20px;
+  font-weight: 200;
+  font-size: 24px;
+}
+
+.bot {
+  color: var(--color-primary-purple);
+  cursor: pointer;
+  transition: 0.3s ease color;
+
+  &:hover {
+    color: var(--color-bg-button-purple-hover);
+  }
+}
+
+.time {
+  font-weight: 400;
+}
+
+.login {
+  display: inline-block;
+  margin-left: 10px;
+  color: var(--color-primary-purple);
+  cursor: pointer;
+  transition: 0.3s ease color;
+  font-size: var(--font-size-h-xs);
+  font-weight: 200;
+
+  &:hover {
+    color: var(--color-bg-button-purple-hover);
+  }
+}
+
+.forgetPassword {
+  display: inline-block;
+  margin-top: 40px;
+  font-size: var(--font-size-h-xs);
+  font-weight: 200;
+}

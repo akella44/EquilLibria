@@ -1,0 +1,32 @@
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 200;
+  flex: 0;
+}
+
+.customCheckbox {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--color-grey-purple);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+  position: relative;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.customCheckbox:hover {
+  background-color: var(--color-secondary-purple);
+}
+
+.checkmark {
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-primary-purple);
+  border-radius: 5px;
+}

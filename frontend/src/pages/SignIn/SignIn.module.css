@@ -37,25 +37,3 @@
   width: 970px;
 }
 
-.formWrapper {
-  margin-bottom: 40px;
-}
-
-.login {
-  display: inline-block;
-  margin-left: 10px;
-  color: var(--color-primary-purple);
-  cursor: pointer;
-  transition: 0.3s ease color;
-  font-size: var(--font-size-h-xs);
-  font-weight: 200;
-
-  &:hover {
-    color: var(--color-bg-button-purple-hover);
-  }
-}
-
-.forgetPassword {
-  font-size: var(--font-size-h-xs);
-  font-weight: 200;
-}

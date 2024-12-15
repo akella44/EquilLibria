@@ -27,3 +27,8 @@
     background-color: var(--color-bg-button-purple-hover)
   }
 }
+
+.title {
+  font-size: 24px;
+  color: var(--color-primary-purple);
+}
