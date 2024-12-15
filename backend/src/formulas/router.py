@@ -1,3 +1,5 @@
+from typing import List
+
 from fastapi import APIRouter, Body
 from fastapi.params import Depends
 from fastapi.security import HTTPBearer
@@ -6,7 +8,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from ..database import db_manager
 from . import service
 from ..auth.dependencies import get_current_active_auth_user
-from .schemas import Formula, FormulaCreate, FormulaUpdatePartial, FormulasList
+from .schemas import Formula, FormulaCreate, FormulaUpdatePartial, FormulasList, FormulaStaticAnalysed, \
+    FormulaSemanticAnalysed
 from ..users import User
 
 http_bearer = HTTPBearer(auto_error=False)
@@ -142,7 +145,7 @@ async def delete_formula(
 
 @router.get(
     path="/static-analyze/",
-    # response_model=,
+    response_model=List[FormulaStaticAnalysed],
     summary="Get static similar formulas by latex",
 )
 async def static_analyze_formula(
@@ -154,7 +157,7 @@ async def static_analyze_formula(
 
 @router.get(
     path="/semantic-analyze/",
-    # response_model=,
+    response_model=List[FormulaSemanticAnalysed],
     summary="Get semantic similar formulas by latex",
 )
 async def semantic_analyze_formula(

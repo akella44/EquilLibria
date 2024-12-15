@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: frontend
     ports:
-      - "5173:5173"
+      - "4173:4173"
     networks:
       - dev
 
