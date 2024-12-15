@@ -143,7 +143,7 @@ async def delete_formula(
     return await service.delete_formula(session=session, formula=formula, user=user)
 
 
-@router.get(
+@router.post(
     path="/static-analyze/",
     response_model=List[FormulaStaticAnalysed],
     summary="Get static similar formulas by latex",
@@ -155,7 +155,7 @@ async def static_analyze_formula(
     return await service.static_analyze_formula(latex=latex)
 
 
-@router.get(
+@router.post(
     path="/semantic-analyze/",
     response_model=List[FormulaSemanticAnalysed],
     summary="Get semantic similar formulas by latex",

@@ -25,9 +25,18 @@ export default defineConfig({
     target: "esnext",
   },
   plugins: [react()],
+
+  // Настройки для режима разработки
   server: {
     host: '0.0.0.0',
     strictPort: true,
-    port: 5173,
+    port: 4173,
   },
+
+  // Настройки для режима preview
+  preview: {
+    host: '0.0.0.0',
+    port: 4173,
+    strictPort: true
+  }
 });
