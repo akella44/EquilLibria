@@ -1,0 +1,1688 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Equillibria API",
+    "description": "API for math formula platform Equillibria",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/jwt/login-swagger/": {
+      "post": {
+        "tags": [
+          "JWT"
+        ],
+        "summary": "User login",
+        "description": "Authenticates a user and returns access and refresh token.\n\n- **username**: User's login/username (required, 6-12 chars, pattern=\"^[a-z0-9]+$\")\n- **password**: User's password (required, 8-16 chars, pattern=\"^[A-Za-z0-9]+$\")",
+        "operationId": "login_swagger_api_jwt_login_swagger__post",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_login_swagger_api_jwt_login_swagger__post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenInfo"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/jwt/register/": {
+      "post": {
+        "tags": [
+          "JWT"
+        ],
+        "summary": "User register",
+        "description": "Registers a user.\n\n- **username**: User's login/username (required, 6-12 chars, pattern=\"^[a-z0-9]+$\")\n- **password**: User's password (required, 8-16 chars, pattern=\"^[A-Za-z0-9]+$\")",
+        "operationId": "register_api_jwt_register__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LinkTelegramBot"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jwt/login/": {
+      "post": {
+        "tags": [
+          "JWT"
+        ],
+        "summary": "2FA login 1st step",
+        "description": "Logins a user (if there isn`t 2fa) and returns JWT.\nOr starts first step of authentication (if there is 2fa)/\n\n- **username**: User's login/username (required, 6-12 chars, pattern=\"^[a-z0-9]+$\")\n- **password**: User's password (required, 8-16 chars, pattern=\"^[A-Za-z0-9]+$\")",
+        "operationId": "login_1_step_api_jwt_login__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenInfo"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginFirstStepMessageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jwt/login-2-step/": {
+      "post": {
+        "tags": [
+          "JWT"
+        ],
+        "summary": "2FA login 2nd step",
+        "description": "Authenticates a user and returns access and refresh token.\n\n- **username**: User's login/username (required, 6-12 chars, pattern=\"^[a-z0-9]+$\")\n- **code**: User's code from telegram (required, 6 digits)",
+        "operationId": "login_2_step_api_jwt_login_2_step__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyCodeUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenInfo"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jwt/refresh/": {
+      "post": {
+        "tags": [
+          "JWT"
+        ],
+        "summary": "Refresh JWT token",
+        "description": "Refreshes an access token by refresh token.\n\n- **refresh_token**: Header bearer refresh token (required)",
+        "operationId": "auth_refresh_jwt_api_jwt_refresh__post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenInfo"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          },
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/api/users/me/": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Current Auth User",
+        "description": "Get current auth user",
+        "operationId": "get_current_auth_user_api_users_me__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          },
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update Current Auth User",
+        "description": "Update current auth user",
+        "operationId": "update_current_auth_user_api_users_me__patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserMeUpdatePartial"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          },
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/api/formulas/me/": {
+      "get": {
+        "tags": [
+          "Formulas"
+        ],
+        "summary": "Get formulas for current user",
+        "description": "Gets assets list for current authenticated user\n\n- **access_token**: Header bearer access token (required)\n\n- **page_size**: Limit of formulas (default=1000)\n- **page_number**: Offset page number (default=1)\n- **search**: String for searching by name (optional)",
+        "operationId": "get_formulas_by_user_api_formulas_me__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          },
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1000,
+              "title": "Page Size"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "title": "Page Number"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Search"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FormulasList"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/formulas/{formula_id}/": {
+      "get": {
+        "tags": [
+          "Formulas"
+        ],
+        "summary": "Get formula by id",
+        "description": "Gets asset by id\n\n- **access_token**: Header bearer access token (required)\n\n- **formula_id**: Formula id (required)",
+        "operationId": "get_formula_by_id_api_formulas__formula_id___get",
+        "security": [
+          {
+            "HTTPBearer": []
+          },
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "formula_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Formula Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Formula"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Formulas"
+        ],
+        "summary": "Update partial formula for current user",
+        "description": "Updates a formula for current authenticated user\n\n- **access_token**: Header bearer access token (required)\n\n- **name**: Name of the formula (optional)\n- **content**: Formula content (optional)\n- **legends**: List of formula legends (list of strings, optional)\n- **description**: Description (optional)",
+        "operationId": "update_formula_api_formulas__formula_id___patch",
+        "security": [
+          {
+            "HTTPBearer": []
+          },
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "formula_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Formula Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FormulaUpdatePartial"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Formula"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Formulas"
+        ],
+        "summary": "Delete formula for current user",
+        "description": "Deletes a formula for current authenticated user\n\n- **access_token**: Header bearer access token (required)",
+        "operationId": "delete_formula_api_formulas__formula_id___delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          },
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "formula_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Formula Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Formula"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/formulas/": {
+      "post": {
+        "tags": [
+          "Formulas"
+        ],
+        "summary": "Create formula for current user",
+        "description": "Creates a formula for current authenticated user.\n\n- **access_token**: Header bearer access token (required)\n\n- **name**: Name of the formula (required)\n- **content**: Formula content (required)\n- **legends**: List of formula legends (list of strings)\n- **description**: Description (optional)",
+        "operationId": "create_formula_api_formulas__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FormulaCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Formula"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          },
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/api/formulas/static-analyze/": {
+      "post": {
+        "tags": [
+          "Formulas"
+        ],
+        "summary": "Get static similar formulas by latex",
+        "description": "Finds formulas by static analysis.\n\n- **access_token**: Header bearer access token (required)\n\n- **latex** - Formula latex content (body, required)",
+        "operationId": "static_analyze_formula_api_formulas_static_analyze__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "title": "Latex"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/FormulaStaticAnalysed"
+                  },
+                  "type": "array",
+                  "title": "Response Static Analyze Formula Api Formulas Static Analyze  Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          },
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/api/formulas/semantic-analyze/": {
+      "post": {
+        "tags": [
+          "Formulas"
+        ],
+        "summary": "Get semantic similar formulas by latex",
+        "description": "Finds formulas by semantic analysis.\n\n- **access_token**: Header bearer access token (required)\n\n- **latex** - Formula latex content (body, required)",
+        "operationId": "semantic_analyze_formula_api_formulas_semantic_analyze__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "title": "Latex"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/FormulaSemanticAnalysed"
+                  },
+                  "type": "array",
+                  "title": "Response Semantic Analyze Formula Api Formulas Semantic Analyze  Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          },
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/api/files/upload/": {
+      "post": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Upload file (png, jpg, pdf)",
+        "description": "Upload file in format png, jpg or pdf.\n\n- **access_token**: Header bearer access token (required)\n\n- **file**: Upload file (png, jpg, pdf)",
+        "operationId": "upload_file_api_files_upload__post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_file_api_files_upload__post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadImagesResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          },
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/api/files/images/": {
+      "get": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Get images with detected formulas and rectangles",
+        "description": "Get images with detected formulas and rectangles for current user.\n\n- **access_token**: Header bearer access token (required)\n\n- **page_size**: Limit of images (default=1000)\n- **page_number**: Offset page number (default=1)",
+        "operationId": "get_images_api_files_images__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          },
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1000,
+              "title": "Page Size"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "title": "Page Number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImagesList"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/images/{image_id}/": {
+      "get": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Get image with detected formulas and rectangles by id",
+        "description": "Get image with detected formulas and rectangles for current user by id.\n\n- **access_token**: Header bearer access token (required)\n\n- **image_id**: Image id (path, required)",
+        "operationId": "get_image_by_id_api_files_images__image_id___get",
+        "security": [
+          {
+            "HTTPBearer": []
+          },
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "image_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Image Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Image"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/images/{image_uuid}/rects/": {
+      "post": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Create rectangles of formulas in pictures",
+        "description": "Create rectangles of formulas in pictures for ai service.\n\n- **image_uuid**: Image string uuid (path, required)\n\n- **rects**: List of rectangles (x1, y1, x2, y2) (required)",
+        "operationId": "create_rects_api_files_images__image_uuid__rects__post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "image_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Image Uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RectCreate"
+                },
+                "title": "Rects"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Rect"
+                  },
+                  "title": "Response Create Rects Api Files Images  Image Uuid  Rects  Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/rects/{rect_id}/": {
+      "get": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Get latex by rect id",
+        "description": "Get latex formula by rect id (ai process).\n\n- **access_token**: Header bearer access token (required)\n\n- **rect_id**: Rectangle id (path, required)",
+        "operationId": "get_latex_by_rect_id_api_files_rects__rect_id___get",
+        "security": [
+          {
+            "HTTPBearer": []
+          },
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "rect_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Rect Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Latex"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Body_login_swagger_api_jwt_login_swagger__post": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "password": {
+            "type": "string",
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "Body_login_swagger_api_jwt_login_swagger__post"
+      },
+      "Body_upload_file_api_files_upload__post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_file_api_files_upload__post"
+      },
+      "Formula": {
+        "properties": {
+          "content": {
+            "type": "string",
+            "title": "Content"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "legends": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Legends",
+            "default": []
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "user_id": {
+            "type": "integer",
+            "title": "User Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "content",
+          "name",
+          "description",
+          "id",
+          "user_id",
+          "created_at"
+        ],
+        "title": "Formula"
+      },
+      "FormulaCreate": {
+        "properties": {
+          "content": {
+            "type": "string",
+            "title": "Content"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "legends": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Legends",
+            "default": []
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "content",
+          "name",
+          "description"
+        ],
+        "title": "FormulaCreate"
+      },
+      "FormulaSemanticAnalysed": {
+        "properties": {
+          "legends": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Legends"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "found_latex": {
+            "type": "string",
+            "title": "Found Latex"
+          },
+          "percentage": {
+            "type": "integer",
+            "title": "Percentage"
+          }
+        },
+        "type": "object",
+        "required": [
+          "legends",
+          "description",
+          "found_latex",
+          "percentage"
+        ],
+        "title": "FormulaSemanticAnalysed"
+      },
+      "FormulaStaticAnalysed": {
+        "properties": {
+          "legends": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Legends"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "found_latex": {
+            "type": "string",
+            "title": "Found Latex"
+          },
+          "subexpressions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Subexpressions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "legends",
+          "description",
+          "found_latex",
+          "subexpressions"
+        ],
+        "title": "FormulaStaticAnalysed"
+      },
+      "FormulaUpdatePartial": {
+        "properties": {
+          "content": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "legends": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Legends"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          }
+        },
+        "type": "object",
+        "title": "FormulaUpdatePartial"
+      },
+      "FormulasList": {
+        "properties": {
+          "formulas": {
+            "items": {
+              "$ref": "#/components/schemas/Formula"
+            },
+            "type": "array",
+            "title": "Formulas"
+          },
+          "total_pages": {
+            "type": "integer",
+            "title": "Total Pages"
+          },
+          "current_page": {
+            "type": "integer",
+            "title": "Current Page"
+          }
+        },
+        "type": "object",
+        "required": [
+          "formulas",
+          "total_pages",
+          "current_page"
+        ],
+        "title": "FormulasList"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Image": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "path": {
+            "type": "string",
+            "title": "Path"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "rects": {
+            "items": {
+              "$ref": "#/components/schemas/Rect"
+            },
+            "type": "array",
+            "title": "Rects"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "path",
+          "url",
+          "created_at",
+          "rects"
+        ],
+        "title": "Image"
+      },
+      "ImagesList": {
+        "properties": {
+          "images": {
+            "items": {
+              "$ref": "#/components/schemas/Image"
+            },
+            "type": "array",
+            "title": "Images"
+          },
+          "total_pages": {
+            "type": "integer",
+            "title": "Total Pages"
+          },
+          "current_page": {
+            "type": "integer",
+            "title": "Current Page"
+          }
+        },
+        "type": "object",
+        "required": [
+          "images",
+          "total_pages",
+          "current_page"
+        ],
+        "title": "ImagesList"
+      },
+      "Latex": {
+        "properties": {
+          "latex": {
+            "type": "string",
+            "title": "Latex"
+          }
+        },
+        "type": "object",
+        "required": [
+          "latex"
+        ],
+        "title": "Latex"
+      },
+      "LinkTelegramBot": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "expire_seconds": {
+            "type": "integer",
+            "title": "Expire Seconds"
+          },
+          "unique_token": {
+            "type": "string",
+            "title": "Unique Token"
+          }
+        },
+        "type": "object",
+        "required": [
+          "url",
+          "expire_seconds",
+          "unique_token"
+        ],
+        "title": "LinkTelegramBot"
+      },
+      "LoginFirstStepMessageResponse": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "default": "2FA код отправлен через Telegram"
+          },
+          "expire_seconds": {
+            "type": "integer",
+            "title": "Expire Seconds",
+            "default": 120
+          }
+        },
+        "type": "object",
+        "title": "LoginFirstStepMessageResponse"
+      },
+      "LoginUser": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 12,
+            "minLength": 6,
+            "pattern": "^[a-z0-9]+$",
+            "title": "Username"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 16,
+            "minLength": 8,
+            "pattern": "^[A-Za-z0-9]+$",
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "LoginUser"
+      },
+      "Rect": {
+        "properties": {
+          "x1": {
+            "type": "integer",
+            "title": "X1"
+          },
+          "y1": {
+            "type": "integer",
+            "title": "Y1"
+          },
+          "x2": {
+            "type": "integer",
+            "title": "X2"
+          },
+          "y2": {
+            "type": "integer",
+            "title": "Y2"
+          },
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "x1",
+          "y1",
+          "x2",
+          "y2",
+          "id"
+        ],
+        "title": "Rect"
+      },
+      "RectCreate": {
+        "properties": {
+          "x1": {
+            "type": "integer",
+            "title": "X1"
+          },
+          "y1": {
+            "type": "integer",
+            "title": "Y1"
+          },
+          "x2": {
+            "type": "integer",
+            "title": "X2"
+          },
+          "y2": {
+            "type": "integer",
+            "title": "Y2"
+          }
+        },
+        "type": "object",
+        "required": [
+          "x1",
+          "y1",
+          "x2",
+          "y2"
+        ],
+        "title": "RectCreate"
+      },
+      "TokenInfo": {
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "title": "Access Token"
+          },
+          "refresh_token": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refresh Token"
+          },
+          "token_type": {
+            "type": "string",
+            "title": "Token Type",
+            "default": "Bearer"
+          }
+        },
+        "type": "object",
+        "required": [
+          "access_token"
+        ],
+        "title": "TokenInfo"
+      },
+      "UploadImagesResponse": {
+        "properties": {
+          "image_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Image Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "image_ids"
+        ],
+        "title": "UploadImagesResponse"
+      },
+      "User": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "tg_username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tg Username"
+          },
+          "photo_id": {
+            "type": "integer",
+            "title": "Photo Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "admin": {
+            "type": "boolean",
+            "title": "Admin"
+          },
+          "active": {
+            "type": "boolean",
+            "title": "Active"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "username",
+          "tg_username",
+          "photo_id",
+          "created_at",
+          "admin",
+          "active"
+        ],
+        "title": "User"
+      },
+      "UserCreate": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 12,
+            "minLength": 6,
+            "pattern": "^[a-z0-9]+$",
+            "title": "Username"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 16,
+            "minLength": 8,
+            "pattern": "^[A-Za-z0-9]+$",
+            "title": "Password"
+          },
+          "telegram_2fa": {
+            "type": "boolean",
+            "title": "Telegram 2Fa",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "UserCreate"
+      },
+      "UserMeUpdatePartial": {
+        "properties": {
+          "password": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 16,
+                "minLength": 8,
+                "pattern": "^[A-Za-z0-9]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "title": "UserMeUpdatePartial"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "VerifyCodeUser": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 12,
+            "minLength": 6,
+            "pattern": "^[a-z0-9]+$",
+            "title": "Username"
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 6,
+            "minLength": 6,
+            "pattern": "^[0-9]+$",
+            "title": "Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "code"
+        ],
+        "title": "VerifyCodeUser"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      },
+      "OAuth2PasswordBearer": {
+        "type": "oauth2",
+        "flows": {
+          "password": {
+            "scopes": {
+
+            },
+            "tokenUrl": "/api/jwt/login-swagger/"
+          }
+        }
+      }
+    }
+  }
+}
