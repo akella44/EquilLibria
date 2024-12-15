@@ -32,3 +32,17 @@ class FormulasList(BaseModel):
     formulas: list[Formula]
     total_pages: int
     current_page: int
+
+
+class FormulaSemanticAnalysed(BaseModel):
+    legends: list[str]
+    description: str
+    found_latex: str
+    percentage: int
+
+
+class FormulaStaticAnalysed(BaseModel):
+    legends: list[str]
+    description: str
+    found_latex: str
+    subexpressions: list[str]

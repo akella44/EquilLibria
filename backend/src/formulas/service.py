@@ -1,7 +1,7 @@
 import asyncio
 import logging
 from math import ceil
-from typing import List
+from typing import List, Any
 
 import aiohttp
 from fastapi import HTTPException
@@ -10,7 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
 from .models import Formula
-from .schemas import FormulaCreate, FormulaUpdatePartial, FormulasList
+from .schemas import FormulaCreate, FormulaUpdatePartial, FormulasList, FormulaStaticAnalysed, FormulaSemanticAnalysed
 from ..config import settings
 from ..users import User
 
@@ -65,8 +65,8 @@ async def create_formula(
     return formula
 
 
-async def send_to_tree_decomposition(formula_id: int):
-    url = f"{settings.ai_analyze_url}/decomposition/?id={formula_id}"
+async def send_to_tree_decomposition(formula_id: int) -> None:
+    url = f"{settings.ai_analyze_url}decomposition/?expression_id={formula_id}"
     async with aiohttp.ClientSession() as session:
         async with session.post(url) as response:
             if response.status != 200:
@@ -103,15 +103,17 @@ async def delete_formula(
     return formula
 
 
-async def static_analyze_formula(latex: str) -> List[Formula]:  # TODO: -> что-то
-    response_json = await analyze_formula(latex=latex, url=settings.ai_analyze_url)
+async def static_analyze_formula(latex: str) -> List[FormulaStaticAnalysed]:
+    response_json = await analyze_formula(latex=latex, url=settings.ai_analyze_url+"matches/semantic/")
+    return [FormulaStaticAnalysed(**item) for item in response_json]
 
 
-async def semantic_analyze_formula(latex: str):  # TODO: -> что-то
-    response_json = await analyze_formula(latex=latex, url=settings.ai_analyze_url)
+async def semantic_analyze_formula(latex: str) -> List[FormulaSemanticAnalysed]:
+    response_json = await analyze_formula(latex=latex, url=settings.ai_analyze_url+"matches/static/")
+    return [FormulaSemanticAnalysed(**item) for item in response_json]
 
 
-async def analyze_formula(latex: str, url: str):  # TODO: -> что-то
+async def analyze_formula(latex: str, url: str) -> Any:
     async with aiohttp.ClientSession(timeout=20) as session_client:
         try:
             data = {"latex": latex}
