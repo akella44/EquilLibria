@@ -1,6 +1,3 @@
-import random
-from typing import List
-
 from sqlalchemy import DateTime, ForeignKey, ARRAY, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
@@ -21,3 +18,15 @@ class Formula(Base):
 
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     user: Mapped["User"] = relationship(back_populates="formulas")
+
+    subexpressions: Mapped[list["Subexpression"]] = relationship(back_populates="subexpressions")
+
+
+class Subexpression(Base):
+    __tablename__ = "subexpressions"
+
+    latex: Mapped[str] = mapped_column(nullable=False, index=True)
+
+    formula_id: Mapped[int] = mapped_column(ForeignKey("formulas.id"))
+    formula: Mapped["Formula"] = relationship(back_populates="subexpressions")
+

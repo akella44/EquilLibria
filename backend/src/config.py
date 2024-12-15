@@ -27,6 +27,7 @@ class Settings(BaseSettings):
     host_address: str
     ai_recognize_url: str
     ai_convert_url: str
+    ai_analyze_url: str
 
     model_config = SettingsConfigDict(env_file=".env")
 

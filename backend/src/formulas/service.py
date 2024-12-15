@@ -1,6 +1,8 @@
+import asyncio
 from math import ceil
 from typing import List
 
+import aiohttp
 from fastapi import HTTPException
 from sqlalchemy import select, Result
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -8,6 +10,7 @@ from starlette import status
 
 from .models import Formula
 from .schemas import FormulaCreate, FormulaUpdatePartial, FormulasList
+from ..config import settings
 from ..users import User
 
 
@@ -85,6 +88,35 @@ async def delete_formula(
     return formula
 
 
-# async def analyze_formula(formula_id: int,
-#     session: AsyncSession) -> List[...]:
-#     formula = await session.get(Formula, formula_id)
+async def analyze_formula(formula_id: int): # -> что-то
+    async with aiohttp.ClientSession(timeout=20) as session_client:
+        try:
+            ai_analyze_url = settings.ai_analyze_url
+            data = {"id": formula_id}
+            async with session_client.post(ai_analyze_url, data=data) as response:
+                if response.status != 200:
+                    resp_text = await response.text()
+                    raise HTTPException(
+                        status_code=status.HTTP_502_BAD_GATEWAY,
+                        detail=f"AI сервис вернул статус {response.status}: {resp_text}",
+                    )
+
+                response_json = await response.json()
+                result = response_json.get("result")
+                if result is None:
+                    raise HTTPException(
+                        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                        detail="AI сервис вернул ответ без поля 'result'."
+                    )
+
+                return result
+        except asyncio.TimeoutError:
+            raise HTTPException(
+                status_code=status.HTTP_504_GATEWAY_TIMEOUT,
+                detail="Таймаут при обращении к AI сервису.",
+            )
+        except Exception as e:
+            raise HTTPException(
+                status_code=status.HTTP_502_BAD_GATEWAY,
+                detail=f"Ошибка при обращении к AI сервису: {str(e)}",
+            )

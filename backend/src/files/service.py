@@ -168,7 +168,7 @@ async def send_single_file(
             )
             data.add_field("id", uuid_str)
             async with session.post(
-                AI_RECOGNIZE_URL.format(uuid_str), data=data, timeout=10
+                AI_RECOGNIZE_URL.format(uuid_str), data=data, timeout=15
             ) as response:
                 if response.status != 200:
                     text = await response.text()
@@ -317,8 +317,7 @@ async def convert_image_to_jpg_bytes(image: Image.Image) -> bytes:
 async def send_image_to_ai_service(image_bytes: bytes) -> str:
     ai_url = settings.ai_convert_url
 
-    timeout = aiohttp.ClientTimeout(total=3)
-    async with aiohttp.ClientSession(timeout=timeout) as session_client:
+    async with aiohttp.ClientSession(timeout=20) as session_client:
         data = aiohttp.FormData()
         data.add_field(
             name="file",
@@ -343,7 +342,7 @@ async def send_image_to_ai_service(image_bytes: bytes) -> str:
                         detail="AI сервис вернул ответ без поля 'result'."
                     )
 
-                return result.replace("\\\\", "\\")
+                return result
         except asyncio.TimeoutError:
             raise HTTPException(
                 status_code=status.HTTP_504_GATEWAY_TIMEOUT,
