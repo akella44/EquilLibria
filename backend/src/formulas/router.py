@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Body
 from fastapi.params import Depends
 from fastapi.security import HTTPBearer
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -141,12 +141,24 @@ async def delete_formula(
 
 
 @router.get(
-    path="/{formula_id}/analyze/",
+    path="/static-analyze/",
     # response_model=,
-    summary="Get similar formulas by formula id",
+    summary="Get static similar formulas by latex",
 )
-async def analyze_formula(
-    formula_id: int,
+async def static_analyze_formula(
+    latex: str = Body(...),
     _: User = Depends(get_current_active_auth_user),
 ):
-    return await service.analyze_formula(formula_id=formula_id)
+    return await service.static_analyze_formula(latex=latex)
+
+
+@router.get(
+    path="/semantic-analyze/",
+    # response_model=,
+    summary="Get semantic similar formulas by latex",
+)
+async def semantic_analyze_formula(
+    latex: str = Body(...),
+    _: User = Depends(get_current_active_auth_user),
+):
+    return await service.semantic_analyze_formula(latex=latex)

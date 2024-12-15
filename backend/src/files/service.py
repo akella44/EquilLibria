@@ -317,7 +317,7 @@ async def convert_image_to_jpg_bytes(image: Image.Image) -> bytes:
 async def send_image_to_ai_service(image_bytes: bytes) -> str:
     ai_url = settings.ai_convert_url
 
-    async with aiohttp.ClientSession(timeout=20) as session_client:
+    async with aiohttp.ClientSession() as session_client:
         data = aiohttp.FormData()
         data.add_field(
             name="file",
@@ -326,7 +326,7 @@ async def send_image_to_ai_service(image_bytes: bytes) -> str:
             content_type="image/jpeg",
         )
         try:
-            async with session_client.post(ai_url, data=data) as response:
+            async with session_client.post(ai_url, data=data, timeout=20) as response:
                 if response.status != 200:
                     resp_text = await response.text()
                     raise HTTPException(
