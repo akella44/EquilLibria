@@ -6,4 +6,5 @@ export interface ILoginUser {
 export interface IRegisterUser {
   username: string;
   password: string;
+  telegram_2fa: boolean
 }

@@ -19,10 +19,6 @@ export const SignIn: FC = () => {
           <div className={s.formWrapper}>
             <SignInForm />
           </div>
-          <span className={s.forgetPassword}>Еще нет аккаунта?</span>
-          <span className={s.login} onClick={() => router("/signup")}>
-            Зарегистрироваться
-          </span>
         </div>
       </div>
     </PageLayoutWithoutHeader>

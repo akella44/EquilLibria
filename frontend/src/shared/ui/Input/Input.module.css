@@ -38,5 +38,6 @@
   display: inline-block;
   color: var(--color-primary-purple);
   font-size: var(--font-size-h-xs);
+  font-weight: 200;
   margin-bottom: 10px;
 }

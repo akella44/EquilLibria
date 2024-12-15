@@ -1,5 +1,5 @@
 import { Button } from "@/shared/ui/Button";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import s from "./SignUpForm.module.css";
 import { Input } from "@/shared/ui/Input";
@@ -8,30 +8,39 @@ import { IRegisterUser } from "@/shared/api/authService/types";
 import { useRegisterUser } from "../model/useRegisterUser";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import CustomCheckbox, { Checkbox } from "@/shared/ui/Checkbox/Checkbox";
 
 interface SignUpForm {
   username: string;
   password: string;
   confirmPassword: string;
+  twoFA: boolean;
 }
 
 export const SignUpForm: FC = () => {
   const router = useNavigate();
 
   const { registerUser, isError, isPending, isSuccess } = useRegisterUser();
+  const [isTwoFA, setIsTwoFA] = useState(false);
 
   const {
     handleSubmit,
     register,
     watch,
     formState: { errors },
+    setValue,
   } = useForm<SignUpForm>();
   const password = watch("password");
 
-  const onSubmit = (data: IRegisterUser) =>
+  useEffect(() => {
+    setValue("twoFA", isTwoFA);
+  }, [isTwoFA]);
+
+  const onSubmit = (data) =>
     registerUser({
       username: data.username,
       password: data.password,
+      telegram_2fa: data.twoFA,
     });
 
   if (isSuccess) {
@@ -105,7 +114,18 @@ export const SignUpForm: FC = () => {
           <FormError text={errors.confirmPassword.message} />
         )}
       </div>
-      <Button text="Зарегистрироваться" size="XL" fontSize={24} disabled={isPending} />
+      <div className={s.checkbox}>
+        <div onClick={() => setIsTwoFA(!isTwoFA)}>
+          <Checkbox isChecked={isTwoFA} register={register("twoFA")} />
+        </div>
+        <span>Двухфакторная аутентификация через Telegram</span>
+      </div>
+      <Button
+        text="Зарегистрироваться"
+        size="XL"
+        fontSize={24}
+        disabled={isPending}
+      />
     </form>
   );
 };

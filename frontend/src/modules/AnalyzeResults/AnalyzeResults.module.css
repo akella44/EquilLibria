@@ -1,6 +1,7 @@
 .analyzeResults {
   background-color: var(--color-element-background);
   padding: 20px;
+  border-radius: 10px;
 }
 
 .title {

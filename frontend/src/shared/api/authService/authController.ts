@@ -21,10 +21,16 @@ export const register = async (data: IRegisterUser) => {
 export const login = async (data: ILoginUser) => {
   try {
     const response = await authController.post("/jwt/login", data);
-    return {
-      access_token: response.data.access_token,
-      refresh_token: response.data.refresh_token,
-    };
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const login2Step = async (data: { username: string; code: string }) => {
+  try {
+    const response = await authController.post("/jwt/login-2-step", data);
+    return response.data;
   } catch (err) {
     throw err;
   }
