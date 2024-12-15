@@ -26,17 +26,10 @@ export default defineConfig({
   },
   plugins: [react()],
 
-  // Настройки для режима разработки
   server: {
     host: '0.0.0.0',
     strictPort: true,
-    port: 4173,
+    port: 5173,
   },
 
-  // Настройки для режима preview
-  preview: {
-    host: '0.0.0.0',
-    port: 4173,
-    strictPort: true
-  }
 });
