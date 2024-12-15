@@ -9,11 +9,19 @@ interface ResultItemProps {
   percentage: number;
 }
 
+const getColorFromPercentage = (percentage: number): string => {
+  const green = Math.round((1 - percentage / 100) * 255);
+  const red = Math.round((percentage / 100) * 255);
+  return `rgb(${red}, ${green}, 0)`; 
+};
+
 export const ResultSemanticItem: FC<ResultItemProps> = ({
   fonudLatex,
   percentage,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
+
+  const percentageColor = getColorFromPercentage(percentage);
 
   return (
     <div className={s.resultItem}>
@@ -21,6 +29,9 @@ export const ResultSemanticItem: FC<ResultItemProps> = ({
         <div className={s.formulaField}>
           <BlockMath>{fonudLatex}</BlockMath>
         </div>
+        <span className={s.percentage} style={{ color: percentageColor }}>
+          {percentage}%
+        </span>
         <div className={s.wrapper}>
           <div
             className={s.iconWrapper}
@@ -31,7 +42,7 @@ export const ResultSemanticItem: FC<ResultItemProps> = ({
         </div>
       </div>
       <div className={`${s.content} ${isVisible ? s.visible : ""}`}>
-        <textarea value={fonudLatex}></textarea>
+        <div className={s.text}>{fonudLatex}</div>
       </div>
       <div className={s.separator}>
         <Separator />

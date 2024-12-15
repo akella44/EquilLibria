@@ -11,10 +11,14 @@ interface ResultItemProps {
 }
 
 const highlightSubexpressions = (text: string, subexpressions: string[]) => {
-  const regex = new RegExp(`(${subexpressions.join("|")})`, "g");
+  const escapedSubexpressions = subexpressions.map((sub) =>
+    sub.replace(/[-\/\\^$.*+?()[\]{}|]/g, "\\$&")
+  );
 
-  const parts = text?.split(regex).map((part, index) => {
-    if (subexpressions.includes(part)) {
+  const regex = new RegExp(`(${escapedSubexpressions.join("|")})`, "g");
+
+  const parts = text.split(regex).map((part, index) => {
+    if (subexpressions.some((sub) => sub === part)) {
       return (
         <span key={index} className={s.highlighted}>
           {part}

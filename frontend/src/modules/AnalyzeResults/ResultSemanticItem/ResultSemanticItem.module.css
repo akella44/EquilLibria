@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   cursor: pointer;
   overflow: hidden;
 }
@@ -53,6 +53,7 @@
 }
 
 .text {
+  margin-top: 5px;
   margin-left: 10px;
   font-size: 20px;
   font-weight: 200;
@@ -68,6 +69,7 @@
 .visible {
   max-height: 200px;
   padding-bottom: 12px;
+  
 }
 
 .separator {
@@ -76,4 +78,11 @@
 
 .source {
   margin-bottom: 12px;
+}
+
+.percentage {
+  display: inline-block;
+  margin-left: auto;
+  padding-right: 10px;
+  font-size: 20px;
 }

@@ -22,45 +22,188 @@ export const Analyze: FC = observer(() => {
   const { inputValue, setValue } = inputValueStore;
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [semanticList, setSemanticList] = useState([{}]);
+  const [semanticList, setSemanticList] = useState([
+    {
+      legends: ["f(x)", "g(x)", "h(x)", "k(x)"],
+      description:
+        "A complex functional relationship involving several functions and their derivatives.",
+      found_latex:
+        "f(g(x)) + \\frac{d}{dx}(h(x)k(x)) - \\int_0^x f(t)dt = 5 \\cdot h(x) + 10",
+      percentage: 95,
+    },
+    {
+      legends: ["a", "b", "c", "x", "y", "z"],
+      description: "A general cubic polynomial equation in three variables.",
+      found_latex: "a x^3 + b y^2 z + c \\frac{x y}{z} + \\frac{1}{a+b} = 0",
+      percentage: 56,
+    },
+    {
+      legends: ["A", "B", "C", "D"],
+      description: "An expanded series representation of a function.",
+      found_latex:
+        "\\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n + \\epsilon = A + Bx + Cx^2 + Dx^3 + \\dots",
+      percentage: 75,
+    },
+    {
+      legends: ["x", "y", "z", "w", "a", "b", "c", "d"],
+      description: "A complex matrix operation with variables.",
+      found_latex:
+        "\\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} = \\begin{bmatrix} ax+by & bx+dy \\\\ az+cw & bz+dw \\end{bmatrix}",
+      percentage: 92,
+    },
+    {
+      legends: ["m", "t", "k", "g", "A", "\u03C9", "\u03B8"],
+      description: "A complex differential equation of a damped oscillation.",
+      found_latex:
+        "m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x =  A \\cos(\\omega t)",
+      percentage: 97,
+    },
+    {
+      legends: ["\u03A3", "n", "i", "j", "m", "S"],
+      description: "A double sum formula.",
+      found_latex: "\\sum_{i=1}^{n} \\sum_{j=1}^{m} (i^2 + j^2) =  S",
+      percentage: 25,
+    },
+    {
+      legends: ["A", "B", "C", "D", "\u03B8", "a", "b", "c"],
+      description: "The complex Law of Cosines with additional terms.",
+      found_latex: "c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta)",
+      percentage: 96,
+    },
+    {
+      legends: ["\u03A8", "x", "t", "m", "\u03C9", "h", "v", "x", "y"],
+      description:
+        "The time-dependent Schrödinger equation with complex components.",
+      found_latex:
+        "i\\hbar\\frac{\\partial \\Psi(x,t)}{\\partial t} = -\\frac{\\hbar^2}{2m}\\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t)",
+      percentage: 91,
+    },
+    {
+      legends: ["\u03A8", "x", "t", "m", "\u03C9", "h", "v", "x", "y"],
+      description:
+        "The time-dependent Schrödinger equation with complex components.",
+      found_latex: "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+      percentage: 10,
+    },
+    {
+      legends: ["p", "q", "r"],
+      description: "The general quadratic formula.",
+      found_latex: "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+      percentage: 79,
+    },
+    {
+      legends: ["\u03BB", "t", "A_0", "A(t)", "C"],
+      description: "A complex version of the exponential growth.",
+      found_latex: "A(t) = A_0 e^{\\lambda t}",
+      percentage: 95,
+    },
+  ]);
   const [staticList, setStaticList] = useState([
     {
-      legends: ["f(x)", "g(x)", "h(x)"],
+      legends: ["f(x)", "g(x)", "h(x)", "k(x)"],
       description:
-        "This expression represents the composition of three functions f, g, and h.",
-      found_latex: "f(g(h(x))) = 2h(x) + 3g(x) - 1",
-      subexpressions: ["f(g(h(x)))", "h(x)", "g(x)"],
-      original_latex: "f(g(h(x))) = h(x)",
+        "This represents a complex functional relationship involving several functions and their derivatives.",
+      found_latex: "\\frac{x^{2} + a}{b + c}",
+      subexpressions: ["x^{2}", "a", "b + c"],
+      original_latex: "a + b + c + d + x^{2}",
     },
     {
-      legends: ["a", "b", "c", "d"],
-      description: "This equation describes a cubic polynomial relationship.",
-      found_latex: "ax^3 + bx^2 + cx + d - 7 = 0",
-      subexpressions: ["ax^3", "bx^2", "cx", "d"],
-      original_latex: "ax^3 + bx^2 + cx + d = 0",
-    },
-    {
-      legends: ["\u03B1", "\u03B2", "\u03B3", "R"],
+      legends: ["a", "b", "c", "x", "y", "z"],
       description:
-        "This expression represents the law of cosines extended for spherical triangles.",
-      found_latex: "R^2 = a^2 + b^2 - 2ab cos(\theta) + 4",
-      subexpressions: ["R^2", "a^2", "b^2", "cos(\theta)"],
-      original_latex: "R^2 = a^2 + b^2 - 2ab cos(\theta)",
+        "This represents a general cubic polynomial equation in three variables.",
+      found_latex: "a x^3 + b y^2 z + c \\frac{x y}{z} + \\frac{1}{a+b} =  0",
+      subexpressions: ["a", "b", "c", "x", "y", "z"],
+      original_latex: "a x^3 + b y^2 z + c \\frac{x y}{z} = 0",
     },
     {
-      legends: ["x", "y", "k"],
+      legends: ["A", "B", "C", "D"],
       description:
-        "This expression represents the parametric equations of a conic section.",
-      found_latex: "x(t) = h + r cos(t) + 2, ; y(t) = k + r sin(t) - 1",
-      subexpressions: ["x(t)", "y(t)", "cos(t)", "sin(t)"],
-      original_latex: "x(t) = h + r cos(t), ; y(t) = k + r sin(t)",
+        "This is the expanded form of a series representation of a function.",
+      found_latex:
+        "\\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n + \\epsilon = A + Bx + Cx^2 + Dx^3 + \\dots",
+      subexpressions: [
+        "\\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n",
+        "A",
+        "B",
+        "C",
+        "D",
+      ],
+      original_latex:
+        "\\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n = A + Bx + Cx^2 + Dx^3 + \\dots",
     },
     {
-      legends: ["\u03B5", "t", "N_0", "k"],
-      description: "This represents a modified exponential growth model.",
-      found_latex: "N(t) = N_0 e^{kt} - 5 + \frac{1}{2}",
-      subexpressions: ["N(t)", "N_0", "e^{kt}"],
-      original_latex: "N(t) = N_0 e^{kt}",
+      legends: ["x", "y", "z", "a", "b", "c"],
+      description:
+        "This represents an complex matrix operation with variables.",
+      found_latex:
+        "\\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} = \\begin{bmatrix} ax+by & bx+dy \\\\ az+cw & bz+dw \\end{bmatrix} + M",
+      subexpressions: [
+        "\\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix}",
+        "\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}",
+      ],
+      original_latex:
+        "\\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} = \\begin{bmatrix} ax+by & bx+dy \\\\ az+cw & bz+dw \\end{bmatrix}",
+    },
+    {
+      legends: ["m", "t", "k", "g"],
+      description:
+        "This represents a complex differential equation of a damped oscillation.",
+      found_latex:
+        "m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x =  A \\cos(\\omega t) + \\delta",
+      subexpressions: [
+        "m",
+        "\\frac{d^2x}{dt^2}",
+        "k",
+        "\\frac{dx}{dt}",
+        "g",
+        "x",
+      ],
+      original_latex:
+        "m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x =  A \\cos(\\omega t)",
+    },
+    {
+      legends: ["\u03A3", "n", "i", "j"],
+      description: "This formula represents a double sum",
+      found_latex: "\\sum_{i=1}^{n} \\sum_{j=1}^{m} (i^2 + j^2) + c =  S",
+      subexpressions: ["\\sum_{i=1}^{n}", "\\sum_{j=1}^{m}", "i", "j", "n"],
+      original_latex: "\\sum_{i=1}^{n} \\sum_{j=1}^{m} (i^2 + j^2) =  S",
+    },
+    {
+      legends: ["A", "B", "C", "\u03B8"],
+      description: "The complex Law of Cosines with additional terms.",
+      found_latex:
+        "c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta) + \\frac{a}{b} + \\frac{b}{a} =  A + B + C + 5",
+      subexpressions: ["a", "b", "c", "\\cos(\\theta)"],
+      original_latex: "c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta)",
+    },
+    {
+      legends: ["\u03A8", "x", "t"],
+      description:
+        "The time-dependent Schrödinger equation with complex components.",
+      found_latex:
+        "i\\hbar\\frac{\\partial \\Psi(x,t)}{\\partial t} = -\\frac{\\hbar^2}{2m}\\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t) + F",
+      subexpressions: [
+        "\\frac{\\partial \\Psi(x,t)}{\\partial t}",
+        "\\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2}",
+        "\\Psi(x,t)",
+      ],
+      original_latex:
+        "i\\hbar\\frac{\\partial \\Psi(x,t)}{\\partial t} = -\\frac{\\hbar^2}{2m}\\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t)",
+    },
+    {
+      legends: ["p", "q", "r"],
+      description: "The general quadratic formula.",
+      found_latex: "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a} + \\sigma",
+      subexpressions: ["x", "a", "b", "c"],
+      original_latex: "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+    },
+    {
+      legends: ["\u03BB", "t"],
+      description: "A complex version of the exponential growth.",
+      found_latex:
+        "A(t) = A_0 e^{\\lambda t} + \\int_0^t f(t)dt = A_0 e^{\\lambda t} + C",
+      subexpressions: ["A(t)", "A_0", "e^{\\lambda t}", "\\int_0^t f(t)dt"],
+      original_latex: "A(t) = A_0 e^{\\lambda t}",
     },
   ]);
 
@@ -123,7 +266,7 @@ export const Analyze: FC = observer(() => {
           <AnalyzeButton />
         </div>
         {isLoading && <Loader />}
-        {staticList.length > 0 && (
+        {staticList.length > 0 && semanticList.length > 0 && (
           <div className={s.analyzeResultsWrapper}>
             <AnalyzeResults
               staticList={staticList}

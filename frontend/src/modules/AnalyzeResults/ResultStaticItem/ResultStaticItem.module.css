@@ -66,8 +66,19 @@
 }
 
 .visible {
-  max-height: 200px;
+  max-height: 300px;
   padding-bottom: 12px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-grey-purple);
+    border-radius: 5px;
+  }
 }
 
 .separator {
