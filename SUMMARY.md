@@ -8,3 +8,7 @@
 * [Создание формул](obuchenie-po-platforme/sozdanie-formul.md)
 * [Анализ формул](obuchenie-po-platforme/analiz-formul.md)
 * [Мои формулы](obuchenie-po-platforme/moi-formuly.md)
+
+## Документация к коду
+
+* [Equilibria API](dokumentaciya-k-kodu/equilibria-api.md)
