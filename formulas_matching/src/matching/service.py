@@ -14,27 +14,35 @@ async def get_all_static_matches(
     session: AsyncSession, subexpressions: List[str]
 ) -> List[FormulaStaticAnalysed]:
     static_analyze_results: List[FormulaStaticAnalysed] = []
-    for subexpression in subexpressions:
-        # select(models.Image)
-        # .where(models.Image.user_id == user.id)
-        # .options(selectinload(models.Image.rects))
+    formulas_dict = {}
+    for sub in subexpressions:
         matching_query = (
             select(Subexpression)
-            .where(Subexpression.latex == subexpression)
+            .where(Subexpression.latex == sub)
             .options(selectinload(Subexpression.formula))
         )
-        matching_result: Result = await session.execute(matching_query)
-        matches: List[Subexpression] = list(matching_result.scalars().all())
+        result: Result = await session.execute(matching_query)
+        subexpressions_models: List[Subexpression] = list(result.scalars().all())
 
-        static_analyze_result = FormulaStaticAnalysed()
+        for subexpressions_model in subexpressions_models:
+            if not subexpressions_model.id in formulas_dict:
+                formulas_dict[subexpressions_model.id] = {"formula": subexpressions_model.formula, "subs": [sub]}
+            formulas_dict[subexpressions_model.id]["subs"].append(sub)
 
-        for match in matches:
-            formula: Formula = await get_formula_by_id(
-                session=session, formula_id=match.formula_id
-            )
-            static_analyze_result.description = formula.description
-            static_analyze_result.legends = formula.legends
-            static_analyze_result.full_expression = formula.content
+    for _, dct in formulas_dict.items():
+        formula = dct["formula"]
+        subs = dct["subs"]
+        legends = formula.legends
+        description = formula.description
+        latex = formula.content
+        static_analyze_results.append(FormulaStaticAnalysed(
+            legends=legends,
+            description=description,
+            found_latex=latex,
+            subexpressions=subs,
+        ))
+
+    return static_analyze_results
 
 
 async def get_formula_by_id(session: AsyncSession, formula_id: int):

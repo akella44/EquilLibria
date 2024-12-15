@@ -16,12 +16,11 @@ from typing import List
 class FormulaSemanticAnalysed(BaseModel):
     legends: list[str]
     description: str
-    full_expression: str
+    found_latex: str
     percentage: int
-
 
 class FormulaStaticAnalysed(BaseModel):
     legends: list[str]
     description: str
-    full_expression: str
+    found_latex: str
     subexpressions: list[str]
