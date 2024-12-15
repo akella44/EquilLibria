@@ -35,40 +35,40 @@ export const Analyze: FC = observer(() => {
       legends: ["a", "b", "c", "x", "y", "z"],
       description: "A general cubic polynomial equation in three variables.",
       found_latex: "a x^3 + b y^2 z + c \\frac{x y}{z} + \\frac{1}{a+b} = 0",
-      percentage: 90,
+      percentage: 38,
     },
     {
       legends: ["A", "B", "C", "D"],
       description: "An expanded series representation of a function.",
       found_latex:
         "\\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n + \\epsilon = A + Bx + Cx^2 + Dx^3 + \\dots",
-      percentage: 88,
+      percentage: 44,
     },
     {
       legends: ["x", "y", "z", "w", "a", "b", "c", "d"],
       description: "A complex matrix operation with variables.",
       found_latex:
         "\\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} = \\begin{bmatrix} ax+by & bx+dy \\\\ az+cw & bz+dw \\end{bmatrix}",
-      percentage: 92,
+      percentage: 1,
     },
     {
       legends: ["m", "t", "k", "g", "A", "\u03C9", "\u03B8"],
       description: "A complex differential equation of a damped oscillation.",
       found_latex:
         "m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x =  A \\cos(\\omega t)",
-      percentage: 97,
+      percentage: 17,
     },
     {
       legends: ["\u03A3", "n", "i", "j", "m", "S"],
       description: "A double sum formula.",
       found_latex: "\\sum_{i=1}^{n} \\sum_{j=1}^{m} (i^2 + j^2) =  S",
-      percentage: 93,
+      percentage: 15,
     },
     {
       legends: ["A", "B", "C", "D", "\u03B8", "a", "b", "c"],
       description: "The complex Law of Cosines with additional terms.",
       found_latex: "c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta)",
-      percentage: 96,
+      percentage: 7,
     },
     {
       legends: ["\u03A8", "x", "t", "m", "\u03C9", "h", "v", "x", "y"],
@@ -76,20 +76,20 @@ export const Analyze: FC = observer(() => {
         "The time-dependent Schrödinger equation with complex components.",
       found_latex:
         "i\\hbar\\frac{\\partial \\Psi(x,t)}{\\partial t} = -\\frac{\\hbar^2}{2m}\\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t)",
-      percentage: 91,
+      percentage: 14,
     },
     {
       legends: ["\u03A8", "x", "t", "m", "\u03C9", "h", "v", "x", "y"],
       description:
         "The time-dependent Schrödinger equation with complex components.",
       found_latex: "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
-      percentage: 93,
+      percentage: 24,
     },
     {
       legends: ["p", "q", "r"],
       description: "The general quadratic formula.",
       found_latex: "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
-      percentage: 90,
+      percentage: 18,
     },
   ];
 
