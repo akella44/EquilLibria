@@ -61,12 +61,14 @@ services:
     networks:
       - dev
 
-  # matching:
-  #   image: -----------------------------
-  #   container_name: matching
-  #   restart: unless-stopped
-  #   networks:
-  #     - dev
+  matching:
+    image: arklimin/equillibria-matching-service:v1.0
+    container_name: matching
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - dev
 
 volumes:
   postgres-data:
