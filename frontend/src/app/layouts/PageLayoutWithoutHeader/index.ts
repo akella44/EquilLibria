@@ -1,1 +1,1 @@
-export * from './PageLayoutWithoutHeader'
+export * from "./PageLayoutWithoutHeader";

@@ -39,8 +39,8 @@ export const Modal: FC<ModalProps> = ({
 
   return (
     <>
-      {blur && <div className={s.overlay} onClick={onClickOutSide}></div>}
-      <div ref={modalRef} className={s.modal}>
+      {/* <div className={s.overlay}></div> */}
+      <div className={s.modal} ref={modalRef}>
         {children}
       </div>
     </>
