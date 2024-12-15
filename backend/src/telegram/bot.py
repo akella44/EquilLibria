@@ -10,8 +10,6 @@ from .handlers import register_handlers as register_main_handlers
 commands = [
     types.BotCommand(command="/start", description="Начать"),
     types.BotCommand(command="/menu", description="Меню"),
-    types.BotCommand(command="/help", description="Помощь"),
-    types.BotCommand(command="/about", description="О боте"),
 ]
 
 bot = Bot(

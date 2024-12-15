@@ -67,7 +67,7 @@ async def menu_message(message: Message, state: FSMContext):
 
 async def menu(event) -> None | tuple[str, InlineKeyboardMarkup]:
     user = await get_user_from_system(event=event)
-    message = "➖<b><a href='https://equillibria.ru'>Equillibria</a></b>➖"
+    message = "➖<b><a href='http://localhost:5173/'>Equilibria</a></b>➖"
     message += "\n<b>Удобная и надежная платформа</b>"
     if user:
         message += "\n\nℹ️ <b>Личный кабинет</b>"
