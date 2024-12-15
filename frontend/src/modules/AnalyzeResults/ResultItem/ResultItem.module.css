@@ -1,11 +1,42 @@
+.resultItem {
+  overflow: hidden;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.formulaField {
+  padding-right: 200px;
+}
+
+.header:hover .wrapper {
+  background-color: #E8E5F0;
+}
+
+.wrapper {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 30px;
   height: 30px;
+  transition: transform 0.3s ease;
 }
 
 .title {
@@ -24,4 +55,19 @@
 .content {
   max-height: 0;
   overflow: hidden;
+  transition: 0.3s ease max-height, 0.3s ease padding-bottom;
+  padding-bottom: 0;
+}
+
+.visible {
+  max-height: 200px;
+  padding-bottom: 12px;
+}
+
+.separator {
+  padding-bottom: 12px;
+}
+
+.source {
+  margin-bottom: 12px;
 }

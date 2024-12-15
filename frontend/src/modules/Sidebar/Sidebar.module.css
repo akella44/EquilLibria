@@ -49,9 +49,14 @@
   margin-top: 10px;
   width: 93%;
   margin-inline: auto;
+  margin-bottom: 20px;
 }
 
 .logowrapper,
 .userProfileWrapper {
+  margin-left: 10px;
+}
+
+.button {
   margin-left: 10px;
 }

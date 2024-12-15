@@ -100,7 +100,19 @@ export const FormulaPreview: FC<IFormulaPreview> = observer(({ value }) => {
         <div className={s.separator}>
           <Separator />
         </div>
+
         <div className={s.iconsWrapper}>
+          {editFormulaStore.getIsEdit() && (
+            <span
+              className={s.cancel}
+              onClick={() => {
+                editFormulaStore.setIsEdit(false);
+                inputValueStore.clear();
+              }}
+            >
+              Отменить редактирование
+            </span>
+          )}
           <div className={s.iconWrapper}>
             {editFormulaStore.getIsEdit() ? (
               <div

@@ -96,3 +96,11 @@
   right: 0px;
   z-index: 1000;
 }
+
+.cancel {
+  cursor: pointer;
+  font-size: 16;
+  margin-right: auto;
+  color: #B9B5CB;
+  font-size: 200;
+}

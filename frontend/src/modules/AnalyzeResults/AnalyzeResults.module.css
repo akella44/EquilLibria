@@ -8,10 +8,10 @@
   font-size: 24px;
   color: var(--color-primary-purple);
   font-weight: 800;
+  margin-bottom: 15px;
 }
 
 .h3 {
   font-size: 24px;
   color: var(--color-primary-purple);
-  margin-bottom: 10px;
 }
