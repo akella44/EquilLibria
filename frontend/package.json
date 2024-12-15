@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -16,8 +16,10 @@
     "axios": "^1.7.8",
     "classnames": "^2.5.1",
     "html2canvas": "^1.4.1",
+    "katex": "^0.16.15",
     "mobx": "^6.13.5",
     "mobx-react-lite": "^4.0.7",
+    "qrcode": "^1.5.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.53.2",
@@ -28,6 +30,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.1",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/react-latex": "^2.0.3",

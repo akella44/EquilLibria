@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.iconWrapper {
+  width: 30px;
+  height: 30px;
+}
+
+.title {
+  color: var(--color-primary-purple);
+  font-weight: 800;
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.text {
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.content {
+  max-height: 0;
+  overflow: hidden;
+}

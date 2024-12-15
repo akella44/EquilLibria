@@ -2,6 +2,8 @@
   background-color: var(--color-element-background);
   padding: 20px;
   border-radius: 10px;
+  position: relative;
+  z-index: 200;
 }
 
 .iconWrapper {
@@ -13,19 +15,6 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
-}
-
-.ai {
-  padding: 5px 35px;
-  font-size: 24px;
-  border-radius: 10px;
-  background-color: var(--color-primary-purple);
-  color: #fff;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: var(--color-bg-button-purple-hover)
-  }
 }
 
 .title {

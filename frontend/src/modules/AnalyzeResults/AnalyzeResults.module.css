@@ -11,6 +11,7 @@
 }
 
 .h3 {
-  font-size: 20px;
+  font-size: 24px;
   color: var(--color-primary-purple);
+  margin-bottom: 10px;
 }

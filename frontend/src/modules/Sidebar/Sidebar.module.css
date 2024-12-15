@@ -5,11 +5,11 @@
   flex-direction: column;
   background-color: #FBF9FE;
   overflow: hidden;
-  padding: 20px;
+  padding: 20px 10px;
 }
 
 .userProfileWrapper {
-  margin-block: 20px;
+  margin-block: 20px 15px;
 }
 
 .sidebarItem {
@@ -47,6 +47,11 @@
 
 .separator {
   margin-top: 10px;
-  width: 92%;
+  width: 93%;
   margin-inline: auto;
+}
+
+.logowrapper,
+.userProfileWrapper {
+  margin-left: 10px;
 }

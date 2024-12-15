@@ -24,7 +24,9 @@ export const Sidebar = () => {
 
   return (
     <div className={s.sidebar}>
-      <Logo />
+      <div className={s.logowrapper}>
+        <Logo />
+      </div>
       <div className={s.userProfileWrapper}>
         <UserProfile />
       </div>

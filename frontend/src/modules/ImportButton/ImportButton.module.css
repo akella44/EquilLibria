@@ -2,12 +2,36 @@
   padding: 10px 20px;
   background-color: var(--color-element-background);
   border-radius: 10px;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer;
+
+  &:hover {
+    >.arrow svg {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.importButton:hover .arrow {
+  background-color: #E8E5F0;
 }
 
 .title {
   color: var(--color-primary-purple);
   font-size: 24px;
   font-weight: 800;
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  padding: 1px 1px 1px 0;
+  border-radius: 5px;
+  transition: 0.3s ease background-color;
 }
 
 .arrow svg {
@@ -36,6 +60,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  &:hover {
+    
+  }
 }
 
 .listItem {
