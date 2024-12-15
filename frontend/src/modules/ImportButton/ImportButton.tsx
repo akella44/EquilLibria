@@ -19,19 +19,16 @@ export const ImportButton: FC = observer(() => {
   }, [file]);
 
   return (
-    <div className={s.importButton}>
+    <div className={s.importButton} onClick={() => setIsOpen(!isOpen)}>
       <div className={s.header}>
         <h2 className={s.title}>Импорт</h2>
-        <div
-          onClick={() => setIsOpen(!isOpen)}
-          className={`${s.arrow} ${isOpen ? s.activeArrow : ""}`}
-        >
+        <div className={`${s.arrow} ${isOpen ? s.activeArrow : ""}`}>
           <Arrow />
         </div>
       </div>
       <div className={`${s.list} ${isOpen ? s.listActive : ""}`}>
         <Separator />
-        <div className={s.listItem}>
+        <div className={s.listItem} onClick={(e) => e.stopPropagation()}>
           <span className={s.listItemText}>
             Импорт из pdf
             <input
@@ -41,18 +38,18 @@ export const ImportButton: FC = observer(() => {
               accept=".pdf"
               onChange={(e) => {
                 importModalStore.setIsModalVisible(true);
-                importModalStore.setType("pdf")
+                importModalStore.setType("pdf");
                 e.target.files && setFile(e.target.files[0]);
                 if (pdfInputRef.current) {
                   pdfInputRef.current.value = "";
                 }
-                importModalStore.setIsRequest(true)
+                importModalStore.setIsRequest(true);
               }}
             />
           </span>
         </div>
         <Separator />
-        <div className={s.listItem}>
+        <div className={s.listItem} onClick={(e) => e.stopPropagation()}>
           <span className={s.listItemText}>
             Импорт по изображению
             <input
@@ -62,12 +59,12 @@ export const ImportButton: FC = observer(() => {
               accept=".jpg, .jpeg, .png"
               onChange={(e) => {
                 importModalStore.setIsModalVisible(true);
-                importModalStore.setType("img")
+                importModalStore.setType("img");
                 e.target.files && setFile(e.target.files[0]);
                 if (imageInputRef.current) {
                   imageInputRef.current.value = "";
                 }
-                importModalStore.setIsRequest(true)
+                importModalStore.setIsRequest(true);
               }}
             />
           </span>

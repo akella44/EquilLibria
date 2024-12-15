@@ -16,3 +16,32 @@
   font-size: 20px;
   font-weight: 200;
 }
+
+.link {
+  font-size: 20px;
+  font-weight: 200;
+  transition: 0.3s ease color;
+  color: var(--color-primary-purple);
+
+  &:hover {
+    color: var(--color-bg-button-purple-hover);
+  }
+}
+
+.text {
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.qr {
+  margin-left: -15px;
+  width: 200px;
+  height: 200px;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 15px;
+}

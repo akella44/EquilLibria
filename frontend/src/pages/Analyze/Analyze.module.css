@@ -30,11 +30,9 @@
 
 .keyboardWrapper.visible {
   margin-bottom: 10px;
-  max-height: 500px;
+  max-height: 410px;
 }
 
 .analyzeResultsWrapper {
   margin-top: 10px;
 }
-
-@media (max-width: 1440px) {}
