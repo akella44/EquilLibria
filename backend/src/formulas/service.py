@@ -124,7 +124,7 @@ async def semantic_analyze_formula(latex: str) -> List[FormulaSemanticAnalysed]:
 
 
 async def analyze_formula(latex: str, url: str) -> Any:
-    async with aiohttp.ClientSession(timeout=60) as session_client:
+    async with aiohttp.ClientSession(timeout=120) as session_client:
         try:
             data = {"latex": latex}
             async with session_client.post(url, data=data) as response:
