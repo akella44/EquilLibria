@@ -22,6 +22,8 @@ services:
       - dev
     ports:
       - "8000:8000"
+    volumes:
+      - ./static:/app/static
 
   db:
     image: postgres:14
@@ -50,10 +52,19 @@ services:
     networks:
       - dev
 
+  recognition:
+    build:
+      context: ./formula_recognition
+      dockerfile: Dockerfile
+    container_name: recognition
+    restart: unless-stopped
+    networks:
+      - dev
+
 volumes:
   postgres-data:
+
 
 networks:
   dev:
     driver: bridge
-    

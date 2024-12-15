@@ -1,2 +1,4 @@
 postgres-data
 app.log
+.idea
+static/

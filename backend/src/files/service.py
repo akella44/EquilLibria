@@ -15,7 +15,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from src.files.schemas import ImagesList, Image as ImageSchema, RectCreate
+from src.files.schemas import ImagesList, Image as ImageSchema, RectCreate, Latex
 from src.users import User
 from src.files import models
 from src.config import settings, STATIC_DIR
@@ -80,7 +80,6 @@ async def convert_and_save(file: UploadFile) -> Tuple[List[Path], List[str]]:
         uuids.append(uuid_str)
 
     elif file_extension == ".pdf":
-        # Конвертация PDF в JPG для каждой страницы с использованием PyMuPDF
         try:
             images = convert_pdf_to_images(content)
         except Exception as e:
@@ -169,7 +168,7 @@ async def send_single_file(
             )
             data.add_field("id", uuid_str)
             async with session.post(
-                AI_RECOGNIZE_URL, data=data, timeout=60
+                AI_RECOGNIZE_URL.format(uuid_str), data=data, timeout=15
             ) as response:
                 if response.status != 200:
                     text = await response.text()
@@ -318,8 +317,7 @@ async def convert_image_to_jpg_bytes(image: Image.Image) -> bytes:
 async def send_image_to_ai_service(image_bytes: bytes) -> str:
     ai_url = settings.ai_convert_url
 
-    timeout = aiohttp.ClientTimeout(total=30)
-    async with aiohttp.ClientSession(timeout=timeout) as session_client:
+    async with aiohttp.ClientSession(timeout=20) as session_client:
         data = aiohttp.FormData()
         data.add_field(
             name="file",
@@ -335,8 +333,16 @@ async def send_image_to_ai_service(image_bytes: bytes) -> str:
                         status_code=status.HTTP_502_BAD_GATEWAY,
                         detail=f"AI сервис вернул статус {response.status}: {resp_text}",
                     )
-                result_text = await response.text()
-                return result_text
+
+                response_json = await response.json()
+                result = response_json.get("result")
+                if result is None:
+                    raise HTTPException(
+                        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                        detail="AI сервис вернул ответ без поля 'result'."
+                    )
+
+                return result
         except asyncio.TimeoutError:
             raise HTTPException(
                 status_code=status.HTTP_504_GATEWAY_TIMEOUT,
@@ -349,7 +355,7 @@ async def send_image_to_ai_service(image_bytes: bytes) -> str:
             )
 
 
-async def get_latex_by_rect_id(session: AsyncSession, rect_id: int) -> str:
+async def get_latex_by_rect_id(session: AsyncSession, rect_id: int) -> Latex:
     rect, image = await fetch_rect_and_image(session, rect_id)
 
     cropped_img = await crop_image(image.path, rect.x1, rect.y1, rect.x2, rect.y2)
@@ -358,4 +364,4 @@ async def get_latex_by_rect_id(session: AsyncSession, rect_id: int) -> str:
 
     latex = await send_image_to_ai_service(image_bytes)
 
-    return latex
+    return Latex(latex=latex)
