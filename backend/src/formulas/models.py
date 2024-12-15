@@ -19,7 +19,7 @@ class Formula(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     user: Mapped["User"] = relationship(back_populates="formulas")
 
-    subexpressions: Mapped[list["Subexpression"]] = relationship(back_populates="subexpressions")
+    subexpressions: Mapped[list["Subexpression"]] = relationship(back_populates="formula")
 
 
 class Subexpression(Base):
