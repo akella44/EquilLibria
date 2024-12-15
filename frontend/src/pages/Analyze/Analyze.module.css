@@ -36,3 +36,7 @@
 .analyzeResultsWrapper {
   margin-top: 10px;
 }
+
+.analyzeButton {
+  width: 100%;
+}

@@ -1,5 +1,5 @@
 import { PageLayout } from "@app/layouts/PageLayout";
-import { FC } from "react";
+import { FC, useState } from "react";
 import s from "./Analyze.module.css";
 import { inputValueStore } from "@/store/inputValue";
 import { observer } from "mobx-react-lite";
@@ -11,11 +11,17 @@ import { keyboardStore } from "@/store/keyboard";
 import { AnalyzeButton } from "@/modules/AnalyzeButton";
 import { ImportButton } from "@/modules/ImportButton/ImportButton";
 import { AnalyzeResults } from "@/modules/AnalyzeResults/AnalyzeResults";
+import {
+  getSemanticSimilarFormulasByLatex,
+  getStaticSimilarFormulasByLatex,
+} from "@/shared/api/formulasService/formulasController";
+import asciimathToLatex from "asciimath-to-latex";
 
 export const Analyze: FC = observer(() => {
   const { getIsKeyboardVisible } = keyboardStore;
-
   const { inputValue, setValue } = inputValueStore;
+
+  const [staticList, setStaticList] = useState([]);
 
   return (
     <PageLayout>
@@ -36,7 +42,23 @@ export const Analyze: FC = observer(() => {
         <div className={s.formulaPreviewWrapper}>
           <FormulaPreview value={inputValue} />
         </div>
-        <AnalyzeButton />
+        <div
+          onClick={() => {
+            getStaticSimilarFormulasByLatex(
+              inputValueStore.getValueType() === "ascii"
+                ? asciimathToLatex(inputValueStore.getValue())
+                : inputValueStore.getValue()
+            ).then((data) => console.log(data));
+            getSemanticSimilarFormulasByLatex(
+              inputValueStore.getValueType() === "ascii"
+                ? asciimathToLatex(inputValueStore.getValue())
+                : inputValueStore.getValue()
+            ).then((data) => console.log(data));
+          }}
+          className={s.analyzeButton}
+        >
+          <AnalyzeButton />
+        </div>
         <div className={s.analyzeResultsWrapper}>
           <AnalyzeResults />
         </div>

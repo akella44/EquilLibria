@@ -12,7 +12,13 @@
 }
 
 .formulaField {
-  padding-right: 200px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  max-width: calc(100% - 40px);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .header:hover .wrapper {

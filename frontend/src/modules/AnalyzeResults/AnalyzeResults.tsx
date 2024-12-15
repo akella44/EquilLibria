@@ -6,7 +6,9 @@ export const AnalyzeResults: FC = () => {
   return (
     <div className={s.analyzeResults}>
       <h2 className={s.title}>Результаты анализа</h2>
-      <ResultLIst />
+      <div>
+        <ResultLIst />
+      </div>
     </div>
   );
 };

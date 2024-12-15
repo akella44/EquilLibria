@@ -42,10 +42,23 @@ export const createFormula = async (data: IAddFormula) => {
   return response;
 };
 
-export const updateFormulaById = async (formulaId: number, data: IAddFormula) => {
+export const updateFormulaById = async (
+  formulaId: number,
+  data: IAddFormula
+) => {
   return formulasController.patch(`/${formulaId}`, data);
 };
 
 export const deleteFormulaById = async (formulaId: number) => {
   return formulasController.delete(`/${formulaId}`);
+};
+
+export const getStaticSimilarFormulasByLatex = async (latex: string) => {
+  const response = await formulasController.post(`/static-analyze`, latex);
+  return response;
+};
+
+export const getSemanticSimilarFormulasByLatex = async (latex: string) => {
+  const response = await formulasController.post(`/semantic-analyze`, latex);
+  return response;
 };
