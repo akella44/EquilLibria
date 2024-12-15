@@ -191,4 +191,3 @@ async def auth_by_api_key(api_key: str = Depends(oauth2_scheme)):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail=f"Неверный ключ",
         )
-

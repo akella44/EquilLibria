@@ -1,4 +1,3 @@
-from redis.asyncio import Redis
 from sqlalchemy.ext.asyncio import (
     create_async_engine,
     async_sessionmaker,
@@ -45,6 +44,3 @@ class DatabaseManager:
 
 
 db_manager = DatabaseManager()
-redis_client = Redis(
-    host=settings.redis_host, port=settings.redis_port, db=0, decode_responses=True
-)

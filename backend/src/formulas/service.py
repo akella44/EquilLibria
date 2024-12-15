@@ -10,7 +10,13 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
 from .models import Formula
-from .schemas import FormulaCreate, FormulaUpdatePartial, FormulasList, FormulaStaticAnalysed, FormulaSemanticAnalysed
+from .schemas import (
+    FormulaCreate,
+    FormulaUpdatePartial,
+    FormulasList,
+    FormulaStaticAnalysed,
+    FormulaSemanticAnalysed,
+)
 from ..config import settings
 from ..users import User
 
@@ -104,17 +110,21 @@ async def delete_formula(
 
 
 async def static_analyze_formula(latex: str) -> List[FormulaStaticAnalysed]:
-    response_json = await analyze_formula(latex=latex, url=settings.ai_analyze_url+"matches/semantic/")
+    response_json = await analyze_formula(
+        latex=latex, url=settings.ai_analyze_url + "matches/semantic/"
+    )
     return [FormulaStaticAnalysed(**item) for item in response_json]
 
 
 async def semantic_analyze_formula(latex: str) -> List[FormulaSemanticAnalysed]:
-    response_json = await analyze_formula(latex=latex, url=settings.ai_analyze_url+"matches/static/")
+    response_json = await analyze_formula(
+        latex=latex, url=settings.ai_analyze_url + "matches/static/"
+    )
     return [FormulaSemanticAnalysed(**item) for item in response_json]
 
 
 async def analyze_formula(latex: str, url: str) -> Any:
-    async with aiohttp.ClientSession(timeout=20) as session_client:
+    async with aiohttp.ClientSession(timeout=60) as session_client:
         try:
             data = {"latex": latex}
             async with session_client.post(url, data=data) as response:

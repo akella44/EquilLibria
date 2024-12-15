@@ -25,11 +25,14 @@ register_main_handlers(dp)
 async def set_commands():
     await bot.set_my_commands(commands)
 
+
 async def start_polling():
     await dp.start_polling(bot)
 
+
 async def shutdown_bot():
     await bot.close()
+
 
 async def main_bot():
     await set_commands()
