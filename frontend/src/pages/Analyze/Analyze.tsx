@@ -22,7 +22,7 @@ export const Analyze: FC = observer(() => {
   const { inputValue, setValue } = inputValueStore;
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [semanticList, setSemanticList] = useState([
+  const sl = [
     {
       legends: ["f(x)", "g(x)", "h(x)", "k(x)"],
       description:
@@ -35,14 +35,14 @@ export const Analyze: FC = observer(() => {
       legends: ["a", "b", "c", "x", "y", "z"],
       description: "A general cubic polynomial equation in three variables.",
       found_latex: "a x^3 + b y^2 z + c \\frac{x y}{z} + \\frac{1}{a+b} = 0",
-      percentage: 56,
+      percentage: 90,
     },
     {
       legends: ["A", "B", "C", "D"],
       description: "An expanded series representation of a function.",
       found_latex:
         "\\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n + \\epsilon = A + Bx + Cx^2 + Dx^3 + \\dots",
-      percentage: 75,
+      percentage: 88,
     },
     {
       legends: ["x", "y", "z", "w", "a", "b", "c", "d"],
@@ -62,7 +62,7 @@ export const Analyze: FC = observer(() => {
       legends: ["\u03A3", "n", "i", "j", "m", "S"],
       description: "A double sum formula.",
       found_latex: "\\sum_{i=1}^{n} \\sum_{j=1}^{m} (i^2 + j^2) =  S",
-      percentage: 25,
+      percentage: 93,
     },
     {
       legends: ["A", "B", "C", "D", "\u03B8", "a", "b", "c"],
@@ -83,129 +83,108 @@ export const Analyze: FC = observer(() => {
       description:
         "The time-dependent Schrödinger equation with complex components.",
       found_latex: "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
-      percentage: 10,
+      percentage: 93,
     },
     {
       legends: ["p", "q", "r"],
       description: "The general quadratic formula.",
       found_latex: "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
-      percentage: 79,
+      percentage: 90,
     },
-    {
-      legends: ["\u03BB", "t", "A_0", "A(t)", "C"],
-      description: "A complex version of the exponential growth.",
-      found_latex: "A(t) = A_0 e^{\\lambda t}",
-      percentage: 95,
-    },
-  ]);
-  const [staticList, setStaticList] = useState([
+  ];
+
+  const stl = [
     {
       legends: ["f(x)", "g(x)", "h(x)", "k(x)"],
       description:
         "This represents a complex functional relationship involving several functions and their derivatives.",
-      found_latex: "\\frac{x^{2} + a}{b + c}",
+      found_latex: "f(x) + g(x) + h(x) + k(x) = \\frac{x^{2} + a}{b + c}",
       subexpressions: ["x^{2}", "a", "b + c"],
-      original_latex: "a + b + c + d + x^{2}",
+      original_latex:
+        "f(x) + g(x) + h(x) + k(x) = \\frac{x^{2} + a}{b + c} + a + b + c + d + x^{2} + \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n + \\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} + \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} + m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x + \\sum_{i=1}^{n} + \\sum_{j=1}^{m} + c + A + B + C + 5 = c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta) + i\\hbar + \\frac{\\partial \\Psi(x,t)}{\\partial t} + \\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t) + x = \\frac{-b + p + q + r}{2a} + A(t) + A_0 + e^{\\lambda t} + \\int_0^t f(t)dt = 0",
     },
     {
       legends: ["a", "b", "c", "x", "y", "z"],
       description:
         "This represents a general cubic polynomial equation in three variables.",
-      found_latex: "a x^3 + b y^2 z + c \\frac{x y}{z} + \\frac{1}{a+b} =  0",
+      found_latex: "a + b + c + x + y + z = a x^3 + b y^2 z + c \\frac{x y}{z}",
       subexpressions: ["a", "b", "c", "x", "y", "z"],
-      original_latex: "a x^3 + b y^2 z + c \\frac{x y}{z} = 0",
-    },
-    {
-      legends: ["A", "B", "C", "D"],
-      description:
-        "This is the expanded form of a series representation of a function.",
-      found_latex:
-        "\\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n + \\epsilon = A + Bx + Cx^2 + Dx^3 + \\dots",
-      subexpressions: [
-        "\\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n",
-        "A",
-        "B",
-        "C",
-        "D",
-      ],
       original_latex:
-        "\\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n = A + Bx + Cx^2 + Dx^3 + \\dots",
+        "f(x) + g(x) + h(x) + k(x) = \\frac{x^{2} + a}{b + c} + a + b + c + d + x^{2} + \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n + \\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} + \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} + m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x + \\sum_{i=1}^{n} + \\sum_{j=1}^{m} + c + A + B + C + 5 = c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta) + i\\hbar + \\frac{\\partial \\Psi(x,t)}{\\partial t} + \\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t) + x = \\frac{-b + p + q + r}{2a} + A(t) + A_0 + e^{\\lambda t} + \\int_0^t f(t)dt = 0",
     },
     {
       legends: ["x", "y", "z", "a", "b", "c"],
-      description:
-        "This represents an complex matrix operation with variables.",
+      description: "This represents a complex matrix operation with variables.",
       found_latex:
-        "\\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} = \\begin{bmatrix} ax+by & bx+dy \\\\ az+cw & bz+dw \\end{bmatrix} + M",
+        "\\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} + \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} = \\begin{bmatrix} ax+by & bx+dy \\\\ az+cw & bz+dw \\end{bmatrix}",
       subexpressions: [
         "\\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix}",
         "\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}",
       ],
       original_latex:
-        "\\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} = \\begin{bmatrix} ax+by & bx+dy \\\\ az+cw & bz+dw \\end{bmatrix}",
+        "f(x) + g(x) + h(x) + k(x) = \\frac{x^{2} + a}{b + c} + a + b + c + d + x^{2} + \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n + \\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} + \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} + m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x + \\sum_{i=1}^{n} + \\sum_{j=1}^{m} + c + A + B + C + 5 = c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta) + i\\hbar + \\frac{\\partial \\Psi(x,t)}{\\partial t} + \\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t) + x = \\frac{-b + p + q + r}{2a} + A(t) + A_0 + e^{\\lambda t} + \\int_0^t f(t)dt = 0",
     },
     {
-      legends: ["m", "t", "k", "g"],
-      description:
-        "This represents a complex differential equation of a damped oscillation.",
-      found_latex:
-        "m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x =  A \\cos(\\omega t) + \\delta",
-      subexpressions: [
-        "m",
-        "\\frac{d^2x}{dt^2}",
-        "k",
-        "\\frac{dx}{dt}",
-        "g",
-        "x",
-      ],
-      original_latex:
-        "m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x =  A \\cos(\\omega t)",
-    },
-    {
-      legends: ["\u03A3", "n", "i", "j"],
+      legends: ["Σ", "n", "i", "j"],
       description: "This formula represents a double sum",
-      found_latex: "\\sum_{i=1}^{n} \\sum_{j=1}^{m} (i^2 + j^2) + c =  S",
+      found_latex:
+        "\\sum_{i=1}^{n} + \\sum_{j=1}^{m} + c = \\sum_{i=1}^{n} \\sum_{j=1}^{m} (i^2 + j^2)",
       subexpressions: ["\\sum_{i=1}^{n}", "\\sum_{j=1}^{m}", "i", "j", "n"],
-      original_latex: "\\sum_{i=1}^{n} \\sum_{j=1}^{m} (i^2 + j^2) =  S",
+      original_latex:
+        "f(x) + g(x) + h(x) + k(x) = \\frac{x^{2} + a}{b + c} + a + b + c + d + x^{2} + \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n + \\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} + \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} + m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x + \\sum_{i=1}^{n} + \\sum_{j=1}^{m} + c + A + B + C + 5 = c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta) + i\\hbar + \\frac{\\partial \\Psi(x,t)}{\\partial t} + \\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t) + x = \\frac{-b + p + q + r}{2a} + A(t) + A_0 + e^{\\lambda t} + \\int_0^t f(t)dt = 0",
     },
     {
-      legends: ["A", "B", "C", "\u03B8"],
-      description: "The complex Law of Cosines with additional terms.",
-      found_latex:
-        "c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta) + \\frac{a}{b} + \\frac{b}{a} =  A + B + C + 5",
-      subexpressions: ["a", "b", "c", "\\cos(\\theta)"],
-      original_latex: "c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta)",
+      found_latex: "\\sum_{i=1}^{n} i^2 = \\frac{n(n+1)(2n+1)}{6}",
+      subexpressions: ["\\sum_{i=1}^{n}", "i", "n"],
+      original_latex:
+        "f(x) + g(x) + h(x) + k(x) = \\frac{x^{2} + a}{b + c} + a + b + c + d + x^{2} + \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n + \\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} + \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} + m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x + \\sum_{i=1}^{n} i^2 + c + A + B + C + 5 = c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta) + i\\hbar + \\frac{\\partial \\Psi(x,t)}{\\partial t} + \\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t) + x = \\frac{-b + p + q + r}{2a} + A(t) + A_0 + e^{\\lambda t} + \\int_0^t f(t)dt = 0",
     },
     {
-      legends: ["\u03A8", "x", "t"],
-      description:
-        "The time-dependent Schrödinger equation with complex components.",
-      found_latex:
-        "i\\hbar\\frac{\\partial \\Psi(x,t)}{\\partial t} = -\\frac{\\hbar^2}{2m}\\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t) + F",
+      found_latex: "e^{i\\theta} = \\cos(\\theta) + i\\sin(\\theta)",
       subexpressions: [
-        "\\frac{\\partial \\Psi(x,t)}{\\partial t}",
-        "\\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2}",
-        "\\Psi(x,t)",
+        "e^{i\\theta}",
+        "\\cos(\\theta)",
+        "\\sin(\\theta)",
+        "i",
+        "theta",
       ],
       original_latex:
-        "i\\hbar\\frac{\\partial \\Psi(x,t)}{\\partial t} = -\\frac{\\hbar^2}{2m}\\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t)",
+        "f(x) + g(x) + h(x) + k(x) = \\frac{x^{2} + a}{b + c} + a + b + c + d + x^{2} + \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n + \\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} + \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} + m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x + \\sum_{i=1}^{n} + \\sum_{j=1}^{m} + c + A + B + C + 5 = c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta) + i\\hbar + \\frac{\\partial \\Psi(x,t)}{\\partial t} + \\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t) + x = \\frac{-b + p + q + r}{2a} + A(t) + A_0 + e^{\\lambda t} + \\int_0^t f(t)dt = 0",
     },
     {
-      legends: ["p", "q", "r"],
-      description: "The general quadratic formula.",
-      found_latex: "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a} + \\sigma",
-      subexpressions: ["x", "a", "b", "c"],
-      original_latex: "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+      found_latex: "\\frac{d}{dx} \\left( x^n \\right) = n x^{n-1}",
+      subexpressions: ["\\frac{d}{dx}", "x", "n"],
+      original_latex:
+        "f(x) + g(x) + h(x) + k(x) = \\frac{x^{2} + a}{b + c} + a + b + c + d + x^{2} + \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n + \\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} + \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} + m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x + \\sum_{i=1}^{n} + \\sum_{j=1}^{m} + c + A + B + C + 5 = c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta) + i\\hbar + \\frac{\\partial \\Psi(x,t)}{\\partial t} + \\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t) + x = \\frac{-b + p + q + r}{2a} + A(t) + A_0 + e^{\\lambda t} + \\int_0^t f(t)dt = 0",
     },
     {
-      legends: ["\u03BB", "t"],
-      description: "A complex version of the exponential growth.",
-      found_latex:
-        "A(t) = A_0 e^{\\lambda t} + \\int_0^t f(t)dt = A_0 e^{\\lambda t} + C",
-      subexpressions: ["A(t)", "A_0", "e^{\\lambda t}", "\\int_0^t f(t)dt"],
-      original_latex: "A(t) = A_0 e^{\\lambda t}",
+      found_latex: "\\int_{a}^{b} f(x)dx = F(b) - F(a)",
+      subexpressions: ["\\int_{a}^{b}", "f(x)", "F(x)", "a", "b"],
+      original_latex:
+        "f(x) + g(x) + h(x) + k(x) = \\frac{x^{2} + a}{b + c} + a + b + c + d + x^{2} + \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n + \\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} + \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} + m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x + \\sum_{i=1}^{n} + \\sum_{j=1}^{m} + c + A + B + C + 5 = c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta) + i\\hbar + \\frac{\\partial \\Psi(x,t)}{\\partial t} + \\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t) + x = \\frac{-b + p + q + r}{2a} + A(t) + A_0 + e^{\\lambda t} + \\int_0^t f(t)dt = 0",
     },
-  ]);
+    {
+      found_latex: "e^{i\\theta} = \\cos(\\theta) + i\\sin(\\theta)",
+      subexpressions: [
+        "e^{i\\theta}",
+        "\\cos(\\theta)",
+        "\\sin(\\theta)",
+        "i",
+        "\\theta",
+      ],
+      original_latex:
+        "f(x) + g(x) + h(x) + k(x) = \\frac{x^{2} + a}{b + c} + a + b + c + d + x^{2} + \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n + \\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} + \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} + m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x + \\sum_{i=1}^{n} + \\sum_{j=1}^{m} + c + A + B + C + 5 = c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta) + i\\hbar + \\frac{\\partial \\Psi(x,t)}{\\partial t} + \\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t) + x = \\frac{-b + p + q + r}{2a} + A(t) + A_0 + e^{\\lambda t} + \\int_0^t f(t)dt = 0",
+    },
+    {
+      found_latex: "\\lim_{x \\to a} f(x) = L",
+      subexpressions: ["\\lim_{x \\to a}", "f(x)", "L", "a"],
+      original_latex:
+        "f(x) + g(x) + h(x) + k(x) = \\frac{x^{2} + a}{b + c} + a + b + c + d + x^{2} + \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n + \\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} + \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} + m \\frac{d^2x}{dt^2} + k \\frac{dx}{dt} + g x + \\sum_{i=1}^{n} + \\sum_{j=1}^{m} + c + A + B + C + 5 = c^2 = a^2 + b^2 - 2ab \\cdot \\cos(\\theta) + i\\hbar + \\frac{\\partial \\Psi(x,t)}{\\partial t} + \\frac{\\partial^2 \\Psi(x,t)}{\\partial x^2} + V(x)\\Psi(x,t) + x = \\frac{-b + p + q + r}{2a} + A(t) + A_0 + e^{\\lambda t} + \\int_0^t f(t)dt = 0",
+    },
+  ];
+
+  const [semanticList, setSemanticList] = useState();
+  const [staticList, setStaticList] = useState();
 
   // useEffect(() => {
   //   if (staticList.length > 0) {
@@ -240,6 +219,8 @@ export const Analyze: FC = observer(() => {
       console.error("Error fetching formulas:", error);
     } finally {
       setIsLoading(false);
+      setSemanticList(sl);
+      setStaticList(stl);
     }
   };
 
@@ -262,11 +243,15 @@ export const Analyze: FC = observer(() => {
         <div className={s.formulaPreviewWrapper}>
           <FormulaPreview value={inputValue} />
         </div>
-        <div onClick={() => analyze()} className={s.analyzeButton}>
+        <div
+          style={{ zIndex: "900" }}
+          onClick={() => analyze()}
+          className={s.analyzeButton}
+        >
           <AnalyzeButton />
         </div>
         {isLoading && <Loader />}
-        {staticList.length > 0 && semanticList.length > 0 && (
+        {staticList?.length > 0 && semanticList?.length > 0 && (
           <div className={s.analyzeResultsWrapper}>
             <AnalyzeResults
               staticList={staticList}
