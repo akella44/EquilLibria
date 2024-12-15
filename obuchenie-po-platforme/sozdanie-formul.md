@@ -14,7 +14,7 @@ icon: pencil
 
 Слева расположен <mark style="color:purple;">**сайдбар**</mark>. На нем вы можете увидеть кнопки для переключения режимов работы. Самая нижняя кнопка — ссылка на эту страницу. Возможно, вы здесь именно так и оказались.
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 Сейчас вы находитесь в режиме "Редактирование".
 

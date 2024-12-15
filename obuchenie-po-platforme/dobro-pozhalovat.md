@@ -14,7 +14,7 @@ icon: address-book
 
 На платформе **Equilibria** доступна **2FA** через [**Telegram**](https://t.me/EquillibriaBot). Придумайте имя пользователя и пароль, а затем поставьте галочку для использования двухфакторной аутентификации.
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 {% endstep %}
 
 {% step %}
@@ -22,7 +22,7 @@ icon: address-book
 
 Перейдите в Telegram-бота [@EquilibriaBot](https://t.me/EquillibriaBot): так вы свяжете ваш аккаунт в Telegram и на платформе.
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 {% endstep %}
 
 {% step %}
@@ -42,7 +42,7 @@ icon: address-book
 
 Вы же их запомнили, верно?
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 {% endstep %}
 
 {% step %}
@@ -50,7 +50,7 @@ icon: address-book
 
 Если вы подключали двухфакторную аутентификацию при регистрации, получите код для входа у [@EquilibriaBot](https://t.me/EquillibriaBot) и введите его в соответствующее поле.
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 Важно: код валиден только 2 минуты. По истечении этого времени, если вы не вошли, запросите у бота новый код.
 {% endstep %}

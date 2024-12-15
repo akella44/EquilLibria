@@ -20,6 +20,10 @@ icon: file-circle-exclamation
 
 В статическом анализе нажмите на стрелочку, чтобы развернуть более подробное описание проведенного анализа.
 
-В семантическом&#x20;
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+В семантическом анализе вам сразу выводится вся доступная информация о формуле.
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 {% endstep %}
 {% endstepper %}
