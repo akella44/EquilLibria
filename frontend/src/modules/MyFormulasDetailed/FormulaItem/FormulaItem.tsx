@@ -48,14 +48,16 @@ export const FormulaItem: FC<DetailedFormulaItem> = ({
       <div className={s.formula}>
         <BlockMath>{content}</BlockMath>
       </div>
-      <div className={s.description}>
-        {legends?.map((string, index) => (
-          <p key={index} className={s.desctiptionItem}>
-            {string}
-          </p>
-        ))}
-        {description}
-      </div>
+      {legends.length > 0 && (
+        <div className={s.description}>
+          {legends?.map((string, index) => (
+            <p key={index} className={s.desctiptionItem}>
+              {string}
+            </p>
+          ))}
+          {description}
+        </div>
+      )}
     </div>
   );
 };

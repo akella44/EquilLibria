@@ -1,11 +1,7 @@
 import { Modal } from "@/shared/ui/Modal";
 import { Separator } from "@/shared/ui/Separator/Separator";
 import { FC } from "react";
-import s from "./ExportModal.module.css";
-import { latexOrAscii } from "@/shared/lib/latexOrAscii";
-import { inputValueStore } from "@/store/inputValue";
-import { clearLatex } from "@/shared/lib/clearLatex";
-import asciimathToLatex from "asciimath-to-latex";
+import s from "./Export.module.css";
 import { toast } from "react-toastify";
 import html2canvas from "html2canvas";
 
@@ -20,9 +16,9 @@ const downloadCanvasAsImage = (canvas, filename) => {
   });
 };
 
-export const ExportModal: FC = ({ blockRef, asciiMathRef }) => {
+export const Export: FC = ({ mathRef, latex }) => {
   const handleDownload = () => {
-    const refToUse = blockRef.current || asciiMathRef.current;
+    const refToUse = mathRef.current;
     if (refToUse) {
       html2canvas(refToUse).then((canvas) => {
         downloadCanvasAsImage(canvas, "image.png");
@@ -30,22 +26,17 @@ export const ExportModal: FC = ({ blockRef, asciiMathRef }) => {
     }
   };
 
-  const handleCopyToClipboard = () => {
-    const value = inputValueStore.getValue();
-    const formattedValue =
-      latexOrAscii(value) === "latex"
-        ? clearLatex(value)
-        : asciimathToLatex(value);
-
-    navigator.clipboard.writeText(formattedValue);
-    toast.success("Скопировано в формате LaTeX");
-  };
-
   return (
-    <Modal>
+    <Modal padding="5px">
       <div className={s.exportModal}>
         <div className={s.item}>
-          <span className={s.text} onClick={handleCopyToClipboard}>
+          <span
+            className={s.text}
+            onClick={() => {
+              navigator.clipboard.writeText(latex);
+              toast.success("Скопировано в формате LaTeX");
+            }}
+          >
             Экспортировать в LaTeX
           </span>
         </div>

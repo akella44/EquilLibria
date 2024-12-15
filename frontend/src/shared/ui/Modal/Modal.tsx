@@ -6,12 +6,14 @@ interface ModalProps {
   blur?: boolean;
   children: ReactNode;
   onClickOutSide?: () => void;
+  padding?: string;
 }
 
 export const Modal: FC<ModalProps> = ({
   blur = false,
   children,
   onClickOutSide,
+  padding = "10px",
 }) => {
   const modalRef = useRef<HTMLDivElement | null>(null);
 
@@ -39,8 +41,7 @@ export const Modal: FC<ModalProps> = ({
 
   return (
     <>
-      {/* <div className={s.overlay}></div> */}
-      <div className={s.modal} ref={modalRef}>
+      <div className={s.modal} ref={modalRef} style={{ padding: padding }}>
         {children}
       </div>
     </>

@@ -28,6 +28,9 @@ export const FormulaPreview: FC<IFormulaPreview> = observer(({ value }) => {
   const spanRef = useRef(null);
   const inputRef = useRef(null);
 
+  const blockMathRef = useRef(null);
+  const asciiMathRef = useRef(null);
+
   const { updateFormula } = useUpdateFomula();
 
   const { addFormula } = useAddFomula();
@@ -71,11 +74,15 @@ export const FormulaPreview: FC<IFormulaPreview> = observer(({ value }) => {
         </div>
         <div className={s.formulaField}>
           {inputValueStore.getValueType() === "ascii" ? (
-            <MathJax.Context input="ascii">
-              <MathJax.Node>{value}</MathJax.Node>
-            </MathJax.Context>
+            <div ref={asciiMathRef}>
+              <MathJax.Context input="ascii">
+                <MathJax.Node>{value}</MathJax.Node>
+              </MathJax.Context>
+            </div>
           ) : (
-            <BlockMath>{clearLatex(value)}</BlockMath>
+            <div ref={blockMathRef}>
+              <BlockMath>{clearLatex(value)}</BlockMath>
+            </div>
           )}
         </div>
       </div>
@@ -107,7 +114,7 @@ export const FormulaPreview: FC<IFormulaPreview> = observer(({ value }) => {
                     legends: inputValueStore
                       .getLegends()
                       .filter((item) => item != ""),
-                    description: "asd",
+                    description: "",
                   });
                   inputValueStore.clear();
                   editFormulaStore.clear();
@@ -128,7 +135,7 @@ export const FormulaPreview: FC<IFormulaPreview> = observer(({ value }) => {
                     legends: inputValueStore
                       .getLegends()
                       .filter((item) => item != ""),
-                    description: "asd",
+                    description: "",
                   });
                 }}
               >
@@ -147,7 +154,10 @@ export const FormulaPreview: FC<IFormulaPreview> = observer(({ value }) => {
             <Export />
             {exportModalStore.getIsModalVisible() && (
               <div className={s.exportModalWrapper}>
-                <ExportModal />
+                <ExportModal
+                  blockRef={blockMathRef}
+                  asciiMathRef={asciiMathRef}
+                />
               </div>
             )}
           </div>

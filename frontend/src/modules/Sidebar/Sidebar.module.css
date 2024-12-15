@@ -27,8 +27,10 @@
   }
 }
 
-.sidebarItem:last-child {
+.sidebarItem:nth-child(3) {
   font-weight: 600;
+  margin-bottom: 40px;
+  color: var(--color-primary-purple);
 }
 
 .active {
@@ -41,4 +43,10 @@
 
 .navItem:not(.active) {
   background-color: transparent;
+}
+
+.separator {
+  margin-top: 10px;
+  width: 92%;
+  margin-inline: auto;
 }

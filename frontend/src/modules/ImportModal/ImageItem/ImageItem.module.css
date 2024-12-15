@@ -4,11 +4,11 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  width: 100%;
 }
 
 .image {
   display: block;
-  max-width: 100%;
 }
 
 .rect {

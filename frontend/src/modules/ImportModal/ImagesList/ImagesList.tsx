@@ -37,7 +37,7 @@ export const ImagesList: FC<ImageListProps> = ({ ids }) => {
   const fetchImageWithRetry = async (id, delay = 3000) => {
     while (true && importModalStore.getIsRequest()) {
       const image = await getImageById(id);
-      console.log(image)
+      console.log(image);
       if (image.data && image.data.rects && image.data.rects.length > 0) {
         setRects((prevRects) => [
           ...prevRects,
@@ -98,11 +98,21 @@ export const ImagesList: FC<ImageListProps> = ({ ids }) => {
     handleIntersect();
   });
 
+  const type = importModalStore.getType();
+
   return (
     <div className={s.imagesList}>
       {imgs.length > 0 &&
         imgs.map((image, index) => (
-          <div className={s.item} key={index}>
+          <div
+            className={s.item}
+            key={index}
+            style={
+              type === "img"
+                ? { position: "absolute", top: 0, left: 0, minWidth: "100%" }
+                : undefined
+            }
+          >
             <ImageItem
               img={image.url}
               rect={rects.find((rect) => rect.id === image.id)?.rects}

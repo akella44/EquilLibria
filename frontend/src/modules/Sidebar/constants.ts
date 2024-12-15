@@ -2,6 +2,11 @@ import { NavItem } from "./types";
 
 export const sidebarItems: NavItem[] = [
   {
+    id: "/myformulas",
+    title: "Мои формулы",
+    link: "/myformulas",
+  },
+  {
     id: "/",
     title: "Редактирование",
     link: "/",
@@ -10,10 +15,5 @@ export const sidebarItems: NavItem[] = [
     id: "/analyze",
     title: "Анализ",
     link: "/analyze",
-  },
-  {
-    id: "/myformulas",
-    title: "Мои формулы",
-    link: "/myformulas",
   },
 ];
